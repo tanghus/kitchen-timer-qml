@@ -1,0 +1,28 @@
+Name: harbour-kitchentimer
+Summary: Kitchen Timer
+Version: 0.1
+Release: 1
+Group: Qt/Qt
+License: BSD
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |
+  Very simple kitchen timer
+Configure: none
+Builder: qtc5
+PkgConfigBR:
+- sailfishapp
+- Qt5Quick
+- Qt5Qml
+- Qt5Core
+Requires:
+- sailfishsilica-qt5
+Files:
+- '%{_datadir}'
+- '%{_datadir}/%{name}/qml'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/%{name}/sounds'
+- '%{_bindir}'
+- '%{_bindir}/%{name}'
+PkgBR: []
