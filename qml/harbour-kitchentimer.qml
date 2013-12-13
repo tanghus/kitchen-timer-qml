@@ -38,17 +38,94 @@ ApplicationWindow {
     id: app;
 
     property string timeText: '00:01';
+    property bool isBusy: false;
+    property bool isRunning: false;
+    property alias isPlaying: timerPage.isPlaying;
+    property alias seconds: timerPage.seconds;
+    property alias minutes: timerPage.minutes;
+    //property alias timerPage: timerComponent;
 
-    initialPage: Component {
-        TimerPage {
-            id: timerPage;
+    initialPage: TimerPage {
+        id: timerPage;
+    }
+
+    cover: CoverPage {
+        id: cover;
+    }
+
+    BusyIndicator {
+        id: busyIndicator;
+        anchors.centerIn: parent;
+        size: BusyIndicatorSize.Large;
+    }
+
+    ListModel {
+        id: timersModel;
+    }
+
+    Component.onCompleted: {
+        load();
+    }
+
+    Storage {
+        id: storage;
+        dbName: StandardPaths.data;
+    }
+
+    Connections {
+        target: cover;
+        onMute: timerPage.mute();
+        onPause: timerPage.pause();
+        onReset: timerPage.reset();
+        onStart: timerPage.start();
+    }
+
+    function save() {
+        console.log('Saving...');
+        setBusy(true);
+        var timers = [];
+
+        for (var i = 0; i < timersModel.count; ++i) {
+            var timer = timersModel.get(i);
+            timers.push({name:timer.name, minutes: timer.minutes, seconds:timer.seconds});
         }
+
+        storage.saveTimers(timers);
+        setBusy(false);
     }
 
-    cover: Component {
-        CoverPage {}
+    function load() {
+        setBusy(true);
+        var timers = storage.getTimers();
+
+        if(timers === false) {
+            console.warn('Default timers could not be loaded');
+            setBusy(false);
+            return
+        }
+
+        for (var i = 0; i < timers.length; ++i) {
+            timersModel.append(
+                {
+                    name: timers[i].name,
+                    minutes: timers[i].minutes,
+                    seconds: timers[i].seconds
+                }
+            );
+        }
+        setBusy(false);
     }
 
+    function reload() {
+        timersModel.clear();
+        load();
+        console.log('Reloading...');
+    }
+
+    function setBusy(state) {
+        isBusy = state;
+        busyIndicator.running = state;
+    }
 }
 
 

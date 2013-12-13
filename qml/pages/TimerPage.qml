@@ -38,8 +38,8 @@ Page {
 
     property alias seconds: timePicker.minute;
     property alias minutes: timePicker.hour;
+    property alias isPlaying: alarm.playing;
     property date time: new Date(0, 0, 0, 0, minutes, seconds);
-    property bool isRunning: false;
     property Item contextMenu;
 
     Component.onCompleted: {
@@ -61,6 +61,7 @@ Page {
 
     function showTime() {
         timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
+        //console.log('Time:', timeText);
     }
 
     SoundEffect {
@@ -92,8 +93,21 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: 'Default timers';
+                text: 'Edit default timers';
                 onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'))
+            }
+            Repeater {
+                 model: timersModel;
+                 delegate: MenuItem {
+                     text: model.name + ' '
+                           + (model.minutes>= 10 ? model.minutes : '0' + String(model.minutes))
+                           + ':'
+                           + (model.seconds >= 10 ? model.seconds : '0' + String(model.seconds));
+                     onClicked: {
+                         setTime(model.minutes, model.seconds);
+                         console.log('Selected timer', model.name);
+                     }
+                 }
             }
         }
 
@@ -114,7 +128,7 @@ Page {
                 width: column.width;
                 TimePicker {
                     id: timePicker;
-                    hour: 0; minute: 0;
+                    hour: minutes; minute: seconds;
                     showRangeIndicator: false;
                     //anchors.centerIn: column;
                     // Ugly, but, dang, I can't position it
@@ -164,37 +178,60 @@ Page {
                 MenuItem {
                     visible: !isRunning && (minutes > 0 || seconds > 0);
                     text: 'Start';
-                    onClicked: {
-                        timer.start();
-                        isRunning = true;
-                    }
+                    onClicked: start();
                 }
                 MenuItem {
                     visible: isRunning;
                     text: 'Pause';
-                    onClicked: {
-                        timer.stop();
-                        isRunning = false;
-                    }
+                    onClicked: pause();
                 }
                 MenuItem {
                     visible: (minutes > 0 || seconds > 0);
                     text: 'Reset';
-                    onClicked: {
-                        timer.stop();
-                        isRunning = false;
-                        seconds = minutes = 0;
-                    }
+                    onClicked: reset();
                 }
                 MenuItem {
                     visible: alarm.playing;
                     text: 'Silence';
-                    onClicked: {
-                        alarm.stop();
-                    }
+                    onClicked: mute();
                 }
             }
         }
+    }
+
+    function setTime(mins, secs) {
+        console.log('setTime:', mins, secs);
+        timePicker.hour = mins;
+        timePicker.minute = secs;
+    }
+
+    function mute() {
+        if(alarm.playing) {
+            alarm.stop();
+        }
+        isRunning = false;
+    }
+
+    function pause() {
+        if(timer.running) {
+            timer.stop();
+        }
+        isRunning = false;
+    }
+
+    function reset() {
+        if(timer.running) {
+            timer.stop();
+        }
+        isRunning = false;
+        seconds = minutes = 0;
+    }
+
+    function start() {
+        if(!timer.running) {
+            timer.start();
+        }
+        isRunning = true;
     }
 }
 

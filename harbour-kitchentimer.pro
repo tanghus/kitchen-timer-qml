@@ -41,5 +41,6 @@ OTHER_FILES += qml/harbour-kitchentimer.qml \
     rpm/harbour-kitchentimer.yaml \
     harbour-kitchentimer.desktop \
     qml/pages/TimerPage.qml \
-    qml/pages/TimersDialog.qml
+    qml/pages/TimersDialog.qml \
+    js/Storage.js
 

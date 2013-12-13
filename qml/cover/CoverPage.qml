@@ -33,6 +33,11 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
+    signal pause();
+    signal mute();
+    signal start();
+    signal reset();
+
     Column {
         anchors.fill: parent;
         anchors.leftMargin: Theme.paddingLarge;
@@ -42,6 +47,7 @@ CoverBackground {
             truncationMode: TruncationMode.Fade;
             horizontalAlignment: Text.AlignHCenter;
             width: parent.width;
+            font.pixelSize: Theme.fontSizeLarge;
         }
         Label {
             text: timeText;
@@ -53,16 +59,45 @@ CoverBackground {
     }
 
     CoverActionList {
-        id: coverAction
+        id: ticking;
+        enabled: isRunning;
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-next"
+            iconSource: "image://theme/icon-cover-cancel";
+            onTriggered: reset();
         }
 
         CoverAction {
             iconSource: "image://theme/icon-cover-pause"
+            onTriggered: pause();
         }
     }
+
+    CoverActionList {
+        id: paused;
+        enabled: !isRunning && (minutes > 0 || seconds > 0);
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-play";
+            onTriggered: start();
+        }
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-cancel"
+            onTriggered: reset();
+        }
+    }
+
+    CoverActionList {
+        id: alarm;
+        enabled: isPlaying;
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-mute";
+            onTriggered: mute();
+        }
+    }
+
 }
 
 

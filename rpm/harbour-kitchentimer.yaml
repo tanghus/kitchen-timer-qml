@@ -4,25 +4,32 @@ Version: 0.1
 Release: 1
 Group: Qt/Qt
 License: BSD
+URL: https://github.com/tanghus/kitchentimer_qml
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
   Very simple kitchen timer
 Configure: none
 Builder: qtc5
+QMakeOptions:
+- VERSION=%{version}
 PkgConfigBR:
-- sailfishapp
-- Qt5Quick
-- Qt5Qml
 - Qt5Core
+- Qt5Qml
+- Qt5Quick
+- sailfishapp
 Requires:
 - sailfishsilica-qt5
 Files:
-- '%{_datadir}'
-- '%{_datadir}/%{name}/qml'
-- '%{_datadir}/applications/%{name}.desktop'
-- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
-- '%{_datadir}/%{name}/sounds'
-- '%{_bindir}'
 - '%{_bindir}/%{name}'
+- '%{_bindir}'
+- '%{_datadir}/%{name}/sounds'
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/%{name}/qml'
+- '%{_datadir}'
+- /usr/bin
+- /usr/share/icons/hicolor/86x86/apps
+- /usr/share/applications
+- /usr/share/harbour-kitchentimer
 PkgBR: []
