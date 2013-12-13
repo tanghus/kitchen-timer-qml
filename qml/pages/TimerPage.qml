@@ -39,6 +39,7 @@ Page {
     property alias seconds: timePicker.minute;
     property alias minutes: timePicker.hour;
     property alias isPlaying: alarm.playing;
+    property alias isRunning: timer.running;
     property date time: new Date(0, 0, 0, 0, minutes, seconds);
     property Item contextMenu;
 
@@ -47,16 +48,26 @@ Page {
         console.log('Ready', Qt.resolvedUrl('../../sounds/harbour-kitchentimer.wav'));
     }
 
+    onIsRunningChanged: {
+        setMenuModel();
+    }
+
+    onIsPlayingChanged: {
+        setMenuModel();
+    }
+
     onSecondsChanged: {
         showTime();
         if(seconds === 0 && minutes > 0) {
             seconds = 60;
             minutes -= 1;
         }
+        setMenuModel();
     }
 
     onMinutesChanged: {
         showTime();
+        setMenuModel();
     }
 
     function showTime() {
@@ -78,13 +89,8 @@ Page {
             time.setSeconds(seconds);
             if(minutes === 0 && seconds === 0) {
                 timer.stop();
-                isRunning = false;
                 alarm.play();
-                // Sound the bell!
             }
-            /*if(seconds % 60 === 0) {
-                minutes -= 1;
-            }*/
         }
     }
 
@@ -150,12 +156,10 @@ Page {
                     onClicked: {
                         if(isRunning) {
                             timer.stop();
-                            isRunning = false;
                         } else if(!isRunning && alarm.playing) {
                             alarm.stop();
                         } else if(seconds > 0 || minutes > 0) {
                             timer.start();
-                            isRunning = true;
                         }
                     }
                     onPressAndHold: {
@@ -172,28 +176,24 @@ Page {
             }
         }
 
+        ListModel {
+            id: menuModel;
+        }
+
         Component {
             id: contextMenuComponent;
             ContextMenu {
-                MenuItem {
-                    visible: !isRunning && (minutes > 0 || seconds > 0);
-                    text: 'Start';
-                    onClicked: start();
-                }
-                MenuItem {
-                    visible: isRunning;
-                    text: 'Pause';
-                    onClicked: pause();
-                }
-                MenuItem {
-                    visible: (minutes > 0 || seconds > 0);
-                    text: 'Reset';
-                    onClicked: reset();
-                }
-                MenuItem {
-                    visible: alarm.playing;
-                    text: 'Silence';
-                    onClicked: mute();
+                Repeater {
+                    id: menuRepeater;
+                    model: menuModel;
+
+                    delegate: MenuItem {
+                        text: model.name;
+                        onClicked: {
+                            console.log('Action:', model.action);
+                            runMenuAction(model.action);
+                        }
+                    }
                 }
             }
         }
@@ -209,21 +209,18 @@ Page {
         if(alarm.playing) {
             alarm.stop();
         }
-        isRunning = false;
     }
 
     function pause() {
         if(timer.running) {
             timer.stop();
         }
-        isRunning = false;
     }
 
     function reset() {
         if(timer.running) {
             timer.stop();
         }
-        isRunning = false;
         seconds = minutes = 0;
     }
 
@@ -231,8 +228,47 @@ Page {
         if(!timer.running) {
             timer.start();
         }
-        isRunning = true;
     }
+
+    function runMenuAction(action) {
+        switch(action) {
+            case 'start':
+                start();
+                break;
+            case 'reset':
+                reset();
+                break;
+            case 'mute':
+                mute();
+                break;
+            case 'pause':
+                pause();
+                break;
+        }
+    }
+
+    function setMenuModel() {
+        menuModel.clear();
+        var menuActions = {
+            start: {name:'Start', action:'start'},
+            pause: {name:'Pause', action:'pause'},
+            reset: {name:'Reset', action:'reset'},
+            mute: {name:'Mute', action:'mute'}
+        }
+
+        if(isRunning) {
+            menuModel.append(menuActions.pause);
+            menuModel.append(menuActions.reset);
+        } else if(!isRunning && (minutes > 0 || seconds > 0)) {
+            menuModel.append(menuActions.start);
+            menuModel.append(menuActions.reset);
+        } else if(minutes > 0 || seconds > 0) {
+            menuModel.append(menuActions.reset);
+        } else if(alarm.playing) {
+            menuModel.append(menuActions.mute);
+        }
+    }
+
 }
 
 

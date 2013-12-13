@@ -39,8 +39,8 @@ ApplicationWindow {
 
     property string timeText: '00:01';
     property bool isBusy: false;
-    property bool isRunning: false;
     property alias isPlaying: timerPage.isPlaying;
+    property alias isRunning: timerPage.isRunning;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
     //property alias timerPage: timerComponent;
