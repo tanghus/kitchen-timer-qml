@@ -135,7 +135,7 @@ Page {
                 TimePicker {
                     id: timePicker;
                     hour: minutes; minute: seconds;
-                    showRangeIndicator: false;
+                    //showRangeIndicator: false;
                     //anchors.centerIn: column;
                     // Ugly, but, dang, I can't position it
                     x: (column.width - timePicker.width) / 2;
