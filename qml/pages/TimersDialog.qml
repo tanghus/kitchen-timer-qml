@@ -44,14 +44,22 @@ Dialog {
         anchors.rightMargin: Theme.paddingLarge;
         width: parent.width;
         y: header.height + Theme.paddingMedium;
-        height: timersModel.count * Theme.itemSizeSmall;
-        //height: parent.height - (header.height + Theme.paddingMedium);
+        contentHeight: timersModel.count * Theme.itemSizeSmall;
+        height: parent.height - (header.height + Theme.paddingMedium + addButton.height);
 
-        delegate: BackgroundItem {
-            id: delegate;
-            height: Theme.itemSizeSmall;
+        delegate: ListItem {
+            id: timerItem;
+            contentHeight: Theme.itemSizeSmall;
+            ListView.onRemove: animateRemoval(timerItem)
 
             property bool changed: false;
+
+            function remove() {
+                remorseAction("Deleting", function() {
+                    var idx = index;
+                    timersList.model.remove(idx);
+                });
+            }
 
             Item {
                 TextField {
@@ -105,24 +113,17 @@ Dialog {
                 IconButton {
                    anchors.left: seconds.right;
                    icon.source: 'image://theme/icon-m-delete';
-                   onClicked: {
-                       console.log("Delete!");
-                       var idx = index;
-                       remorse.execute(delegate, "Deleting", function() {
-                           timersModel.remove(idx)
-                       });
-                   }
-                   RemorseItem { id: remorse }
+                   onClicked: remove();
                 }
             }
-            //onClicked: console.log("Clicked:", model.timer, name.text)
         }
     }
     IconButton {
+        id: addButton;
         anchors.top: timersList.bottom;
         anchors.right: timersList.right;
+        anchors.rightMargin: Theme.paddingMedium;
         icon.source: 'image://theme/icon-m-add';
-        //anchors.horizontalCenter: timersList.horizontalCenter;
         visible: timersModel.count < 8;
         onClicked: {
             timersModel.append(
@@ -132,6 +133,7 @@ Dialog {
                             seconds: 0
                         }
                         );
+            timersList.positionViewAtEnd();
         }
     }
 
