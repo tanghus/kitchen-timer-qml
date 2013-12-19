@@ -1,4 +1,5 @@
 /*
+  Copyright (C) 2013 Thomas Tanghus
   Copyright (C) 2013 Jolla Ltd.
   Contact: Thomas Perl <thomas.perl@jollamobile.com>
   All rights reserved.

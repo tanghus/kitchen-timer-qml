@@ -92,9 +92,16 @@ Dialog {
                         }
                     }
                 }
+                Label {
+                    id: separator;
+                    anchors.left: minutes.right;
+                    text: ':';
+                    color: minutes.color;//Theme.secondaryHighlightColor;
+                }
+
                 TextField {
                     id: seconds;
-                    anchors.left: minutes.right;
+                    anchors.left: separator.right;
                     placeholderText: 'Seconds';
                     text: model.seconds >= 10 ? model.seconds : '0' + String(model.seconds);
                     width: font.pixelSize * 3;
