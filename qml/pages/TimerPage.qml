@@ -32,21 +32,22 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
 import Sailfish.Silica 1.0
+import "../components"
+
 
 
 Page {
     id: timerPage;
 
-    property alias seconds: timePicker.minute;
-    property alias minutes: timePicker.hour;
+    property alias seconds: kitchenTimer.seconds;
+    property alias minutes: kitchenTimer.minutes;
     property alias isPlaying: alarm.playing;
     property alias isRunning: timer.running;
     property date time: new Date(0, 0, 0, 0, minutes, seconds);
     property Item contextMenu;
 
     Component.onCompleted: {
-        timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
-        console.log('Ready', Qt.resolvedUrl('../../sounds/harbour-kitchentimer.wav'));
+        showTime();
     }
 
     onIsRunningChanged: {
@@ -59,7 +60,7 @@ Page {
 
     onSecondsChanged: {
         showTime();
-        if(seconds === 0 && minutes > 0) {
+        if(seconds === 0 && minutes > 0 && isRunning) {
             seconds = 60;
             minutes -= 1;
         }
@@ -71,16 +72,12 @@ Page {
         setMenuModel();
     }
 
-    function showTime() {
-        timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
-        //console.log('Time:', timeText);
-    }
-
     SoundEffect {
         id: alarm;
         loops: -2;
         source: Qt.resolvedUrl('../../sounds/harbour-kitchentimer.wav');
     }
+
     Timer {
         id: timer;
         interval: 1000;
@@ -99,6 +96,12 @@ Page {
         anchors.fill: parent;
 
         PullDownMenu {
+            MenuItem {
+                text: 'About'
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl('AboutPage.qml'));
+                }
+            }
             MenuItem {
                 text: 'Edit default timers';
                 onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'))
@@ -133,18 +136,18 @@ Page {
             }
             Item {
                 width: column.width;
-                TimePicker {
-                    id: timePicker;
-                    hour: minutes; minute: seconds;
+                KitchenTimer {
+                    id: kitchenTimer;
+                    //hour: minutes; minute: seconds;
                     //showRangeIndicator: false;
                     //anchors.centerIn: column;
                     // Ugly, but, dang, I can't position it
-                    x: (column.width - timePicker.width) / 2;
-                    y: (Screen.height - timePicker.height) / 2;
+                    x: (column.width - kitchenTimer.width) / 2;
+                    y: (Screen.height - kitchenTimer.height) / 2;
                 }
                 BackgroundItem {
                     id: background;
-                    anchors.centerIn: timePicker;
+                    anchors.centerIn: kitchenTimer;
                     width: timerButton.width;
                     height: timerButton.height;
 
@@ -169,9 +172,9 @@ Page {
                         }
 
                         if (!contextMenu) {
-                            contextMenu = contextMenuComponent.createObject(timePicker)
+                            contextMenu = contextMenuComponent.createObject(kitchenTimer)
                         }
-                        contextMenu.show(timePicker)
+                        contextMenu.show(kitchenTimer)
                     }
                 }
             }
@@ -200,10 +203,15 @@ Page {
         }
     }
 
+    function showTime() {
+        timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
+        //console.log('Time:', timeText);
+    }
+
     function setTime(mins, secs) {
         console.log('setTime:', mins, secs);
-        timePicker.hour = mins;
-        timePicker.minute = secs;
+        minutes = mins;
+        seconds = secs;
     }
 
     function mute() {

@@ -52,8 +52,6 @@ Dialog {
             contentHeight: Theme.itemSizeSmall;
             ListView.onRemove: animateRemoval(timerItem)
 
-            property bool changed: false;
-
             function remove() {
                 remorseAction("Deleting", function() {
                     var idx = index;
@@ -123,6 +121,13 @@ Dialog {
                    onClicked: remove();
                 }
             }
+        }
+        VerticalScrollDecorator {
+            flickable: timersList;
+        }
+        ViewPlaceholder {
+            enabled: timersList.count === 0;
+            text: 'No timers defined. Press the plus button to add one.';
         }
     }
     IconButton {

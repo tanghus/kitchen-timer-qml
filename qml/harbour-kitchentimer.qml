@@ -44,7 +44,6 @@ ApplicationWindow {
     property alias isRunning: timerPage.isRunning;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
-    //property alias timerPage: timerComponent;
 
     initialPage: TimerPage {
         id: timerPage;

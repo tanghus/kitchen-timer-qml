@@ -42,6 +42,9 @@ OTHER_FILES += qml/harbour-kitchentimer.qml \
     harbour-kitchentimer.desktop \
     qml/pages/TimerPage.qml \
     qml/pages/TimersDialog.qml \
+    qml/pages/AboutPage.qml \
+    qml/components/KitchenTimer.qml \
+    qml/components/Storage.qml \
     js/Storage.js \
     LICENSE \
     README.md
