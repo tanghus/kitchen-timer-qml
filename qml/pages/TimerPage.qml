@@ -60,10 +60,6 @@ Page {
 
     onSecondsChanged: {
         showTime();
-        if(seconds === 0 && minutes > 0 && isRunning) {
-            seconds = 60;
-            minutes -= 1;
-        }
         setMenuModel();
     }
 

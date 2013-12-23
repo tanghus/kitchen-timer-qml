@@ -68,7 +68,12 @@ Item {
 
     onSecondsChanged: {
         //console.log('onSecondsChange', seconds)
-        seconds = (seconds < 0 ? 0 : (seconds > 59 ? 59 : seconds))
+        //seconds = (seconds < 0 ? 0 : (seconds > 59 ? 59 : seconds))
+
+        if(seconds === 0 && minutes > 0 && isRunning) {
+            seconds = 60;
+            minutes -= 1;
+        }
 
         if (mouse.changingProperty == 0) {
             var delta = (seconds - secondsIndicator.value)
@@ -219,7 +224,7 @@ Item {
                 var s = remapAngle(angle, 60)
                 var delta = (s - secondsIndicator.value) % 60
 
-                // It is not possible to make jumps of more than 30 secondss - reverse the direction
+                // It is not possible to make jumps of more than 30 seconds - reverse the direction
                 if (delta > 30) {
                     delta -= 60
                 } else if (delta < -30) {
