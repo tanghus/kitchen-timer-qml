@@ -50,22 +50,12 @@ Page {
         showTime();
     }
 
-    onIsRunningChanged: {
-        setMenuModel();
-    }
-
-    onIsPlayingChanged: {
-        setMenuModel();
-    }
-
     onSecondsChanged: {
         showTime();
-        setMenuModel();
     }
 
     onMinutesChanged: {
         showTime();
-        setMenuModel();
     }
 
     SoundEffect {
@@ -163,6 +153,7 @@ Page {
                         }
                     }
                     onPressAndHold: {
+                        setMenuModel();
                         if((minutes === 0 && seconds === 0) & !alarm.playing && !isRunning) {
                             return;
                         }
