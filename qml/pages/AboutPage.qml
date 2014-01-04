@@ -32,6 +32,8 @@ import Sailfish.Silica 1.0
 
 Page {
 
+    SilicaFlickable {
+        anchors.fill: parent;
     Label {
         anchors.centerIn: parent;
         width: parent.width;
@@ -40,14 +42,20 @@ Page {
         textFormat: Text.RichText;
         text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" +
               "Kitchen Timer<br/>" +
-              "by Thomas Tanghus<br/><br/>" +
-              "See more at <a href='https://github.com/tanghus/kitchen-timer-qml'>the project page</a>.<br/><br/>" +
-              "Issues and feature request at the <a href='https://github.com/tanghus/kitchen-timer-qml/issues'>issue tracker</a>.<br/><br/>" +
-              "Ask 'tanghus' at the <a href='http://webchat.freenode.net/?channels=sailfishos'>#sailfishos</a> channel on Freenode IRC for support<br/><br/>" +
-              "The awesome icon is made by Alain M <a href='https://twitter.com/capricotwi04'>@capricotwi04</a> <a href='mailto:alain_m@gmx.ch'>alain_m@gmx.ch</a>";
+              qsTr('Simple Kitchen Timer app') + '<br/>' +
+              //: Naming the author
+              qsTr('by %1', 'As in made by %1').arg('Thomas Tanghus') + '<br/><br/>' +
+              //: Link to Github project page
+              qsTr('See more at %1.', 'Link URL').arg(' <a href="https://github.com/tanghus/kitchen-timer-qml">%1</a>').arg(qsTr('the project page', 'Link text')) + '<br/><br/>' +
+              //: Link to the issue tracker
+              qsTr('Issues and feature request at the %1', 'Link URL').arg('<a href="https://github.com/tanghus/kitchen-timer-qml/issues">%1</a>.').arg(qsTr('issue tracker', 'Link text')) + '<br/><br/>' +
+              //: %1: Author nick, %2:Link to Web IRC
+              qsTr('Ask "%1" at the %2 channel on Freenode IRC for support', 'Link with text').arg('tanghus').arg('<a href="http://webchat.freenode.net/?channels=sailfishos">#sailfishos</a>') + '<br/><br/>' +
+              qsTr('The awesome icon is made by %1').arg('Alain M') + ' <a href="https://twitter.com/capricotwi04">@capricotwi04</a> <a href="mailto:alain_m@gmx.ch">alain_m@gmx.ch</a>';
 
         onLinkActivated: {
             Qt.openUrlExternally(link)
         }
+    }
     }
 }

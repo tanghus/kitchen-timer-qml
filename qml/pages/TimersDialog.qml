@@ -53,7 +53,7 @@ Dialog {
             ListView.onRemove: animateRemoval(timerItem)
 
             function remove() {
-                remorseAction("Deleting", function() {
+                remorseAction(qsTr('Deleting'), function() {
                     var idx = index;
                     timersList.model.remove(idx);
                 });
@@ -62,7 +62,7 @@ Dialog {
             Item {
                 TextField {
                     id: name;
-                    placeholderText: 'Timer name';
+                    placeholderText: qsTr('Timer name');
                     text: model.name;
                     width: font.pixelSize * 8;
                     RegExpValidator { regExp: /(\w{1,10}\b)/g }
@@ -75,7 +75,7 @@ Dialog {
                 TextField {
                     id: minutes;
                     anchors.left: name.right;
-                    placeholderText: 'Minutes';
+                    placeholderText: qsTr('Minutes');
                     text: model.minutes >= 10 ? model.minutes : '0' + String(model.minutes);
                     width: font.pixelSize * 3;
                     horizontalAlignment: TextInput.AlignRight;
@@ -100,7 +100,7 @@ Dialog {
                 TextField {
                     id: seconds;
                     anchors.left: separator.right;
-                    placeholderText: 'Seconds';
+                    placeholderText: qsTr('Seconds');
                     text: model.seconds >= 10 ? model.seconds : '0' + String(model.seconds);
                     width: font.pixelSize * 3;
                     horizontalAlignment: TextInput.AlignRight;

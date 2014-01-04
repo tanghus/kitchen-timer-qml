@@ -83,13 +83,13 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: 'About'
+                text: qsTr('About');
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl('AboutPage.qml'));
                 }
             }
             MenuItem {
-                text: 'Edit default timers';
+                text: qsTr('Edit default timers');
                 onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'))
             }
             Repeater {
@@ -118,7 +118,7 @@ Page {
             width: timerPage.width;
             spacing: Theme.paddingLarge;
             PageHeader {
-                title: 'Kitchen Timer';
+                title: qsTr('Kitchen Timer');
             }
             Item {
                 width: column.width;
@@ -246,10 +246,10 @@ Page {
     function setMenuModel() {
         menuModel.clear();
         var menuActions = {
-            start: {name:'Start', action:'start'},
-            pause: {name:'Pause', action:'pause'},
-            reset: {name:'Reset', action:'reset'},
-            mute: {name:'Mute', action:'mute'}
+            start: {name:qsTr('Start'), action:'start'},
+            pause: {name:qsTr('Pause'), action:'pause'},
+            reset: {name:qsTr('Reset'), action:'reset'},
+            mute: {name:qsTr('Mute'), action:'mute'}
         }
 
         if(isRunning) {

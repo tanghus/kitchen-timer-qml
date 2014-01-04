@@ -1,0 +1,6 @@
+env:
+  global:
+    secure: dHFyC09TmvMGgx4sJVydOrNF3QEASIJaIStNQqQ675fTHgfVqeqj+H3wftXyNscQmY9NMj5/x6Kv4zDBVM8CQZVUBBNMHjIbmKFILnO9YgjMI3wN0mpZD0d5SDBXsBD6g15vsv9euKKASzqVOXVAp4J5H6qSolHWHyDGXSwhTWY=
+
+script:
+- echo "Running travis"

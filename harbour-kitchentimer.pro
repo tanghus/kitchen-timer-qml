@@ -8,32 +8,46 @@
 #         - icon definition filename in desktop file must be changed
 TARGET = harbour-kitchentimer
 
-#CONFIG += sailfishapp
+CONFIG += sailfishapp
 
-QT += quick qml
-CONFIG += link_pkgconfig
-PKGCONFIG += sailfishapp
-INCLUDEPATH += /usr/include/sailfishapp
+#QT += quick qml
+#CONFIG += link_pkgconfig
+#PKGCONFIG += sailfishapp
+#INCLUDEPATH += /usr/include/sailfishapp
 
-TARGETPATH = /usr/bin
-target.path = $${TARGETPATH}
+#TARGETPATH = /usr/bin
+#target.path = $${TARGETPATH}
 
 DEPLOYMENT_PATH = /usr/share/$${TARGET}
-qml.files = qml
-qml.path = $${DEPLOYMENT_PATH}
+#qml.files = qml
+#qml.path = $${DEPLOYMENT_PATH}
 
-desktop.files = $${TARGET}.desktop
-desktop.path = /usr/share/applications
+#desktop.files = $${TARGET}.desktop
+#desktop.path = /usr/share/applications
 
-icon.files = $${TARGET}.png
-icon.path = /usr/share/icons/hicolor/86x86/apps
+#icon.files = $${TARGET}.png
+#icon.path = /usr/share/icons/hicolor/86x86/apps
 
 sounds.files = sounds
 sounds.path = $${DEPLOYMENT_PATH}
 
-INSTALLS += target icon desktop sounds qml
-
 SOURCES += src/$${TARGET}.cpp
+
+TRANSLATIONS = \
+    translations/*.ts
+#    translations/de_DE.ts \
+#    translations/fr.ts \
+#    translations/nl.ts \
+#    translations/en_GB.ts
+
+translations.files = translations
+translations.path = $${DEPLOYMENT_PATH}
+
+lupdate_only{
+SOURCES = \
+          qml/pages/*.qml \
+          qml/cover/*.qml
+}
 
 OTHER_FILES += qml/harbour-kitchentimer.qml \
     qml/cover/CoverPage.qml \
@@ -47,5 +61,9 @@ OTHER_FILES += qml/harbour-kitchentimer.qml \
     qml/components/Storage.qml \
     js/Storage.js \
     LICENSE \
-    README.md
+    README.md \
+    .travis.yml \
+    transifex.sh
+
+INSTALLS += sounds translations
 

@@ -32,6 +32,9 @@
 #include <QtQuick>
 #endif
 
+#include <QLocale>
+#include <QTranslator>
+#include <QDebug>
 #include <sailfishapp.h>
 
 
@@ -46,6 +49,20 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    return SailfishApp::main(argc, argv);
+    //return SailfishApp::main(argc, argv);
+
+    QGuiApplication *app = SailfishApp::application(argc, argv);
+    QQuickView *view = SailfishApp::createView();
+    QTranslator *translator = new QTranslator;
+
+    qDebug() << "Translations:" << SailfishApp::pathTo("translations").toLocalFile() + "/" + QLocale::system().name() + ".qm";
+
+    if(!translator->load(SailfishApp::pathTo("translations").toLocalFile() + "/" + QLocale::system().name() + ".qm")) {
+        qDebug() << "Couldn't load translation";
+    }
+    app->installTranslator(translator);
+    view->setSource(SailfishApp::pathTo("qml/harbour-kitchentimer.qml"));
+    view->showFullScreen();
+    return app->exec();
 }
 

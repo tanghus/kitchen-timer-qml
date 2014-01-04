@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+lang_map = el: el_GR, de: de_DE, en: en_GB, da: da_DK
+
+[kitchen-timer-qml.translations]
+file_filter = <lang>.ts
+source_file = en_GB.ts
+source_lang = en_GB
+type = QT
+

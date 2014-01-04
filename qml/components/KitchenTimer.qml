@@ -67,7 +67,7 @@ Item {
     }
 
     onSecondsChanged: {
-        //console.log('onSecondsChange', seconds)
+        console.log('onSecondsChange', seconds)
         //seconds = (seconds < 0 ? 0 : (seconds > 59 ? 59 : seconds))
 
         if(seconds === 0 && minutes > 0 && isRunning) {
@@ -106,7 +106,7 @@ Item {
         color: mouse.changingProperty == 1 ? Theme.highlightColor : Theme.primaryColor
 
         property real value
-        property bool animationEnabled: true
+        property bool animationEnabled: applicationActive;
 
         transform: Translate { 
             // The minutes circle ends at 132px from the center
@@ -139,7 +139,7 @@ Item {
         Behavior on value {
             id: secondsAnimation
             SmoothedAnimation { velocity: 80 }
-            enabled: !mouse.isMoving || mouse.isLagging
+            enabled: applicationActive && (!mouse.isMoving || mouse.isLagging);
         }
     }
 
