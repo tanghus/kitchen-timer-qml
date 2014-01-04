@@ -4,5 +4,8 @@ echo "[https://www.transifex.com]\nhostname = https://www.transifex.com\npasswor
 
 cd translations
 
-pip install transifex-client
+git clone http://code.transifex.com/transifex-client
+cd transifex-client
+python setup.py install
+
 tx pull --all
