@@ -6,6 +6,6 @@ cd translations
 
 git clone http://code.transifex.com/transifex-client
 cd transifex-client
-python setup.py install
+python setup.py install --prefix $HOME
 
 tx pull --all
