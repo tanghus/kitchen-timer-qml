@@ -19,6 +19,6 @@ rm  ~/.transifexrc
 
 git config user.email "thomas@tanghus.net"
 git config user.name "Thomas Tanghus"
-git remote add origin https://github.com/tanghus/kitchen-timer-qml.git
+git remote add backhome https://github.com/tanghus/kitchen-timer-qml.git
 
-git commit -a -m "Updated from Transifex" && git push origin master
+git commit -a -m "Updated from Transifex" && git push backhome master
