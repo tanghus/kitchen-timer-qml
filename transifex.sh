@@ -16,5 +16,3 @@ cd ../translations
 ~/.local/bin/tx pull --all
 
 rm  ~/.transifexrc
-
-git commit -a -m "Updated from Transifex" && git push backhome master
