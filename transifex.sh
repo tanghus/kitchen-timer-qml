@@ -12,9 +12,9 @@ echo "username = tanghus" >> ~/.transifexrc
 
 cd ../translations
 
-~/.local/bin/tx push -r en_GB.ts
+~/.local/bin/tx push -s en_GB.ts
 ~/.local/bin/tx pull --all
 
 rm  ~/.transifexrc
 
-`git diff` && git commit -a -m "Updated from Transifex" && git push origin master
+git commit -a -m "Updated from Transifex" && git push origin master
