@@ -8,4 +8,4 @@ git clone http://code.transifex.com/transifex-client
 cd transifex-client
 python setup.py install --user
 
-tx pull --all
+~/.local/bin/tx pull --all
