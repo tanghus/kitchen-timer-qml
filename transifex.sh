@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-git clone http://code.transifex.com/transifex-client
+git clone http://code.transifex.com/transifex-client > /dev/null
 cd transifex-client
-python setup.py install --user
+python setup.py install --user > /dev/null
 
 echo "[https://www.transifex.com]" > ~/.transifexrc
 echo "hostname = https://www.transifex.com" >> ~/.transifexrc
