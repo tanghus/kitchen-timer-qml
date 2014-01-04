@@ -17,4 +17,7 @@ cd ../translations
 
 rm  ~/.transifexrc
 
+git config user.email "thomas@tanghus.net"
+git config user.name "Thomas Tanghus"
+
 git commit -a -m "Updated from Transifex" && git push origin master
