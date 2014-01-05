@@ -4,14 +4,14 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="45"/>
         <source>Simple Kitchen Timer app</source>
-        <translation>Simpelt Køkkenurs app</translation>
+        <translation>Simpel Køkkenurs app</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="47"/>
         <source>by %1</source>
         <comment>As in made by %1</comment>
         <extracomment>Naming the author</extracomment>
-        <translation>as %1</translation>
+        <translation>af %1</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="49"/>
@@ -74,7 +74,7 @@
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="249"/>
         <source>Start</source>
-        <translation type="finished">Start<translation/>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="250"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="252"/>
         <source>Mute</source>
-        <translation type="finished">Mute<translation/>
+        <translation>Mute</translation>
     </message>
 </context>
 <context>
