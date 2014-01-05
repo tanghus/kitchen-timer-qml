@@ -29,8 +29,4 @@ Files:
 - '%{_datadir}/%{name}/sounds'
 - '%{_bindir}'
 - '%{_bindir}/%{name}'
-- /usr/bin
-- /usr/share/harbour-kitchentimer
-- /usr/share/applications
-- /usr/share/icons/hicolor/86x86/apps
 PkgBR: []
