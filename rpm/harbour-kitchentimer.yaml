@@ -14,19 +14,19 @@ Builder: qtc5
 QMakeOptions:
 - VERSION=%{version}
 PkgConfigBR:
-- sailfishapp
-- Qt5Quick
-- Qt5Qml
 - Qt5Core
+- Qt5Qml
+- Qt5Quick
+- sailfishapp
 Requires:
 - sailfishsilica-qt5
 Files:
-- '%{_datadir}/%{name}/translations'
-- '%{_datadir}'
-- '%{_datadir}/%{name}/qml'
-- '%{_datadir}/applications/%{name}.desktop'
-- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
-- '%{_datadir}/%{name}/sounds'
-- '%{_bindir}'
 - '%{_bindir}/%{name}'
+- '%{_bindir}'
+- '%{_datadir}/%{name}/sounds'
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/%{name}/qml'
+- '%{_datadir}'
+- '%{_datadir}/%{name}/translations'
 PkgBR: []

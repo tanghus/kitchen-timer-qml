@@ -34,7 +34,7 @@ sounds.path = $${DEPLOYMENT_PATH}
 SOURCES += src/$${TARGET}.cpp
 
 TRANSLATIONS = \
-    translations/da_DK.ts
+    translations/da_DK.ts \
     translations/de_DE.ts \
     translations/en_GB.ts \
     translations/fi_FI.ts \
@@ -49,8 +49,10 @@ translations.path = $${DEPLOYMENT_PATH}
 
 lupdate_only{
 SOURCES = \
-          qml/pages/*.qml \
-          qml/cover/*.qml
+    qml/pages/TimerPage.qml \
+    qml/pages/TimersDialog.qml \
+    qml/pages/AboutPage.qml \
+    qml/cover/CoverPage.qml
 }
 
 OTHER_FILES += qml/harbour-kitchentimer.qml \
