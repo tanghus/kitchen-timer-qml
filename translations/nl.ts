@@ -46,7 +46,7 @@
         <source>Ask &quot;%1&quot; at the %2 channel on Freenode IRC for support</source>
         <comment>Link with text</comment>
         <extracomment>%1: Author nick, %2:Link to Web IRC</extracomment>
-        <translation>Vraag &quot;%1&quot; op het %2 kanaal op Freenode IRC voor hulp</translation>
+        <translation>Vraag &quot;%1&quot; op het %2 kanaal op Freenode IRC om hulp</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="54"/>
