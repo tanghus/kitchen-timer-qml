@@ -34,6 +34,7 @@ sounds.path = $${DEPLOYMENT_PATH}
 SOURCES += src/$${TARGET}.cpp
 
 TRANSLATIONS = \
+<<<<<<< Updated upstream
     translations/da_DK.ts \
     translations/de_DE.ts \
     translations/en_GB.ts \
@@ -43,6 +44,16 @@ TRANSLATIONS = \
     translations/pl_PL.ts \
     translations/ru.ts \
     translations/sv.ts
+=======
+    translations/fi_FI.ts \
+    translations/de_DE.ts \
+    translations/ru.ts \
+    translations/fr.ts \
+    translations/sv.ts \
+    translations/nl.ts \
+    translations/pl_PL.ts \
+    translations/en_GB.ts
+>>>>>>> Stashed changes
 
 translations.files = translations
 translations.path = $${DEPLOYMENT_PATH}
