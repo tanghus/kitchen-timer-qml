@@ -4,7 +4,6 @@ git clone http://code.transifex.com/transifex-client > /dev/null
 cd transifex-client
 python setup.py install --user > /dev/null
 
-<<<<<<< Updated upstream
 #cat >> ~/.transifexrc <<EOF
 #hostname = https://www.transifex.com
 #password = $TRANSIFEX
@@ -17,20 +16,13 @@ echo "hostname = https://www.transifex.com" >> ~/.transifexrc
 echo "password = $TRANSIFEX" >> ~/.transifexrc
 echo "token = " >> ~/.transifexrc
 echo "username = tanghus" >> ~/.transifexrc
-=======
+
 cat >> ~/.transifexrc <<EOF
 hostname = https://www.transifex.com
 password = $TRANSIFEX
 token =
 username = tanghus
 EOF
-
-#echo "[https://www.transifex.com]" > ~/.transifexrc
-#echo "hostname = https://www.transifex.com" >> ~/.transifexrc
-#echo "password = $TRANSIFEX" >> ~/.transifexrc
-#echo "token = " >> ~/.transifexrc
-#echo "username = tanghus" >> ~/.transifexrc
->>>>>>> Stashed changes
 
 cd ../translations
 
