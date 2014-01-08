@@ -34,15 +34,14 @@ sounds.path = $${DEPLOYMENT_PATH}
 SOURCES += src/$${TARGET}.cpp
 
 TRANSLATIONS = \
-    translations/da_DK.ts \
-    translations/de_DE.ts \
-    translations/en_GB.ts \
     translations/fi_FI.ts \
+    translations/de_DE.ts \
+    translations/ru.ts \
     translations/fr.ts \
+    translations/sv.ts \
     translations/nl.ts \
     translations/pl_PL.ts \
-    translations/ru.ts \
-    translations/sv.ts
+    translations/en_GB.ts
 
 translations.files = translations
 translations.path = $${DEPLOYMENT_PATH}
