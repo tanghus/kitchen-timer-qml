@@ -2,6 +2,14 @@
 Type=Application
 X-Nemo-Application-Type=silica-qt5
 Name=Kitchen Timer
+Name[da_DK]=Køkkenur
+Name[de_DE]=Küchentimer
+Name[en_GB]=Kitchen Timer
+Name[fr]=Minuterie de cuisine
+Name[nl]=Keukenwekker
+Name[pl_PL]=Minutnik Kuchenny
+Name[ru]=Кухоный таймер
+Name[sv]=Äggklocka
 Icon=harbour-kitchentimer
 Exec=harbour-kitchentimer
 
