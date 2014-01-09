@@ -193,7 +193,6 @@ QtObject {
                 }
             }
         );
-        console.log("Storage: getTimers: returning " + timers);
         return timers;
     }
 }

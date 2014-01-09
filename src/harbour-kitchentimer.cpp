@@ -32,10 +32,13 @@
 #include <QtQuick>
 #endif
 
+#include <sailfishapp.h>
+
+#include <QGuiApplication>
+#include <QQuickView>
 #include <QLocale>
 #include <QTranslator>
 #include <QDebug>
-#include <sailfishapp.h>
 
 
 int main(int argc, char *argv[])
@@ -51,16 +54,20 @@ int main(int argc, char *argv[])
 
     //return SailfishApp::main(argc, argv);
 
-    QGuiApplication *app = SailfishApp::application(argc, argv);
-    QQuickView *view = SailfishApp::createView();
-    QTranslator *translator = new QTranslator;
+    //QGuiApplication* app = SailfishApp::application(argc, argv);
+    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    QTranslator* translator = new QTranslator;
 
-    qDebug() << "Translations:" << SailfishApp::pathTo("translations").toLocalFile() + "/" + QLocale::system().name() + ".qm";
+    QString locale = QLocale::system().name();
 
-    if(!translator->load(SailfishApp::pathTo("translations").toLocalFile() + "/" + QLocale::system().name() + ".qm")) {
+    qDebug() << "Translations:" << SailfishApp::pathTo("translations").toLocalFile() + "/" + locale + ".qm";
+
+    if(!translator->load(SailfishApp::pathTo("translations").toLocalFile() + "/" + locale + ".qm")) {
         qDebug() << "Couldn't load translation";
     }
     app->installTranslator(translator);
+
+    QQuickView* view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo("qml/harbour-kitchentimer.qml"));
     view->showFullScreen();
     return app->exec();

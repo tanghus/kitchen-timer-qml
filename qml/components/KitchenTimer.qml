@@ -1,5 +1,8 @@
 /****************************************************************************************
 **
+** Copyright (C) 2013 Thomas Tanghus
+**
+** Originally:
 ** Copyright (C) 2013 Jolla Ltd.
 ** Contact: Matt Vogt <matthew.vogt@jollamobile.com>
 ** All rights reserved.
@@ -67,9 +70,6 @@ Item {
     }
 
     onSecondsChanged: {
-        console.log('onSecondsChange', seconds)
-        //seconds = (seconds < 0 ? 0 : (seconds > 59 ? 59 : seconds))
-
         if(seconds === 0 && minutes > 0 && isRunning) {
             seconds = 60;
             minutes -= 1;
