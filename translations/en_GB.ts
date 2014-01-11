@@ -41,7 +41,7 @@
         <source>Issues and feature requests at the %1</source>
         <comment>Link URL</comment>
         <extracomment>Link to the issue tracker</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Issues and feature requests at the %1</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="53"/>
