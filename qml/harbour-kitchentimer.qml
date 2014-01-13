@@ -28,6 +28,7 @@
 */
 
 import QtQuick 2.0
+import QtMultimedia 5.0
 import Sailfish.Silica 1.0
 import "pages"
 import "cover"
@@ -39,10 +40,14 @@ ApplicationWindow {
 
     property string timeText: '00:01';
     property bool isBusy: false;
-    property alias isPlaying: timerPage.isPlaying;
-    property alias isRunning: timerPage.isRunning;
+    property alias isPlaying: alarm.playing;
+    property alias isRunning: timer.running;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
+
+    Component.onCompleted: {
+        load();
+    }
 
     initialPage: TimerPage {
         id: timerPage;
@@ -62,8 +67,31 @@ ApplicationWindow {
         id: timersModel;
     }
 
-    Component.onCompleted: {
-        load();
+    SoundEffect {
+        id: alarm;
+        loops: -2;
+        source: Qt.resolvedUrl('../sounds/harbour-kitchentimer.wav');
+    }
+
+    Timer {
+        id: timer;
+        interval: 1000;
+        running: false; repeat: true;
+        onRunningChanged: {
+            if (running === true) {
+                console.log("Running");
+            } else {
+                console.log("Stopped");
+            }
+        }
+        onTriggered: {
+            seconds -= 1;
+            console.log('seconds', seconds);
+            if(minutes === 0 && seconds === 0) {
+                timer.stop();
+                alarm.play();
+            }
+        }
     }
 
     Storage {
@@ -73,10 +101,10 @@ ApplicationWindow {
 
     Connections {
         target: cover;
-        onMute: timerPage.mute();
-        onPause: timerPage.pause();
-        onReset: timerPage.reset();
-        onStart: timerPage.start();
+        onMute: mute();
+        onPause: pause();
+        onReset: reset();
+        onStart: start();
     }
 
     function save() {
@@ -125,6 +153,42 @@ ApplicationWindow {
         isBusy = state;
         busyIndicator.running = state;
     }
+    function showTime() {
+        timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
+        console.log('Time:', timeText);
+    }
+
+    function setTime(mins, secs) {
+        console.log('setTime:', mins, secs);
+        minutes = mins;
+        seconds = secs;
+    }
+
+    function mute() {
+        if(alarm.playing) {
+            alarm.stop();
+        }
+    }
+
+    function pause() {
+        if(timer.running) {
+            timer.stop();
+        }
+    }
+
+    function reset() {
+        if(timer.running) {
+            timer.stop();
+        }
+        seconds = minutes = 0;
+    }
+
+    function start() {
+        if(!timer.running) {
+            timer.start();
+        }
+    }
+
 }
 
 

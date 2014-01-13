@@ -28,7 +28,6 @@
 */
 
 import QtQuick 2.0
-import QtMultimedia 5.0
 import Sailfish.Silica 1.0
 import "../components"
 
@@ -39,9 +38,6 @@ Page {
 
     property alias seconds: kitchenTimer.seconds;
     property alias minutes: kitchenTimer.minutes;
-    property alias isPlaying: alarm.playing;
-    property alias isRunning: timer.running;
-    property date time: new Date(0, 0, 0, 0, minutes, seconds);
     property Item contextMenu;
 
     Component.onCompleted: {
@@ -54,26 +50,6 @@ Page {
 
     onMinutesChanged: {
         showTime();
-    }
-
-    SoundEffect {
-        id: alarm;
-        loops: -2;
-        source: Qt.resolvedUrl('../../sounds/harbour-kitchentimer.wav');
-    }
-
-    Timer {
-        id: timer;
-        interval: 1000;
-        running: false; repeat: true;
-        onTriggered: {
-            seconds -= 1;
-            time.setSeconds(seconds);
-            if(minutes === 0 && seconds === 0) {
-                timer.stop();
-                alarm.play();
-            }
-        }
     }
 
     SilicaFlickable {
@@ -122,7 +98,6 @@ Page {
                 width: column.width;
                 KitchenTimer {
                     id: kitchenTimer;
-                    //hour: minutes; minute: seconds;
                     //showRangeIndicator: false;
                     //anchors.centerIn: column;
                     // Ugly, but, dang, I can't position it
@@ -143,16 +118,16 @@ Page {
                     }
                     onClicked: {
                         if(isRunning) {
-                            timer.stop();
-                        } else if(!isRunning && alarm.playing) {
-                            alarm.stop();
+                            pause();
+                        } else if(!isRunning && isPlaying) {
+                            mute();
                         } else if(seconds > 0 || minutes > 0) {
-                            timer.start();
+                            start();
                         }
                     }
                     onPressAndHold: {
                         setMenuModel();
-                        if((minutes === 0 && seconds === 0) & !alarm.playing && !isRunning) {
+                        if((minutes === 0 && seconds === 0) & !isPlaying && !isRunning) {
                             return;
                         }
 
@@ -185,42 +160,6 @@ Page {
                     }
                 }
             }
-        }
-    }
-
-    function showTime() {
-        timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
-        //console.log('Time:', timeText);
-    }
-
-    function setTime(mins, secs) {
-        console.log('setTime:', mins, secs);
-        minutes = mins;
-        seconds = secs;
-    }
-
-    function mute() {
-        if(alarm.playing) {
-            alarm.stop();
-        }
-    }
-
-    function pause() {
-        if(timer.running) {
-            timer.stop();
-        }
-    }
-
-    function reset() {
-        if(timer.running) {
-            timer.stop();
-        }
-        seconds = minutes = 0;
-    }
-
-    function start() {
-        if(!timer.running) {
-            timer.start();
         }
     }
 
