@@ -73,6 +73,9 @@ Item {
         if(seconds === 0 && minutes > 0 && isRunning) {
             seconds = 60;
             minutes -= 1;
+        } else if(seconds === -1 && isRunning) {
+            seconds = 59;
+            minutes -= 1;
         }
 
         if (mouse.changingProperty == 0) {
