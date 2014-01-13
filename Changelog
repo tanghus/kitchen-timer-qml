@@ -1,6 +1,7 @@
 
-0.2
+0.1-2
 - Translate launcher title
+- If seconds was 0 on start alarm wasn't triggered.
 
 0.1
 - First release
