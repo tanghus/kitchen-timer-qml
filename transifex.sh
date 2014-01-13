@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-git clone http://code.transifex.com/transifex-client > /dev/null
-cd transifex-client
+git clone http://code.transifex.com/transifex-client > /dev/null || exit 1
+cd transifex-client || exit 1
 python setup.py install --user > /dev/null
 
 echo "[https://www.transifex.com]" > ~/.transifexrc
