@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="da" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="da">
 <context>
     <name>AboutPage</name>
     <message>
@@ -29,17 +31,17 @@
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="51"/>
-        <source>Issues and feature request at the %1</source>
-        <comment>Link URL</comment>
-        <extracomment>Link to the issue tracker</extracomment>
-        <translation>Fejl og mangler kan rapporteres i %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="51"/>
         <source>issue tracker</source>
         <comment>Link text</comment>
         <extracomment>Link to the issue tracker</extracomment>
         <translation>issue trackeren</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="51"/>
+        <source>Issues and feature requests at the %1</source>
+        <comment>Link URL</comment>
+        <extracomment>Link to the issue tracker</extracomment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="53"/>
@@ -57,37 +59,37 @@
 <context>
     <name>TimerPage</name>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="86"/>
+        <location filename="../qml/pages/TimerPage.qml" line="84"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="92"/>
+        <location filename="../qml/pages/TimerPage.qml" line="90"/>
         <source>Edit default timers</source>
         <translation>Redigér tider</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="121"/>
+        <location filename="../qml/pages/TimerPage.qml" line="119"/>
         <source>Kitchen Timer</source>
         <translation>Køkkenur</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="249"/>
+        <location filename="../qml/pages/TimerPage.qml" line="247"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="250"/>
+        <location filename="../qml/pages/TimerPage.qml" line="248"/>
         <source>Pause</source>
         <translation>Pausér</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="251"/>
+        <location filename="../qml/pages/TimerPage.qml" line="249"/>
         <source>Reset</source>
         <translation>Nulstil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="252"/>
+        <location filename="../qml/pages/TimerPage.qml" line="250"/>
         <source>Mute</source>
         <translation>Mute</translation>
     </message>
