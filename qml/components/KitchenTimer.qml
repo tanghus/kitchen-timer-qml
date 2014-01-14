@@ -73,14 +73,18 @@ Item {
         if(seconds === 0 && minutes > 0 && isRunning) {
             seconds = 60;
             minutes -= 1;
-        } else if(seconds === -1 && isRunning) {
-            seconds = 59;
-            minutes -= 1;
+        } else if(seconds < 0 && isRunning) {
+            if(minutes > 0) {
+                minutes -= 1;
+                seconds = 60 + seconds;
+            } else {
+                seconds = minutes = 0;
+            }
         }
 
         if (mouse.changingProperty == 0) {
-            var delta = (seconds - secondsIndicator.value)
-            secondsIndicator.value += (delta % 60)
+            var delta = (seconds - secondsIndicator.value) % 60
+            secondsIndicator.value += delta
         }
     }
 
@@ -116,12 +120,6 @@ Item {
             x: _scaleRatio*96 * _xTranslation(minutesIndicator.value, 60)
             y: -_scaleRatio*96 * _yTranslation(minutesIndicator.value, 60)
         }
-
-        Behavior on value {
-            id: minutesAnimation
-            SmoothedAnimation { velocity: 30 }
-            enabled: minutesIndicator.animationEnabled && (!mouse.isMoving || mouse.isLagging)
-        }
     }
 
     GlassItem {
@@ -137,12 +135,6 @@ Item {
             // The seconds band is 72px wide, ending at 204px from the center
             x: _scaleRatio*168 * _xTranslation(secondsIndicator.value, 60)
             y: -_scaleRatio*168 * _yTranslation(secondsIndicator.value, 60)
-        }
-
-        Behavior on value {
-            id: secondsAnimation
-            SmoothedAnimation { velocity: 80 }
-            enabled: applicationActive && (!mouse.isMoving || mouse.isLagging);
         }
     }
 

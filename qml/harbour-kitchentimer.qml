@@ -44,6 +44,9 @@ ApplicationWindow {
     property alias isRunning: timer.running;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
+    property int _lastTick;
+
+    onApplicationActiveChanged: console.log('application active', applicationActive);
 
     Component.onCompleted: {
         load();
@@ -85,10 +88,13 @@ ApplicationWindow {
             }
         }
         onTriggered: {
-            seconds -= 1;
-            console.log('seconds', seconds);
+            var now = Math.round(Date.now()/1000);
+            seconds -= now - _lastTick;
+            _lastTick = now;
+            //console.log('seconds', seconds);
             if(minutes === 0 && seconds === 0) {
                 timer.stop();
+                insomniac.stop();
                 alarm.play();
             }
         }
@@ -105,6 +111,12 @@ ApplicationWindow {
         onPause: pause();
         onReset: reset();
         onStart: start();
+    }
+
+    Connections {
+        target: insomniac;
+        //onTimeout: console.log('Woke up')
+        onError: console.warn('Error waking up insomniac!')
     }
 
     function save() {
@@ -155,7 +167,6 @@ ApplicationWindow {
     }
     function showTime() {
         timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
-        console.log('Time:', timeText);
     }
 
     function setTime(mins, secs) {
@@ -173,19 +184,23 @@ ApplicationWindow {
     function pause() {
         if(timer.running) {
             timer.stop();
+            insomniac.stop();
         }
     }
 
     function reset() {
         if(timer.running) {
             timer.stop();
+            insomniac.stop();
         }
         seconds = minutes = 0;
     }
 
     function start() {
         if(!timer.running) {
+            _lastTick = Math.round(Date.now()/1000);
             timer.start();
+            insomniac.start();
         }
     }
 

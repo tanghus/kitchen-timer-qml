@@ -31,7 +31,8 @@ DEPLOYMENT_PATH = /usr/share/$${TARGET}
 sounds.files = sounds
 sounds.path = $${DEPLOYMENT_PATH}
 
-SOURCES += src/$${TARGET}.cpp
+SOURCES += src/$${TARGET}.cpp \
+    src/insomnia.cpp
 
 TRANSLATIONS = \
     translations/da_DK.ts \
@@ -69,7 +70,13 @@ OTHER_FILES += qml/harbour-kitchentimer.qml \
     LICENSE \
     README.md \
     .travis.yml \
-    transifex.sh
+    transifex.sh \
+    Changelog
+
+PKGCONFIG += libiphb
 
 INSTALLS += sounds translations
+
+HEADERS += \
+    src/insomnia.h
 

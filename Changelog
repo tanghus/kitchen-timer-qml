@@ -1,7 +1,9 @@
 
-0.1-2
-- Translate launcher title
+0.1.1
+- Timer was throttled down to a stop when device was idle.
 - If seconds was 0 on start alarm wasn't triggered.
+- Name of edited timer wasn't saved.
+- Translate launcher title
 
 0.1
 - First release

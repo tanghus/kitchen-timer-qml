@@ -68,7 +68,7 @@ Dialog {
                     RegExpValidator { regExp: /(\w{1,10}\b)/g }
                     onTextChanged:  {
                         if(text.length > 0) {
-                            timersModel.setProperty(index, 'text',  text);
+                            timersModel.setProperty(index, 'name',  text);
                         }
                     }
                 }

@@ -41,55 +41,63 @@
 **
 ****************************************************************************/
 
-#ifdef QT_QML_DEBUG
-#include <QtQuick>
-#endif
+#ifndef INSOMNIA_H
+#define INSOMNIA_H
 
-#include <sailfishapp.h>
+#include <QObject>
+#include <QSocketNotifier>
 
-#include <QGuiApplication>
-#include <QQuickView>
-#include <QQmlContext>
-#include <QLocale>
-#include <QTimer>
-#include <QTranslator>
-#include <QDebug>
-
-#include "insomnia.h"
-
-int main(int argc, char *argv[])
-{
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
-
-    //return SailfishApp::main(argc, argv);
-
-    //QGuiApplication* app = SailfishApp::application(argc, argv);
-    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
-    QQuickView* view = SailfishApp::createView();
-    QTranslator *translator = new QTranslator;
-    Insomnia *insomniac = new Insomnia();
-    insomniac->setInterval(5);
-    insomniac->setTimerWindow(10);
-
-    QString locale = QLocale::system().name();
-
-    qDebug() << "Translations:" << SailfishApp::pathTo("translations").toLocalFile() + "/" + locale + ".qm";
-
-    if(!translator->load(SailfishApp::pathTo("translations").toLocalFile() + "/" + locale + ".qm")) {
-        qDebug() << "Couldn't load translation";
-    }
-    app->installTranslator(translator);
-
-    view->rootContext()->setContextProperty("insomniac", insomniac);
-    view->setSource(SailfishApp::pathTo("qml/harbour-kitchentimer.qml"));
-    view->showFullScreen();
-    return app->exec();
+extern "C" {
+#include <iphbd/libiphb.h>
 }
 
+class Insomnia : public QObject
+{
+    Q_OBJECT
+public:
+    explicit Insomnia(QObject *parent = 0);
+    ~Insomnia();
+
+    enum InsomniaError {
+        NoError = 0,
+        AlignedTimerNotSupported,
+        InvalidArgument,
+        TimerFailed,
+        InternalError
+    };
+
+public:
+    void wokeUp();
+
+    int interval() const;
+    void setInterval(int seconds);
+
+    int timerWindow() const;
+    void setTimerWindow(int seconds);
+
+    InsomniaError lastError() const;
+    bool isActive() const;
+    Insomnia::InsomniaError m_lastError;
+
+Q_SIGNALS:
+    void timeout();
+    void error(Insomnia::InsomniaError error);
+
+private:
+    int m_interval;
+    int m_timerWindow;
+    bool m_running;
+    bool m_singleShot;
+    iphb_t m_iphbdHandler;
+    QSocketNotifier *m_notifier;
+
+public Q_SLOTS:
+    void start(int interval, int timerWindow);
+    void start();
+    void stop();
+
+private Q_SLOTS:
+    void heartbeatReceived(int sock);
+};
+
+#endif // INSOMNIA_H
