@@ -1,4 +1,4 @@
-Kitchen Timer for Sailfish OS
+![](https://raw2.github.com/tanghus/kitchen-timer-qml/master/harbour-kitchentimer.png) Kitchen Timer for Sailfish OS
 =============================
 
 | branch      | status |
