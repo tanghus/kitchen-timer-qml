@@ -59,37 +59,37 @@
 <context>
     <name>TimerPage</name>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="84"/>
+        <location filename="../qml/pages/TimerPage.qml" line="60"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="90"/>
+        <location filename="../qml/pages/TimerPage.qml" line="66"/>
         <source>Edit default timers</source>
         <translation>Redigér tider</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="119"/>
+        <location filename="../qml/pages/TimerPage.qml" line="95"/>
         <source>Kitchen Timer</source>
         <translation>Køkkenur</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="247"/>
+        <location filename="../qml/pages/TimerPage.qml" line="186"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="248"/>
+        <location filename="../qml/pages/TimerPage.qml" line="187"/>
         <source>Pause</source>
         <translation>Pausér</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="249"/>
+        <location filename="../qml/pages/TimerPage.qml" line="188"/>
         <source>Reset</source>
         <translation>Nulstil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="250"/>
+        <location filename="../qml/pages/TimerPage.qml" line="189"/>
         <source>Mute</source>
         <translation>Mute</translation>
     </message>

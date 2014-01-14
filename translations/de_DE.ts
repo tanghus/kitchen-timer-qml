@@ -59,37 +59,37 @@
 <context>
     <name>TimerPage</name>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="84"/>
+        <location filename="../qml/pages/TimerPage.qml" line="60"/>
         <source>About</source>
         <translation>über</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="90"/>
+        <location filename="../qml/pages/TimerPage.qml" line="66"/>
         <source>Edit default timers</source>
         <translation>edit standard alarm</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="119"/>
+        <location filename="../qml/pages/TimerPage.qml" line="95"/>
         <source>Kitchen Timer</source>
         <translation>Küchentimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="247"/>
+        <location filename="../qml/pages/TimerPage.qml" line="186"/>
         <source>Start</source>
         <translation>Anfang</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="248"/>
+        <location filename="../qml/pages/TimerPage.qml" line="187"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="249"/>
+        <location filename="../qml/pages/TimerPage.qml" line="188"/>
         <source>Reset</source>
         <translation>rücksetzen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="250"/>
+        <location filename="../qml/pages/TimerPage.qml" line="189"/>
         <source>Mute</source>
         <translation>dämpfen</translation>
     </message>
