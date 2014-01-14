@@ -18,15 +18,18 @@ PkgConfigBR:
 - Qt5Quick
 - Qt5Qml
 - Qt5Core
+- libiphb >= 1.1
 Requires:
 - sailfishsilica-qt5
+- libiphb
 Files:
-- '%{_datadir}/%{name}/translations'
 - '%{_datadir}'
+- '%{_datadir}/%{name}'
+- '%{_datadir}/%{name}/translations'
 - '%{_datadir}/%{name}/qml'
+- '%{_datadir}/%{name}/sounds'
 - '%{_datadir}/applications/%{name}.desktop'
 - '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
-- '%{_datadir}/%{name}/sounds'
 - '%{_bindir}'
 - '%{_bindir}/%{name}'
 PkgBR: []
