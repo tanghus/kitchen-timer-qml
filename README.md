@@ -5,6 +5,8 @@
 | ----------- | ------ |
 | master      | [![Build Status](https://travis-ci.org/tanghus/kitchen-timer-qml.png?branch=master)](https://travis-ci.org/tanghus/kitchen-timer-qml) |
 
+[![flattr this](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=tanghus&url=https%3A%2F%2Fgithub.com%2Ftanghus%2Fkitchen-timer-qml)
+
 Easy to use kitchen timer with a modifiable list of standard timer settings.
 
 Set the time using the time picker, or select a predefined time.
@@ -25,3 +27,4 @@ Credits
 =======
 
 The awesome icon is made by Alain M [alain_m@gmx.ch](mailto:alain_m@gmx.ch) [@capricotwi04](https://twitter.com/capricotwi04)
+
