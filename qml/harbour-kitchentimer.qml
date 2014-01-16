@@ -40,13 +40,28 @@ ApplicationWindow {
 
     property string timeText: '00:01';
     property bool isBusy: false;
+    // Close enough to assume screen is off.
+    property bool viewable: cover.status ===  Cover.Active || applicationActive;
     property alias isPlaying: alarm.playing;
-    property alias isRunning: timer.running;
+    property bool isRunning: false;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
-    property int _lastTick;
+    property int _lastTick: 0;
+    // Remaining time in seconds when screen blanks
+    property int _remaining: 0;
 
-    onApplicationActiveChanged: console.log('application active', applicationActive);
+    onViewableChanged: {
+        if(!isRunning) {
+            return;
+        }
+
+        if(viewable) {
+            wakeUp();
+        } else {
+            snooze();
+        }
+
+    }
 
     Component.onCompleted: {
         load();
@@ -80,13 +95,13 @@ ApplicationWindow {
         id: timer;
         interval: 1000;
         running: false; repeat: true;
-        onRunningChanged: {
+        /*onRunningChanged: {
             if (running === true) {
-                console.log("Running");
+                console.log("Timer running");
             } else {
-                console.log("Stopped");
+                console.log("Timer stopped");
             }
-        }
+        }*/
         onTriggered: {
             var now = Math.round(Date.now()/1000);
             seconds -= now - _lastTick;
@@ -94,7 +109,7 @@ ApplicationWindow {
             //console.log('seconds', seconds);
             if(minutes === 0 && seconds === 0) {
                 timer.stop();
-                insomniac.stop();
+                isRunning = false;
                 alarm.play();
             }
         }
@@ -115,12 +130,13 @@ ApplicationWindow {
 
     Connections {
         target: insomniac;
-        //onTimeout: console.log('Woke up')
+        onTimeout: {
+            wakeUp();
+        }
         onError: console.warn('Error waking up insomniac!')
     }
 
     function save() {
-        console.log('Saving...');
         setBusy(true);
         var timers = [];
 
@@ -158,7 +174,6 @@ ApplicationWindow {
     function reload() {
         timersModel.clear();
         load();
-        console.log('Reloading...');
     }
 
     function setBusy(state) {
@@ -184,14 +199,14 @@ ApplicationWindow {
     function pause() {
         if(timer.running) {
             timer.stop();
-            insomniac.stop();
+            isRunning = false;
         }
     }
 
     function reset() {
         if(timer.running) {
             timer.stop();
-            insomniac.stop();
+            isRunning = false;
         }
         seconds = minutes = 0;
     }
@@ -200,10 +215,47 @@ ApplicationWindow {
         if(!timer.running) {
             _lastTick = Math.round(Date.now()/1000);
             timer.start();
-            insomniac.start();
+            isRunning = true;
         }
     }
 
+    function snooze() {
+        timer.stop();
+        _remaining = seconds + (minutes * 60);
+        //console.log('Snoozing. Remaining seconds', _remaining);
+        _lastTick = Math.round(Date.now()/1000);
+        // Subtract 10 seconds for timer window
+        insomniac.setInterval(_remaining - 10);
+        insomniac.start();
+    }
+
+    function wakeUp() {
+        if(insomniac.isActive()) {
+            insomniac.stop();
+        }
+
+        var now = Math.round(Date.now()/1000);
+        var passed = now - _lastTick;
+        _lastTick = now;
+
+        if(passed >= _remaining) {
+            console.warn('Time has passed!', passed - _remaining, 'seconds');
+            seconds = minutes = 0;
+            alarm.play();
+            isRunning = false;
+        } else {
+            timer.start();
+            _remaining = _remaining - passed;
+            if(_remaining > 60) {
+                minutes = Math.floor(_remaining/60);
+                seconds = Math.round(_remaining - (minutes*60));
+            } else {
+                minutes = 0;
+                seconds = _remaining;
+            }
+            //console.log('Remaining:', _remaining, 'minutes:', minutes, 'seconds:', seconds);
+        }
+    }
 }
 
 
