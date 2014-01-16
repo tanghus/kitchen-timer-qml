@@ -4,6 +4,9 @@
 ** Copyright 2013 Jolla Ltd.
 ** Contact: http://www.qt-project.org/legal
 ** Contact: Lorn Potter <lorn.potter@jollamobile.com>
+**
+** Originally from https://github.com/lpotter/libalignedtimer/
+** Modified by Thomas Tanghus
 ** Copyright 2014 Thomas Tanghus
 ** Contact: Thomas Tanghus <thomas@tanghus.net>
 **
@@ -67,6 +70,10 @@ public:
     };
 
 public:
+    Insomnia::InsomniaError m_lastError;
+    InsomniaError lastError() const;
+
+public slots:
     void wokeUp();
 
     int interval() const;
@@ -75,9 +82,12 @@ public:
     int timerWindow() const;
     void setTimerWindow(int seconds);
 
-    InsomniaError lastError() const;
+    bool isSingleShot() const;
+    void setSingleShot(bool singleShot);
+
+    static void singleShot(int interval, QObject *receiver, const char *member, int timerWindow);
+
     bool isActive() const;
-    Insomnia::InsomniaError m_lastError;
 
 Q_SIGNALS:
     void timeout();
