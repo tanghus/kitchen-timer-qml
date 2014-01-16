@@ -1,9 +1,11 @@
-Kitchen Timer for Sailfish OS
+![](https://raw2.github.com/tanghus/kitchen-timer-qml/master/harbour-kitchentimer.png) Kitchen Timer for Sailfish OS
 =============================
 
 | branch      | status |
 | ----------- | ------ |
 | master      | [![Build Status](https://travis-ci.org/tanghus/kitchen-timer-qml.png?branch=master)](https://travis-ci.org/tanghus/kitchen-timer-qml) |
+
+[![flattr this](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=tanghus&url=https%3A%2F%2Fgithub.com%2Ftanghus%2Fkitchen-timer-qml)
 
 Easy to use kitchen timer with a modifiable list of standard timer settings.
 
@@ -25,3 +27,4 @@ Credits
 =======
 
 The awesome icon is made by Alain M [alain_m@gmx.ch](mailto:alain_m@gmx.ch) [@capricotwi04](https://twitter.com/capricotwi04)
+
