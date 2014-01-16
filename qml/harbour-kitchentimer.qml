@@ -206,8 +206,8 @@ ApplicationWindow {
     function reset() {
         if(timer.running) {
             timer.stop();
-            isRunning = false;
         }
+        isRunning = false;
         seconds = minutes = 0;
     }
 
@@ -240,7 +240,7 @@ ApplicationWindow {
 
         if(passed >= _remaining) {
             console.warn('Time has passed!', passed - _remaining, 'seconds');
-            seconds = minutes = 0;
+            reset();
             alarm.play();
             isRunning = false;
         } else {
