@@ -224,7 +224,9 @@ void Insomnia::heartbeatReceived(int sock) {
     stop();
     emit timeout();
 
-    start();
+    if (!m_singleShot) {
+        start();
+    }
 }
 
 bool Insomnia::isActive() const
