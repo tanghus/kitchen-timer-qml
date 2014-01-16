@@ -53,7 +53,7 @@ Item {
     onMinutesChanged: {
         minutes = (minutes < 0 ? 0 : (minutes > 59 ? 59 : minutes))
 
-        if(mouse.changingProperty === 0 && applicationActive) {
+        if(mouse.changingProperty === 0) {
             var delta = (minutes - minutesIndicator.value) % 30
             if ((delta > 15) || (delta < -15)) {
                 // We don't want to animate for more than a full cycle
@@ -82,7 +82,7 @@ Item {
             }
         }
 
-        if(mouse.changingProperty === 0 && applicationActive) {
+        if(mouse.changingProperty === 0) {
             var delta = (seconds - secondsIndicator.value) % 60
             secondsIndicator.value += delta
         }
