@@ -14,22 +14,23 @@ Builder: qtc5
 QMakeOptions:
 - VERSION=%{version}
 PkgConfigBR:
-- sailfishapp
-- Qt5Quick
-- Qt5Qml
 - Qt5Core
-- libiphb >= 1.1
+- Qt5Qml
+- Qt5Quick
+- sailfishapp
 Requires:
 - sailfishsilica-qt5
-- libiphb
 Files:
-- '%{_datadir}'
-- '%{_datadir}/%{name}'
-- '%{_datadir}/%{name}/translations'
-- '%{_datadir}/%{name}/qml'
-- '%{_datadir}/%{name}/sounds'
-- '%{_datadir}/applications/%{name}.desktop'
-- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
 - '%{_bindir}'
 - '%{_bindir}/%{name}'
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/%{name}/sounds'
+- '%{_datadir}/%{name}/qml'
+- '%{_datadir}/%{name}/translations'
+- '%{_datadir}/%{name}/lib/harbour'
+- '%{_datadir}/%{name}/lib/harbour/kitchentimer'
+- '%{_datadir}/%{name}/lib/harbour/kitchentimer/insomniac'
+- '%{_datadir}/%{name}'
+- '%{_datadir}'
 PkgBR: []

@@ -35,14 +35,15 @@
 #include <sailfishapp.h>
 
 #include <QGuiApplication>
+//#include <qdeclarative.h>
+//#include <QDeclarativeView>
+#include <QQmlEngine>
 #include <QQuickView>
 #include <QQmlContext>
 #include <QLocale>
 #include <QTimer>
 #include <QTranslator>
 #include <QDebug>
-
-#include "insomnia.h"
 
 int main(int argc, char *argv[])
 {
@@ -59,11 +60,19 @@ int main(int argc, char *argv[])
 
     //QGuiApplication* app = SailfishApp::application(argc, argv);
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    //qmlRegisterType<Insomniac>("Insomniac", 1, 0, "Insomniac");
+
     QQuickView* view = SailfishApp::createView();
+    qDebug() << "Import path" << SailfishApp::pathTo("lib/").toLocalFile();
+    view->engine()->addImportPath(SailfishApp::pathTo("lib/").toLocalFile());
+    view->engine()->addImportPath(SailfishApp::pathTo("qml/components/").toLocalFile());
+    view->engine()->addImportPath(SailfishApp::pathTo("qml/pages/").toLocalFile());
+
     QTranslator *translator = new QTranslator;
-    Insomnia *insomniac = new Insomnia();
-    insomniac->setSingleShot(true);
-    insomniac->setTimerWindow(10);
+
+    //Insomnia *insomniac = new Insomnia();
+    //insomniac->setSingleShot(true);
+    //insomniac->setTimerWindow(10);
 
     QString locale = QLocale::system().name();
 
@@ -74,7 +83,7 @@ int main(int argc, char *argv[])
     }
     app->installTranslator(translator);
 
-    view->rootContext()->setContextProperty("insomniac", insomniac);
+    //view->rootContext()->setContextProperty("insomniac", insomniac);
     view->setSource(SailfishApp::pathTo("qml/harbour-kitchentimer.qml"));
     view->showFullScreen();
     return app->exec();

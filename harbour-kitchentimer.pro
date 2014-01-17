@@ -6,9 +6,11 @@
 #         - desktop icon filename must be changed
 #         - desktop filename must be changed
 #         - icon definition filename in desktop file must be changed
-TARGET = harbour-kitchentimer
+#TARGET = harbour-kitchentimer
 
 CONFIG += sailfishapp
+
+#QT += quick declarative
 
 #QT += quick qml
 #CONFIG += link_pkgconfig
@@ -31,8 +33,7 @@ DEPLOYMENT_PATH = /usr/share/$${TARGET}
 sounds.files = sounds
 sounds.path = $${DEPLOYMENT_PATH}
 
-SOURCES += src/$${TARGET}.cpp \
-    src/insomnia.cpp
+#SOURCES += src/$${TARGET}.cpp
 
 TRANSLATIONS = \
     translations/da_DK.ts \
@@ -78,6 +79,8 @@ PKGCONFIG += libiphb
 
 INSTALLS += sounds translations
 
-HEADERS += \
-    src/insomnia.h
+TEMPLATE = subdirs
+SUBDIRS = src/insomniac src
+
+
 

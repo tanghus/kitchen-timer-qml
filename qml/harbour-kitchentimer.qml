@@ -30,6 +30,7 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
 import Sailfish.Silica 1.0
+import harbour.kitchentimer.insomniac 1.0
 import "pages"
 import "cover"
 import "components"
@@ -43,7 +44,7 @@ ApplicationWindow {
     // Close enough to assume screen is off.
     property bool viewable: cover.status ===  Cover.Active || applicationActive;
     property alias isPlaying: alarm.playing;
-    property bool isRunning: false;
+    property bool isRunning: timer.running || insomniac.running;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
     property int _lastTick: 0;
@@ -109,10 +110,20 @@ ApplicationWindow {
             //console.log('seconds', seconds);
             if(minutes === 0 && seconds === 0) {
                 timer.stop();
-                isRunning = false;
+                //isRunning = false;
                 alarm.play();
             }
         }
+    }
+
+    Insomniac {
+        id: insomniac;
+        repeat: false;
+        timerWindow: 10;
+        onTimeout: {
+            wakeUp();
+        }
+        onError: console.warn('Error waking up insomniac!')
     }
 
     Storage {
@@ -128,13 +139,13 @@ ApplicationWindow {
         onStart: start();
     }
 
-    Connections {
+    /*Connections {
         target: insomniac;
         onTimeout: {
             wakeUp();
         }
         onError: console.warn('Error waking up insomniac!')
-    }
+    }*/
 
     function save() {
         setBusy(true);
@@ -199,7 +210,7 @@ ApplicationWindow {
     function pause() {
         if(timer.running) {
             timer.stop();
-            isRunning = false;
+            //isRunning = false;
         }
     }
 
@@ -207,7 +218,10 @@ ApplicationWindow {
         if(timer.running) {
             timer.stop();
         }
-        isRunning = false;
+        if(insomniac.running) {
+            insomniac.stop();
+        }
+        //isRunning = false;
         seconds = minutes = 0;
     }
 
@@ -215,7 +229,7 @@ ApplicationWindow {
         if(!timer.running) {
             _lastTick = Math.round(Date.now()/1000);
             timer.start();
-            isRunning = true;
+            //isRunning = true;
         }
     }
 
@@ -225,12 +239,12 @@ ApplicationWindow {
         //console.log('Snoozing. Remaining seconds', _remaining);
         _lastTick = Math.round(Date.now()/1000);
         // Subtract 10 seconds for timer window
-        insomniac.setInterval(_remaining - 10);
+        insomniac.interval =_remaining - 10;
         insomniac.start();
     }
 
     function wakeUp() {
-        if(insomniac.isActive()) {
+        if(insomniac.running) {
             insomniac.stop();
         }
 
@@ -242,7 +256,7 @@ ApplicationWindow {
             console.warn('Time has passed!', passed - _remaining, 'seconds');
             reset();
             alarm.play();
-            isRunning = false;
+            //isRunning = false;
         } else {
             timer.start();
             _remaining = _remaining - passed;
