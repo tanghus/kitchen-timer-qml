@@ -1,5 +1,6 @@
 0.1.2
 - Only wakeup on timeout. Should decrease battery drain dramatically.
+- Include libiphb source in project to be allowed to dock in harbour :)
 
 0.1.1
 - Timer was throttled down to a stop when device was idle.
