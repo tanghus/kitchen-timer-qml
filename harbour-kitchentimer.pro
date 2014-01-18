@@ -41,6 +41,7 @@ TRANSLATIONS = \
     translations/en_GB.ts \
     translations/fi_FI.ts \
     translations/fr.ts \
+    translations/hu_HU.ts \
     translations/it_IT.ts \
     translations/nl.ts \
     translations/pl_PL.ts \
