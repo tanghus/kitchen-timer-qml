@@ -96,6 +96,18 @@ int Insomniac::timerWindow() const
     return m_timerWindow;
 }
 
+/**
+Sets the timer's timeout window in seconds.
+
+The timeout window is a window of time set around the interval in which the timer will timeout.
+
+It is wise to have timeout window quite big so all users of this service get synced.
+
+For example if your preferred wait is 120 seconds and you can wait anywhere within 10 seconds,
+use interval of 120 and timerWindow of 10. This means the timer will timeout anywhere from
+115 seconds to 125 seconds.
+
+*/
 void Insomniac::setTimerWindow(int seconds)
 {
     m_timerWindow = seconds;
