@@ -110,7 +110,6 @@ ApplicationWindow {
             //console.log('seconds', seconds);
             if(minutes === 0 && seconds === 0) {
                 timer.stop();
-                //isRunning = false;
                 alarm.play();
             }
         }
@@ -123,7 +122,9 @@ ApplicationWindow {
         onTimeout: {
             wakeUp();
         }
-        onError: console.warn('Error waking up insomniac!')
+        onError: {
+            console.warn('Error in wake-up timer');
+        }
     }
 
     Storage {
@@ -138,14 +139,6 @@ ApplicationWindow {
         onReset: reset();
         onStart: start();
     }
-
-    /*Connections {
-        target: insomniac;
-        onTimeout: {
-            wakeUp();
-        }
-        onError: console.warn('Error waking up insomniac!')
-    }*/
 
     function save() {
         setBusy(true);
@@ -210,7 +203,6 @@ ApplicationWindow {
     function pause() {
         if(timer.running) {
             timer.stop();
-            //isRunning = false;
         }
     }
 
@@ -221,7 +213,6 @@ ApplicationWindow {
         if(insomniac.running) {
             insomniac.stop();
         }
-        //isRunning = false;
         seconds = minutes = 0;
     }
 
@@ -229,14 +220,12 @@ ApplicationWindow {
         if(!timer.running) {
             _lastTick = Math.round(Date.now()/1000);
             timer.start();
-            //isRunning = true;
         }
     }
 
     function snooze() {
         timer.stop();
         _remaining = seconds + (minutes * 60);
-        //console.log('Snoozing. Remaining seconds', _remaining);
         _lastTick = Math.round(Date.now()/1000);
         // Subtract 10 seconds for timer window
         insomniac.interval =_remaining - 10;
@@ -256,7 +245,6 @@ ApplicationWindow {
             console.warn('Time has passed!', passed - _remaining, 'seconds');
             reset();
             alarm.play();
-            //isRunning = false;
         } else {
             timer.start();
             _remaining = _remaining - passed;
@@ -267,7 +255,6 @@ ApplicationWindow {
                 minutes = 0;
                 seconds = _remaining;
             }
-            //console.log('Remaining:', _remaining, 'minutes:', minutes, 'seconds:', seconds);
         }
     }
 }
