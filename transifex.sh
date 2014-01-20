@@ -10,7 +10,7 @@ echo "password = $TRANSIFEX" >> ~/.transifexrc
 echo "token = " >> ~/.transifexrc
 echo "username = tanghus" >> ~/.transifexrc
 
-cat  ~/.transifexrc
+#cat  ~/.transifexrc
 
 cd ../translations
 
