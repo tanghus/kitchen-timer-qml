@@ -24,7 +24,6 @@ public:
 
     enum InsomniacError {
         NoError = 0,
-        AlignedTimerNotSupported,
         InvalidArgument,
         TimerFailed,
         InternalError
