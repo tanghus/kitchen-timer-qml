@@ -8,7 +8,7 @@
 #         - icon definition filename in desktop file must be changed
 #TARGET = harbour-kitchentimer
 
-CONFIG += sailfishapp
+#CONFIG += sailfishapp
 
 #QT += quick declarative
 
@@ -35,30 +35,8 @@ sounds.path = $${DEPLOYMENT_PATH}
 
 #SOURCES += src/$${TARGET}.cpp
 
-TRANSLATIONS = \
-    translations/ca.ts \
-    translations/da_DK.ts \
-    translations/de_DE.ts \
-    translations/en_GB.ts \
-    translations/fi_FI.ts \
-    translations/fr.ts \
-    translations/hu_HU.ts \
-    translations/it_IT.ts \
-    translations/nl.ts \
-    translations/pl_PL.ts \
-    translations/ru.ts \
-    translations/sv.ts
-
 translations.files = translations
 translations.path = $${DEPLOYMENT_PATH}
-
-lupdate_only{
-SOURCES = \
-    qml/pages/TimerPage.qml \
-    qml/pages/TimersDialog.qml \
-    qml/pages/AboutPage.qml \
-    qml/cover/CoverPage.qml
-}
 
 OTHER_FILES += qml/harbour-kitchentimer.qml \
     qml/cover/CoverPage.qml \
@@ -77,12 +55,12 @@ OTHER_FILES += qml/harbour-kitchentimer.qml \
     transifex.sh \
     Changelog
 
-PKGCONFIG += libiphb
+#PKGCONFIG += libiphb
 
 INSTALLS += sounds translations
 
 TEMPLATE = subdirs
-SUBDIRS = src/insomniac src
+SUBDIRS = src/insomniac src translations
 
 
 
