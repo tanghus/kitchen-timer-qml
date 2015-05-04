@@ -153,10 +153,10 @@ QtObject {
         var timers = [];
         var result = false;
         var defaultTimers = [
-            {name: 'Eggs', minutes: 7, seconds: 30},
-            {name: 'Potatoes', minutes: 15, seconds: 0},
-            {name: 'Frozen pizza', minutes: 14, seconds: 0},
-            {name: 'Tea (Earl Grey)', minutes: 5, seconds: 20},
+            {name: qsTr('Eggs'), minutes: 7, seconds: 30},
+            {name: qsTr('Potatoes'), minutes: 15, seconds: 0},
+            {name: qsTr('Frozen pizza'), minutes: 14, seconds: 0},
+            {name: qsTr('Tea (Earl Grey)'), minutes: 5, seconds: 20},
         ];
 
 
