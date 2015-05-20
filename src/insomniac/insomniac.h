@@ -5,7 +5,7 @@
 #include <QSocketNotifier>
 
 extern "C" {
-#include "iphbd/libiphb.h"
+#include "libiphb/libiphb.h"
 }
 
 class Insomniac : public QQuickItem
