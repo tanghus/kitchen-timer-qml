@@ -47,9 +47,13 @@ ApplicationWindow {
     property bool isRunning: timer.running || insomniac.running;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
+    property int lastTimerMin: -1;
+    property int lastTimerSec: -1;
     property int _lastTick: 0;
     // Remaining time in seconds when screen blanks
     property int _remaining: 0;
+
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape; //defaultAllowedOrientations
 
     onViewableChanged: {
         if(!isRunning) {
@@ -219,6 +223,8 @@ ApplicationWindow {
     function start() {
         if(!timer.running) {
             _lastTick = Math.round(Date.now()/1000);
+            lastTimerMin = minutes;
+            lastTimerSec = seconds;
             timer.start();
         }
     }

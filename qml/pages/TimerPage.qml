@@ -64,8 +64,20 @@ Page {
             }
             MenuItem {
                 text: qsTr('Edit default timers');
-                onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'))
+                onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'));
             }
+            MenuItem {
+                text: qsTr('Last timer:')
+                      + ' ' + (lastTimerMin >= 10 ? lastTimerMin : '0' + String(lastTimerMin)) + ':'
+                      + (lastTimerSec >= 10 ? lastTimerSec : '0' + String(lastTimerSec));
+                onClicked: {
+                    setTime(lastTimerMin, lastTimerSec);
+                }
+                visible: lastTimerMin !== -1 && lastTimerSec !== -1;
+            }
+        }
+
+        PushUpMenu {
             Repeater {
                  model: timersModel;
                  delegate: MenuItem {
