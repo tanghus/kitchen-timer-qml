@@ -1,6 +1,8 @@
 ![](https://raw2.github.com/tanghus/kitchen-timer-qml/master/harbour-kitchentimer.png) Kitchen Timer for Sailfish OS
 =============================
 
+[![Join the chat at https://gitter.im/tanghus/kitchen-timer-qml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tanghus/kitchen-timer-qml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 | branch      | status |
 | ----------- | ------ |
 | master      | [![Build Status](https://travis-ci.org/tanghus/kitchen-timer-qml.png?branch=master)](https://travis-ci.org/tanghus/kitchen-timer-qml) |
