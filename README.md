@@ -26,5 +26,6 @@ unsure what a text string means, or what its context is.
 Credits
 =======
 
-The awesome icon is made by Alain M [alain_m@gmx.ch](mailto:alain_m@gmx.ch) [@capricotwi04](https://twitter.com/capricotwi04)
+Thanks to the very effective translators, and to [Alain M](mailto:alain_m@gmx.ch) AKA
+[@capricotwi04](https://twitter.com/capricotwi04) for creating the awesome icon.
 
