@@ -250,6 +250,7 @@ ApplicationWindow {
         if(passed >= _remaining) {
             console.warn('Time has passed!', passed - _remaining, 'seconds');
             reset();
+            activate();
             alarm.play();
         } else {
             timer.start();
