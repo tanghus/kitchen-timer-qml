@@ -1,7 +1,7 @@
 Name: harbour-kitchentimer
 Summary: Kitchen Timer
-Version: 0.1.2
-Release: 2
+Version: 0.2
+Release: 1
 Group: Qt/Qt
 License: BSD
 URL: https://github.com/tanghus/kitchen-timer-qml
@@ -14,26 +14,25 @@ Builder: qtc5
 QMakeOptions:
 - VERSION=%{version}
 PkgConfigBR:
-- Qt5Core
-- Qt5Qml
-- Qt5Quick
 - sailfishapp
+- Qt5Quick
+- Qt5Qml
+- Qt5Core
 Requires:
 - sailfishsilica-qt5
 Files:
 - '%{_bindir}'
-- '%{_bindir}/%{name}'
-- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
-- '%{_datadir}/applications/%{name}.desktop'
-- '%{_datadir}/%{name}/sounds'
-- '%{_datadir}/%{name}/qml'
-- '%{_datadir}/%{name}/translations'
-- '%{_datadir}/%{name}/lib/harbour'
-- '%{_datadir}/%{name}/lib/harbour/kitchentimer'
-- '%{_datadir}/%{name}/lib/harbour/kitchentimer/insomniac'
-- '%{_datadir}/%{name}'
 - '%{_datadir}'
-- 
-- /usr/share/harbour-kitchentimer
-- /usr/share/harbour-kitchentimer/lib/harbour/kitchentimer/insomniac
+- '%{_datadir}/%{name}'
+- '%{_datadir}/%{name}/lib/harbour/kitchentimer/folderlistmodel'
+- '%{_datadir}/%{name}/lib/harbour/kitchentimer/insomniac'
+- '%{_datadir}/%{name}/lib/harbour/kitchentimer'
+- '%{_datadir}/%{name}/lib/harbour'
+- '%{_datadir}/%{name}/translations'
+- '%{_datadir}/%{name}/qml'
+- '%{_datadir}/%{name}/sounds'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_bindir}/%{name}'
+- '%{_bindir}'
 PkgBR: []
