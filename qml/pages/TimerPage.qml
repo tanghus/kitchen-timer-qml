@@ -35,6 +35,8 @@ import "../components"
 
 Page {
     id: timerPage;
+    // Landscape is disabled here as I can't position the timer correctly
+    //allowedOrientations: Orientation.Portrait | Orientation.Landscape;
 
     property alias seconds: kitchenTimer.seconds;
     property alias minutes: kitchenTimer.minutes;
@@ -65,6 +67,15 @@ Page {
             MenuItem {
                 text: qsTr('Edit default timers');
                 onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'));
+            }
+            MenuItem {
+                text: qsTr('Set alarm sound');
+                onClicked: pageStack.push(Qt.resolvedUrl('SoundDialog.qml'));
+            }
+            // FIXME: Remove this when SoundDialog.qml works
+            MenuItem {
+                text: qsTr('Select sound');
+                onClicked: pageStack.push(Qt.resolvedUrl('SoundSelectDialog.qml'));
             }
             MenuItem {
                 text: qsTr('Last timer:')
