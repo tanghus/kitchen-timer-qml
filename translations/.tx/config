@@ -1,6 +1,6 @@
 [main]
 host = https://www.transifex.com
-lang_map = el: el_GR, de: de_DE, en: en_GB, da: da_DK
+lang_map = el: el_GR, de: de_DE, en: en_GB, da: da_DK, sv: sv_SE, ru: ru_RU, ca: ca_ES
 
 [kitchen-timer-qml.translations]
 file_filter = <lang>.ts
