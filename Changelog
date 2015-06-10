@@ -1,3 +1,9 @@
+0.2
+- Moved predefined timers to a PushUpMenu for shorter menus.
+- Added a menu item shortcut "Last timer" to PullDownMenu, that is set
+  when a timer is started. Requested by @AxMi :)
+- Translate default predefined timers.
+
 0.1.2
 - Only wakeup on timeout. Should decrease battery drain dramatically.
 - Include libiphb source in project to be allowed to dock in harbour :)
@@ -6,7 +12,7 @@
 - Timer was throttled down to a stop when device was idle.
 - If seconds was 0 on start alarm wasn't triggered.
 - Name of edited timer wasn't saved.
-- Translate launcher title
+- Translate launcher title.
 
 0.1
 - First release
