@@ -5,7 +5,7 @@ cd transifex-client || exit 1
 python setup.py install --user > /dev/null
 
 echo "[https://www.transifex.com]" > ~/.transifexrc
-echo "host = https://www.transifex.com" >> ~/.transifexrc
+echo "hostname = https://www.transifex.com" >> ~/.transifexrc
 echo "password = $TRANSIFEX" >> ~/.transifexrc
 echo "token = " >> ~/.transifexrc
 echo "username = tanghus" >> ~/.transifexrc
