@@ -33,6 +33,7 @@ import Sailfish.Silica 1.0
 
 Dialog {
     id: timersDialog;
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape;
 
     DialogHeader {
         id: header;
