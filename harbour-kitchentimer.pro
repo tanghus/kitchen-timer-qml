@@ -6,13 +6,10 @@
 #         - desktop icon filename must be changed
 #         - desktop filename must be changed
 #         - icon definition filename in desktop file must be changed
-#TARGET = harbour-kitchentimer
+TARGET = harbour-kitchentimer
 
 #CONFIG += sailfishapp
 
-#QT += quick declarative
-
-#QT += quick qml
 #CONFIG += link_pkgconfig
 #PKGCONFIG += sailfishapp
 #INCLUDEPATH += /usr/include/sailfishapp
@@ -21,46 +18,67 @@
 #target.path = $${TARGETPATH}
 
 DEPLOYMENT_PATH = /usr/share/$${TARGET}
-#qml.files = qml
-#qml.path = $${DEPLOYMENT_PATH}
+qml.files = qml
+qml.path = $${DEPLOYMENT_PATH}
 
-#desktop.files = $${TARGET}.desktop
-#desktop.path = /usr/share/applications
+desktop.files = $${TARGET}.desktop
+desktop.path = /usr/share/applications
 
-#icon.files = $${TARGET}.png
-#icon.path = /usr/share/icons/hicolor/86x86/apps
+icon.files = $${TARGET}.png
+icon.path = /usr/share/icons/hicolor/86x86/apps
 
 sounds.files = sounds
 sounds.path = $${DEPLOYMENT_PATH}
 
-#SOURCES += src/$${TARGET}.cpp
+lupdate_only{
+SOURCES = \
+    ../qml/pages/TimerPage.qml \
+    ../qml/pages/TimersDialog.qml \
+    ../qml/pages/AboutPage.qml \
+    ../qml/cover/CoverPage.qml \
+    ../qml/pages/SoundDialog.qml \
+    ../qml/pages/SoundSelectDialog.qml
+}
+
+CONFIG += sailfishapp_i18n
+TRANSLATIONS = translations/ca.ts \
+    translations/da_DK.ts \
+    translations/de_DE.ts \
+    translations/el.ts \
+    translations/en_GB.ts \
+    translations/es.ts \
+    translations/fi_FI.ts \
+    translations/fr.ts \
+    translations/gl.ts \
+    translations/hu_HU.ts \
+    translations/it_IT.ts \
+    translations/nb.ts \
+    translations/nl.ts \
+    translations/pl_PL.ts \
+    translations/ru.ts \
+    translations/sl_SI.ts \
+    translations/sv.ts \
+    translations/zh_CN.ts
 
 translations.files = translations
 translations.path = $${DEPLOYMENT_PATH}
 
-OTHER_FILES += qml/harbour-kitchentimer.qml \
-    qml/cover/CoverPage.qml \
-    rpm/harbour-kitchentimer.spec \
+OTHER_FILES += qml/*.qml \
+    qml/cover/*.qml \
+    qml/components/*.qml \
+    js/*.js \
+    rpm/*.spec \
     rpm/harbour-kitchentimer.yaml \
-    harbour-kitchentimer.desktop \
-    qml/pages/TimerPage.qml \
-    qml/pages/TimersDialog.qml \
-    qml/pages/AboutPage.qml \
-    qml/components/KitchenTimer.qml \
-    qml/components/Storage.qml \
-    js/Storage.js \
     LICENSE \
     README.md \
-    .travis.yml \
-    transifex.sh \
     Changelog
 
-#PKGCONFIG += libiphb
+#PKGCONFIG += libiphb // Waiting for this to be allowed.
 
-INSTALLS += sounds translations
+INSTALLS += desktop icon qml sounds translations
 
 TEMPLATE = subdirs
-SUBDIRS = src/insomniac src translations
+SUBDIRS = src/insomniac src/folderlistmodel src
 
 
 
