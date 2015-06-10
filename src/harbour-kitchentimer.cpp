@@ -44,6 +44,7 @@
 #include <QTimer>
 #include <QTranslator>
 #include <QDebug>
+#include "qmlsettings.h"
 
 int main(int argc, char *argv[])
 {
@@ -60,6 +61,7 @@ int main(int argc, char *argv[])
 
     //QGuiApplication* app = SailfishApp::application(argc, argv);
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    QmlSettings *settings = new QmlSettings();
     //qmlRegisterType<Insomniac>("Insomniac", 1, 0, "Insomniac");
 
     QQuickView* view = SailfishApp::createView();
@@ -84,6 +86,7 @@ int main(int argc, char *argv[])
     app->installTranslator(translator);
 
     //view->rootContext()->setContextProperty("insomniac", insomniac);
+    view->rootContext()->setContextProperty("settings", settings);
     view->setSource(SailfishApp::pathTo("qml/harbour-kitchentimer.qml"));
     view->showFullScreen();
     return app->exec();
