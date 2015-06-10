@@ -12,6 +12,7 @@ echo "username = tanghus" >> ~/.transifexrc
 echo "lang_map = el: el_GR, de: de_DE, en: en_GB, da: da_DK, sv: sv_SE, ru: ru_RU" >> ~/.transifexrc
 #echo """ >> ~/.transifexrc
 echo "[kitchen-timer-qml.translations]" >> ~/.transifexrc
+echo "hostname = https://www.transifex.com" >> ~/.transifexrc
 echo "file_filter = <lang>.ts" >> ~/.transifexrc
 echo "source_file = en_GB.ts" >> ~/.transifexrc
 echo "source_lang = en_GB" >> ~/.transifexrc
