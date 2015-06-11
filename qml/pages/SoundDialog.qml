@@ -35,71 +35,109 @@ Dialog {
     id: soundDialog;
     allowedOrientations: Orientation.Portrait | Orientation.Landscape;
 
-    //canAccept: false;
+    //property bool vibrate: false;
+    property string tmpSelectedSound: selectedSound;
+    property bool tmpUseDefaultSound: useDefaultSound;
 
-    property bool vibrate: false;
-    property bool sound: true;
+    //canAccept: useDefaultSound || tmpSelectedSound !== selectedSound;
 
     DialogHeader {
         id: header;
         dialog: soundDialog;
-        title: qsTr('Sound');
+        title: qsTr('Alarm sound');
     }
 
-    SilicaFlickable {
+    Column {
+        id: column;
+
         y: header.height + Theme.paddingMedium;
         height: parent.height - (header.height + Theme.paddingMedium);
         anchors.leftMargin: Theme.paddingLarge;
         anchors.rightMargin: Theme.paddingLarge;
+        width: soundDialog.width;
+        spacing: Theme.horizontalPageMargin;
 
-        Column {
-            id: column;
-            anchors.fill: parent;
-
-            width: soundDialog.width;
-            spacing: Theme.paddingLarge;
-
-            TextSwitch {
-                id: noSound;
-                anchors.top: parent.top;
-                checked: !sound;
-                leftMargin: Theme.paddingMedium;
-                text: qsTr('Disable sound');
-                onCheckedChanged: {
-                    console.log('NoSound', checked)
-                    sound = !checked;
-                }
-                onClicked: {
-                    console.log('NoSound tapped', automaticCheck)
-                }
-            }
-
-            TextSwitch {
-                id: doVibrate;
-                anchors.top: noSound.bottom;
-                checked: vibrate;
-                leftMargin: Theme.paddingMedium;
-                text: qsTr('Vibrate');
-                description: 'Since <code>QtFeedback</code> is not yet allowed, this does nothing.';
-                onCheckedChanged: {
-                    console.log('Vibrate', checked)
-                    vibrate = checked;
-                }
-            }
-
-            BackgroundItem {
-                //enabled: sound;
-                anchors.top: doVibrate.bottom;
-                width: parent.width;
-                Label {
-                    textFormat: Text.StyledText;
-                    text: '<img src="image://theme/icon-l-music" />&nbsp;' + qsTr('Select music file');
-                }
-                onClicked: {
-                    console.log('Select file', checked)
-                    pageStack.push(Qt.resolvedUrl('SoundSelectDialog.qml'));
+        TextSwitch {
+            id: soundSelector;
+            checked: useDefaultSound;
+            x: Theme.paddingLarge;
+            text: qsTr('Default sound');
+            onCheckedChanged: {
+                console.log('useDefaultSound', tmpUseDefaultSound);
+                tmpUseDefaultSound = checked;
+                if(checked) {
+                    tmpSelectedSound = builtinSound;
                 }
             }
         }
+
+        /*TextSwitch {
+            id: doVibrate;
+            checked: vibrate;
+            leftMargin: Theme.paddingMedium;
+            text: qsTr('Vibrate');
+            description: 'Since <code>QtFeedback</code> is not yet allowed, this does nothing.';
+            onCheckedChanged: {
+                console.log('Vibrate', checked)
+                vibrate = checked;
+            }
+        }*/
+
+        BackgroundItem {
+            enabled: !tmpUseDefaultSound;
+            width: parent.width;
+            Column {
+                spacing: Theme.paddingSmall;
+                x: Theme.paddingLarge;
+                Row {
+                    spacing: Theme.paddingMedium;
+                    Image {
+                        source: 'image://theme/icon-l-music';
+                        width: Theme.fontSizeLarge;
+                        height: Theme.fontSizeLarge;
+                    }
+
+                    Label {
+                        id: selectedSoundLabel;
+                        color: tmpUseDefaultSound ? Theme.secondaryColor : Theme.highlightColor;
+                        textFormat: Text.StyledText;
+                        text: baseName(tmpSelectedSound);
+                    }
+                }
+                Label {
+                    x: Theme.fontSizeLarge + Theme.paddingMedium;
+                    color: tmpUseDefaultSound ? Theme.secondaryColor : Theme.primaryColor;
+                    text: qsTr('Select music file');
+                    font.pixelSize: Theme.fontSizeExtraSmall;
+                }
+            }
+
+            onClicked: {
+                //console.log('Select file', checked)
+                var filePicker = pageStack.push(Qt.resolvedUrl('SoundSelectDialog.qml'));
+                filePicker.accepted.connect(function() {
+                    tmpSelectedSound = filePicker.selectedSound;
+                });
+            }
+        }
     }
+    onAccepted: {
+        useDefaultSound = tmpUseDefaultSound;
+        settings.setValue('useDefaultSound', useDefaultSound);
+
+        if(!useDefaultSound) {
+            selectedSound = tmpSelectedSound;
+            settings.setValue('selectedSound', selectedSound);
+        }
+
+    }
+
+    function baseName(str) {
+       var base = new String(str).substring(str.lastIndexOf('/') + 1);
+        if(base.lastIndexOf(".") != -1)
+            base = base.substring(0, base.lastIndexOf("."));
+       return base;
+    }
+
 }
+

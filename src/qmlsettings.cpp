@@ -27,7 +27,8 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "qmlsettings.h"
+#include <QDebug>
+//#include "qmlsettings.h"
 
 QmlSettings::QmlSettings(QObject *parent) :
     QObject(parent) {
@@ -39,9 +40,16 @@ QVariant QmlSettings::value(const QString &key, const QVariant & defaultValue) {
    if(value.isNull()) {
        value = defaultValue;
    }
+   //qDebug() << "Getting value: " << key << value << "from file" << _settings->fileName();
+   if(value == "false") {
+       return false;
+   } else if(value == "true") {
+       return true;
+   }
    return value;
 }
 
 void QmlSettings::setValue(const QString &key, const QVariant &value) {
+    //qDebug() << "Saving value: " << key << value.toString();
    _settings->setValue(key, value);
 }

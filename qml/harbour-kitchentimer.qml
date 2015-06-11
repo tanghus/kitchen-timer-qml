@@ -40,10 +40,13 @@ ApplicationWindow {
     id: app;
 
     property string timeText: '00:01';
+    property bool useDefaultSound: true;
+    property string builtinSound: '../sounds/harbour-kitchentimer.wav';
+    property string selectedSound: builtinSound;
     property bool isBusy: false;
     // Close enough to assume screen is off.
     property bool viewable: cover.status ===  Cover.Active || applicationActive;
-    property alias isPlaying: alarm.playing;
+    property bool isPlaying: alarm.playbackState === Audio.PlayingState;
     property bool isRunning: timer.running || insomniac.running;
     property alias seconds: timerPage.seconds;
     property alias minutes: timerPage.minutes;
@@ -54,6 +57,15 @@ ApplicationWindow {
     property int _remaining: 0;
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape; //defaultAllowedOrientations
+
+    /*onUseDefaultSoundChanged: {
+        console.log('useDefaultSound changed:', useDefaultSound);
+        settings.setValue('useDefaultSound', useDefaultSound);
+    }
+    onSelectedSoundChanged: {
+        console.log('selectedSound changed:', selectedSound);
+        settings.setValue('selectedSound', selectedSound);
+    }*/
 
     onViewableChanged: {
         if(!isRunning) {
@@ -90,10 +102,10 @@ ApplicationWindow {
         id: timersModel;
     }
 
-    SoundEffect {
+    Audio {
         id: alarm;
-        loops: -2;
-        source: Qt.resolvedUrl('../sounds/harbour-kitchentimer.wav');
+        //loops: -2;
+        source: Qt.resolvedUrl(selectedSound);
     }
 
     Timer {
@@ -159,6 +171,10 @@ ApplicationWindow {
 
     function load() {
         setBusy(true);
+
+        useDefaultSound = settings.value('useDefaultSound', true);
+        selectedSound = useDefaultSound ? builtinSound : settings.value('selectedSound', builtinSound);
+
         var timers = storage.getTimers();
 
         if(timers === false) {
@@ -199,7 +215,7 @@ ApplicationWindow {
     }
 
     function mute() {
-        if(alarm.playing) {
+        if(alarm.playbackState === Audio.PlayingState) {
             alarm.stop();
         }
     }

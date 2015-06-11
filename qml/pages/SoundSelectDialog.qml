@@ -38,11 +38,13 @@ Dialog {
 
     canAccept: false;
 
+    property string selectedSound: '';
+
     DialogHeader {
         id: header;
         dialog: soundsDialog;
         acceptText: qsTr('Select');
-        title: qsTr('Select sound file');
+        //title: qsTr('Select sound file');
     }
 
     Audio {
@@ -51,10 +53,13 @@ Dialog {
 
     SilicaListView {
         id: soundsList;
+        quickScroll: true;
+        //x: Theme.paddingLarge;
         currentIndex: -1;
 
         PullDownMenu {
             visible: soundsModel.path !== soundsModel.homePath();
+            y: header.height;
             MenuItem {
                 text: qsTr('Up');
                 onClicked: {
@@ -95,6 +100,7 @@ Dialog {
                         sound.stop();
                     }
                 } else {
+                    selectedSound = model.filePath;
                     soundsList.currentIndex = model.index;
                     soundsDialog.canAccept = highlighted;
 
@@ -131,12 +137,16 @@ Dialog {
             }
 
             Image {
-               id: icon;
-               source: model.isDir ? 'image://theme/icon-m-folder' : 'image://theme/icon-l-music';
+                id: icon;
+                x: Theme.paddingLarge;
+                width: Theme.fontSizeLarge;
+                height: Theme.fontSizeLarge;
+                source: model.isDir ? 'image://theme/icon-m-folder' : 'image://theme/icon-l-music';
             }
             Label {
                 id: name;
-                anchors.left: icon.right;
+                x: (Theme.paddingLarge * 2) + Theme.fontSizeLarge;
+                //anchors.left: icon.right;
                 truncationMode: TruncationMode.Fade;
                 text: model.fileName;
                 width: parent.width;
@@ -163,8 +173,7 @@ Dialog {
         }*/
     }
 
-    onDone: {
-        console.log('Done:', (result === DialogResult.Accepted));
-        result === DialogResult.Accepted ? save() : reload();
-    }
+    /*onAccepted: {
+        tmpSelectedSound = _selectedSound;
+    }*/
 }

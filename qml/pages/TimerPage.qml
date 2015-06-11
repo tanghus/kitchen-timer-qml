@@ -72,11 +72,6 @@ Page {
                 text: qsTr('Set alarm sound');
                 onClicked: pageStack.push(Qt.resolvedUrl('SoundDialog.qml'));
             }
-            // FIXME: Remove this when SoundDialog.qml works
-            MenuItem {
-                text: qsTr('Select sound');
-                onClicked: pageStack.push(Qt.resolvedUrl('SoundSelectDialog.qml'));
-            }
             MenuItem {
                 text: qsTr('Last timer:')
                       + ' ' + (lastTimerMin >= 10 ? lastTimerMin : '0' + String(lastTimerMin)) + ':'
