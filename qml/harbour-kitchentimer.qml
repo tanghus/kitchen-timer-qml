@@ -46,7 +46,7 @@ ApplicationWindow {
     property string selectedSound: builtinSound;
     property bool isBusy: false;
     // Close enough to assume screen is off.
-    property bool viewable: cover.status ===  Cover.Active || applicationActive;
+    property bool viewable: cover.status === Cover.Active || applicationActive;
     property bool isPlaying: alarm.playbackState === Audio.PlayingState;
     property bool isRunning: timer.running || insomniac.running;
     property alias seconds: timerPage.seconds;
