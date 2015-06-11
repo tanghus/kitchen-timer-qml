@@ -105,23 +105,8 @@ ApplicationWindow {
 
     Audio {
         id: alarm;
-        //loops: -2;
+        loops: loopSound ? Audio.Infinite : 1;
         source: Qt.resolvedUrl(selectedSound);
-
-        property bool forceStopped: false;
-
-        function forceStop() {
-            forceStopped = true;
-            stop();
-        }
-
-        onStopped: {
-            if(loopSound && !forceStopped) {
-                play();
-            } else {
-                forceStopped = false;
-            }
-        }
     }
 
     Timer {
@@ -233,7 +218,7 @@ ApplicationWindow {
 
     function mute() {
         if(alarm.playbackState === Audio.PlayingState) {
-            alarm.forceStop();
+            alarm.stop();
         }
     }
 
