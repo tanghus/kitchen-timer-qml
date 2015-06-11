@@ -141,6 +141,8 @@ Dialog {
         if(!useDefaultSound) {
             selectedSound = tmpSelectedSound;
             settings.setValue('selectedSound', selectedSound);
+        } else {
+            selectedSound = builtinSound;
         }
 
     }
