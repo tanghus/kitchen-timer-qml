@@ -40,25 +40,19 @@ Dialog {
 
     property string selectedSound: '';
 
-    DialogHeader {
-        id: header;
-        dialog: soundsDialog;
-        acceptText: qsTr('Select');
-    }
-
     Audio {
         id: sound;
     }
 
     SilicaListView {
         id: soundsList;
+        anchors.fill: parent
         quickScroll: true;
         currentIndex: -1;
 
         PullDownMenu {
             quickSelect: true;
             visible: soundsModel.path !== soundsModel.homePath();
-            y: -Theme.paddingLarge;
             MenuItem {
                 text: qsTr('Up');
                 onClicked: {
@@ -76,11 +70,11 @@ Dialog {
             filterMode: FolderListModel.Inclusive;
         }
 
+        header: DialogHeader {
+            acceptText: qsTr('Select');
+        }
+
         model: soundsModel;
-        width: parent.width;
-        y: header.height; // - Theme.paddingLarge;
-        contentHeight: soundsModel.count * Theme.itemSizeSmall;
-        height: parent.height - (header.height + Theme.paddingMedium);
 
         delegate: ListItem {
             id: soundItem;
