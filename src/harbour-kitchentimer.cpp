@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
 
     //QGuiApplication* app = SailfishApp::application(argc, argv);
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    app->setApplicationVersion(QString(APP_VERSION));
     QmlSettings *settings = new QmlSettings();
     //qmlRegisterType<Insomniac>("Insomniac", 1, 0, "Insomniac");
 

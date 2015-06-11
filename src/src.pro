@@ -1,6 +1,10 @@
 TEMPLATE = app
 
 TARGET = harbour-kitchentimer
+
+# App version
+DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
+
 CONFIG += sailfishapp
 
 #QT += declarative

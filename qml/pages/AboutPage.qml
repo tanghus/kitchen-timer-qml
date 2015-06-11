@@ -42,7 +42,7 @@ Page {
         horizontalAlignment: Text.AlignHCenter;
         textFormat: Text.RichText;
         text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" +
-              "Kitchen Timer<br/>" +
+              "Kitchen Timer v." + Qt.application.version + "<br/>" +
               qsTr('Simple Kitchen Timer app') + '<br/>' +
               //: Naming the author
               qsTr('by %1', 'As in made by %1').arg('Thomas Tanghus') + '<br/><br/>' +
