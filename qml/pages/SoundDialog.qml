@@ -38,6 +38,7 @@ Dialog {
     //property bool vibrate: false;
     property string tmpSelectedSound: selectedSound;
     property bool tmpUseDefaultSound: useDefaultSound;
+    property bool tmpLoopSound: loopSound;
 
     //canAccept: useDefaultSound || tmpSelectedSound !== selectedSound;
 
@@ -58,6 +59,17 @@ Dialog {
         spacing: Theme.horizontalPageMargin;
 
         TextSwitch {
+            id: doLoop;
+            checked: loopSound;
+            x: Theme.paddingLarge;
+            text: qsTr('Loop alarm sound');
+            onCheckedChanged: {
+                console.log('Loop', checked)
+                tmpLoopSound = checked;
+            }
+        }
+
+        TextSwitch {
             id: soundSelector;
             checked: useDefaultSound;
             x: Theme.paddingLarge;
@@ -74,7 +86,7 @@ Dialog {
         /*TextSwitch {
             id: doVibrate;
             checked: vibrate;
-            leftMargin: Theme.paddingMedium;
+            x: Theme.paddingLarge;
             text: qsTr('Vibrate');
             description: 'Since <code>QtFeedback</code> is not yet allowed, this does nothing.';
             onCheckedChanged: {
@@ -122,6 +134,9 @@ Dialog {
         }
     }
     onAccepted: {
+        loopSound = tmpLoopSound;
+        settings.setValue('loopSound', loopSound);
+
         useDefaultSound = tmpUseDefaultSound;
         settings.setValue('useDefaultSound', useDefaultSound);
 

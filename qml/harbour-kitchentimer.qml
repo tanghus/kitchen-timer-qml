@@ -41,6 +41,7 @@ ApplicationWindow {
 
     property string timeText: '00:01';
     property bool useDefaultSound: true;
+    property bool loopSound: true;
     property string builtinSound: '../sounds/harbour-kitchentimer.wav';
     property string selectedSound: builtinSound;
     property bool isBusy: false;
@@ -106,6 +107,21 @@ ApplicationWindow {
         id: alarm;
         //loops: -2;
         source: Qt.resolvedUrl(selectedSound);
+
+        property bool forceStopped: false;
+
+        function forceStop() {
+            forceStopped = true;
+            stop();
+        }
+
+        onStopped: {
+            if(loopSound && !forceStopped) {
+                play();
+            } else {
+                forceStopped = false;
+            }
+        }
     }
 
     Timer {
@@ -172,6 +188,7 @@ ApplicationWindow {
     function load() {
         setBusy(true);
 
+        loopSound = settings.value('loopSound', true);
         useDefaultSound = settings.value('useDefaultSound', true);
         selectedSound = useDefaultSound ? builtinSound : settings.value('selectedSound', builtinSound);
 
@@ -216,7 +233,7 @@ ApplicationWindow {
 
     function mute() {
         if(alarm.playbackState === Audio.PlayingState) {
-            alarm.stop();
+            alarm.forceStop();
         }
     }
 
