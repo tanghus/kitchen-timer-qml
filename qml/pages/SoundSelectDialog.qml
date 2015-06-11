@@ -56,8 +56,9 @@ Dialog {
         currentIndex: -1;
 
         PullDownMenu {
+            quickSelect: true;
             visible: soundsModel.path !== soundsModel.homePath();
-            y: 0 - Theme.paddingLarge;
+            y: -Theme.paddingLarge;
             MenuItem {
                 text: qsTr('Up');
                 onClicked: {
