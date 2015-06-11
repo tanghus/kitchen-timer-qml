@@ -44,7 +44,6 @@ Dialog {
         id: header;
         dialog: soundsDialog;
         acceptText: qsTr('Select');
-        //title: qsTr('Select sound file');
     }
 
     Audio {
@@ -54,12 +53,11 @@ Dialog {
     SilicaListView {
         id: soundsList;
         quickScroll: true;
-        //x: Theme.paddingLarge;
         currentIndex: -1;
 
         PullDownMenu {
             visible: soundsModel.path !== soundsModel.homePath();
-            y: header.height;
+            y: 0 - Theme.paddingLarge;
             MenuItem {
                 text: qsTr('Up');
                 onClicked: {
@@ -78,12 +76,8 @@ Dialog {
         }
 
         model: soundsModel;
-        //anchors.fill: parent;
-        //anchors.topMargin: header.height;
-        anchors.leftMargin: Theme.paddingLarge;
-        anchors.rightMargin: Theme.paddingLarge;
         width: parent.width;
-        y: header.height + Theme.paddingMedium;
+        y: header.height; // - Theme.paddingLarge;
         contentHeight: soundsModel.count * Theme.itemSizeSmall;
         height: parent.height - (header.height + Theme.paddingMedium);
 
