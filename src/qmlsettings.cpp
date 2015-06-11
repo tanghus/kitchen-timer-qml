@@ -27,8 +27,8 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <QDebug>
-//#include "qmlsettings.h"
+//#include <QDebug>
+#include "qmlsettings.h"
 
 QmlSettings::QmlSettings(QObject *parent) :
     QObject(parent) {
