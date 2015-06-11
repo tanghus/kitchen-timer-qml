@@ -78,9 +78,6 @@ Dialog {
             onCheckedChanged: {
                 console.log('useDefaultSound', tmpUseDefaultSound);
                 tmpUseDefaultSound = checked;
-                if(checked) {
-                    tmpSelectedSound = builtinSound;
-                }
             }
         }
 
