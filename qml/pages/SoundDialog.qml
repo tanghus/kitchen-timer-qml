@@ -63,6 +63,7 @@ Dialog {
             checked: loopSound;
             x: Theme.paddingLarge;
             text: qsTr('Loop alarm sound');
+            description: qsTr('Repeat alarm sound until you stop it');
             onCheckedChanged: {
                 console.log('Loop', checked)
                 tmpLoopSound = checked;
