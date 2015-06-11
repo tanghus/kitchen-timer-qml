@@ -8,7 +8,7 @@ Name:       harbour-kitchentimer
 # >> macros
 %define __provides_exclude_from ^%{_datadir}/.*$
 # list here all the libraries your RPM installs
-%define __requires_exclude ^libinsomniac|libQt5Declarative|libc.*$
+%define __requires_exclude ^libfolderlistmodel|libinsomniac|libQt5Declarative|libc.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
