@@ -127,6 +127,7 @@ ApplicationWindow {
             //console.log('seconds', seconds);
             if(minutes === 0 && seconds === 0) {
                 timer.stop();
+                app.activate();
                 alarm.play();
             }
         }
@@ -268,7 +269,7 @@ ApplicationWindow {
         if(passed >= _remaining) {
             console.warn('Time has passed!', passed - _remaining, 'seconds');
             reset();
-            activate();
+            app.activate();
             alarm.play();
         } else {
             timer.start();
