@@ -84,6 +84,7 @@ Page {
         }
 
         PushUpMenu {
+            visible: timersModel.count > 0;
             Repeater {
                  model: timersModel;
                  delegate: MenuItem {
