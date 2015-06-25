@@ -7,12 +7,15 @@ DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
 CONFIG += sailfishapp
 
-#QT += declarative
+QT += dbus
+#declarative
 
 SOURCES += $${TARGET}.cpp \
-    qmlsettings.cpp
+    qmlsettings.cpp \
+    display.cpp
 
-HEADERS += qmlsettings.h
+HEADERS += qmlsettings.h \
+    display.h
 
 CONFIG(release, debug|release) {
     DEFINES += QT_NO_DEBUG_OUTPUT
