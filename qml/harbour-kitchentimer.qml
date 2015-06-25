@@ -127,8 +127,7 @@ ApplicationWindow {
             //console.log('seconds', seconds);
             if(minutes === 0 && seconds === 0) {
                 timer.stop();
-                app.activate();
-                alarm.play();
+                playAlarm();
             }
         }
     }
@@ -269,8 +268,7 @@ ApplicationWindow {
         if(passed >= _remaining) {
             console.warn('Time has passed!', passed - _remaining, 'seconds');
             reset();
-            app.activate();
-            alarm.play();
+            playAlarm();
         } else {
             timer.start();
             _remaining = _remaining - passed;
@@ -282,6 +280,15 @@ ApplicationWindow {
                 seconds = _remaining;
             }
         }
+    }
+
+    function playAlarm() {
+        display.unBlank();
+        if(display.isLocked()) {
+            display.unLock();
+        }
+        app.activate();
+        alarm.play();
     }
 }
 
