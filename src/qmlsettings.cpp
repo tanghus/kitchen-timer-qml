@@ -32,7 +32,7 @@
 
 QmlSettings::QmlSettings(QObject *parent) :
     QObject(parent) {
-    _settings = new QSettings("Tanghus", "KitchenTimer");
+    _settings = new QSettings("harbour-kitchentimer", "net.tanghus.kitchentimer.sailfish");
 }
 
 QVariant QmlSettings::value(const QString &key, const QVariant & defaultValue) {
