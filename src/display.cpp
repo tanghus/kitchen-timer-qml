@@ -27,6 +27,12 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+ * Resources:
+ * https://github.com/nemomobile/mce-dev/blob/master/include/mce/dbus-names.h
+ * https://github.com/nemomobile/mce-dev/blob/master/include/mce/mode-names.h
+ * /
+
 #include <QDebug>
 #include <QDBusMessage>
 #include <QDBusReply>
