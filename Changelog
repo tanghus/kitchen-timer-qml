@@ -1,5 +1,6 @@
 0.2
 - Added option to select custom alarm sound.
+- Unblank display and activate app on alarm.
 - Moved predefined timers to a PushUpMenu for shorter menus.
 - Added a menu item shortcut "Last timer" to PullDownMenu, that is set
   when a timer is started. Requested by @AxMi :)
