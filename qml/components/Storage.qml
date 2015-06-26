@@ -23,13 +23,37 @@ QtObject {
     // Estimated size of DB in bytes. Just a hint for the engine and is ignored as of Qt 5.0 I think
     property int estimatedSize: 10000;
 
+    function tableExists(table) {
+        var db = getDatabase();
+        var exists = false;
+        db.transaction(
+            function(tx) {
+                try {
+                    var result = tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='" + table + "';");
+                    exists = result.rows.length > 0;
+                } catch(e) {
+                    if(e.code === SQLException.DATABASE_ERR) {
+                        console.warn('Database error:', e.message);
+                    } else if(e.code === SQLException.SYNTAX_ERR) {
+                        console.warn('Database syntax error:', e.message);
+                    } else {
+                        console.warn('Database unknown error:', e.message);
+                    }
+
+                    exists = false;
+                }
+            }
+        );
+        return exists;
+    }
+
     function cleanTable(table) {
         var db = getDatabase();
         db.transaction(
             function(tx) {
                 try {
-                    // Apparently variable interpolation doesn't work inthis case...?
-                    tx.executeSql('DROP TABLE IF EXISTS ' + table);
+                    // Apparently variable interpolation doesn't work in this case...?
+                    tx.executeSql('DELETE FROM ' + table);
                 } catch(e) {
                     console.log('DB error in cleanTable')
                     if(e.code === SQLException.DATABASE_ERR) {
@@ -149,6 +173,7 @@ QtObject {
      */
     function getTimers() {
 
+        var tableExisted = tableExists("timers")
         var db = getTimerTable();
         var timers = [];
         var result = false;
@@ -184,11 +209,14 @@ QtObject {
                         );
                     }
                 } else {
-                    console.debug("Storage: No values for timers");
-                    timers = defaultTimers;
-                    for (var i = 0; i < timers.length; ++i) {
-                        var timer = timers[i];
-                        saveTimer(timer.name, timer.minutes, timer.seconds);
+                    console.debug("Storage: No values for timers. Table existed?", tableExisted);
+                    // Don't load default timers if user deleted them on purpose
+                    if(!tableExisted) {
+                        timers = defaultTimers;
+                        for (var i = 0; i < timers.length; ++i) {
+                            var timer = timers[i];
+                            saveTimer(timer.name, timer.minutes, timer.seconds);
+                        }
                     }
                 }
             }
