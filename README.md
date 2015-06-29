@@ -17,6 +17,20 @@ Please add feature requests and bug reports to [the issue tracker](https://githu
 
 Translators
 ===========
+- Chinese: finalmix (太空飞瓜)
+- Danish: tanghus (Thomas Tanghus)
+- Dutch: sylsyl001 (Sylvia), mijnheer (André Koot), AronNL (Aron van Os), Vistaus (Heimen Stoffels)
+- Finnish: Timpaxi
+- French: sylsyl001 (Sylvia)
+- German: sylsyl001 (Sylvia)
+- Greek: dglent (Dimitrios Glentadakis)
+- Hungarian: salmi, llg179 (LG Laszlo)
+- Italian: Watchmaker, ghostofasmile (Francesco Vaccaro)
+- Norwegian Bokmål: kjetil_kilhavn (Kjetil Kilhavn)
+- Polish: restless_being (Jakub Wiśniowski)
+- Russian: ZogG
+- Slovenian: sponka (Boštjan Štrumbelj)
+- Swedish: attah
 
 Transifex is used for translations. The project resides at https://www.transifex.com/projects/p/kitchen-timer-qml/
 
