@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2013 Thomas Tanghus
+  Copyright (C) 2013-15 Thomas Tanghus
   All rights reserved.
 
   You may use this file under the terms of BSD license as follows:

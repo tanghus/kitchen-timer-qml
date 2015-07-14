@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2013 Thomas Tanghus
+** Copyright (C) 2013-15 Thomas Tanghus
 **
 ** Originally:
 ** Copyright (C) 2013 Jolla Ltd.
