@@ -25,13 +25,11 @@
   ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
 
-/*
- * Resources:
- * https://github.com/nemomobile/mce-dev/blob/master/include/mce/dbus-names.h
- * https://github.com/nemomobile/mce-dev/blob/master/include/mce/mode-names.h
- * /
+ Resources:
+ https://github.com/nemomobile/mce-dev/blob/master/include/mce/dbus-names.h
+ https://github.com/nemomobile/mce-dev/blob/master/include/mce/mode-names.h
+*/
 
 #include <QDebug>
 #include <QDBusMessage>
@@ -59,7 +57,8 @@ void Display::unBlank() {
 }
 
 void Display::timeOut() {
-    QDBusMessage reply = mceInterface.call("req_call_state_change", "none", "normal");
+    //QDBusMessage reply = mceInterface.call("req_call_state_change", "none", "normal");
+    QDBusMessage reply = mceInterface.call("notification_end_req", "kitchentimer", 2500);
     checkError(reply);
 }
 
@@ -67,7 +66,7 @@ bool Display::isLocked() {
     //QDBusReply<QString> reply = mceInterface.call("get_display_status");
     QDBusReply<QString> reply = mceInterface.call("get_tklock_mode");
     if (reply.isValid()) {
-        qDebug() << "reply" << reply.value();
+        //qDebug() << "reply" << reply.value();
         if(reply.value() == "unlocked") {
             return false;
         } else {
@@ -82,9 +81,6 @@ bool Display::isLocked() {
 }
 
 void Display::unLock() {
-    QDBusReply<QString> reply = mceInterface.call("req_tklock_mode_change", "unlocked");
-    if(!reply.isValid()) {
-        QDBusError error = reply.error();
-        qDebug() << error.name() << error.message();
-    }
+    QDBusMessage reply = mceInterface.call("req_tklock_mode_change", "unlocked");
+    checkError(reply);
 }

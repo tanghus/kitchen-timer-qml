@@ -132,6 +132,16 @@ ApplicationWindow {
         }
     }
 
+    Timer {
+        id: wakeupTimer;
+        interval: 1000;
+        running: false; repeat: false;
+        onTriggered: {
+            alarm.play();
+            app.activate();
+        }
+    }
+
     Insomniac {
         id: insomniac;
         repeat: false;
@@ -287,8 +297,8 @@ ApplicationWindow {
         if(display.isLocked()) {
             display.unLock();
         }
-        app.activate();
-        alarm.play();
+        // Apparently Lipstick(?) needs some time before you can activate the app.
+        wakeupTimer.start();
     }
 }
 
