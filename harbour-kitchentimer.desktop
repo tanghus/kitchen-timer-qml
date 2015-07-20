@@ -18,7 +18,7 @@ Name[ru]=Кухоный таймер
 Name[sl_SI]=Kuhinjski časomer
 Name[sv]=Äggklocka
 Name[zh_CN]=厨房定时器
-Categories=Utility
+Categories=Utility;
 Icon=harbour-kitchentimer
 Exec=harbour-kitchentimer
 
