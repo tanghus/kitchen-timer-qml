@@ -13,6 +13,8 @@ QT -= gui
 TARGET = $$qtLibraryTarget($$TARGET)
 target.path = /usr/share/harbour-$$PROJECT/lib/harbour/$$PROJECT/folderlistmodel
 
+OTHER_FILES = qmldir
+
 qmldir.files += $$_PRO_FILE_PWD_/qmldir
 qmldir.path += $$target.path
 
