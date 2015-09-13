@@ -115,20 +115,20 @@ ApplicationWindow {
         id: timer;
         interval: 1000;
         running: false; repeat: true;
-        /*onRunningChanged: {
+        onRunningChanged: {
             if (running === true) {
-                console.log("Timer running");
+                console.log("Timer running", seconds);
             } else {
-                console.log("Timer stopped");
+                console.log("Timer stopped", seconds);
             }
-        }*/
+        }
         onTriggered: {
             var now = Math.round(Date.now()/1000);
             seconds -= now - _lastTick;
             _lastTick = now;
             //console.log('seconds', seconds);
             if(minutes === 0 && seconds === 0) {
-                timer.stop();
+                reset();
                 playAlarm();
             }
         }
@@ -138,6 +138,13 @@ ApplicationWindow {
         id: wakeupTimer;
         interval: 1000;
         running: false; repeat: false;
+        onRunningChanged: {
+            if (running === true) {
+                console.log("wakeupTimer running", seconds);
+            } else {
+                console.log("wakeupTimer stopped", seconds);
+            }
+        }
         onTriggered: {
             alarm.play();
             app.activate();
@@ -149,6 +156,7 @@ ApplicationWindow {
         repeat: false;
         timerWindow: 10;
         onTimeout: {
+            console.log("insomniac timed out", seconds)
             wakeUp();
         }
         onError: {
@@ -247,7 +255,7 @@ ApplicationWindow {
         if(insomniac.running) {
             insomniac.stop();
         }
-        seconds = minutes = 0;
+        seconds = minutes = _remaining = _lastTick = 0;
     }
 
     function start() {
