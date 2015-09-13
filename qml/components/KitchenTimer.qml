@@ -44,11 +44,10 @@ Item {
     property int minutes
     property int seconds
 
-    // the original dimensions = 408x408
-    property real _scaleRatio: secondsCircle.width / 408
+    property real _minuteWidth: Theme.itemSizeExtraSmall
 
-    width: secondsCircle.width
-    height: secondsCircle.height
+    width: screen.sizeCategory > Screen.Medium ? Theme.itemSizeLarge*4 : Theme.itemSizeMedium*4
+    height: width
 
     onMinutesChanged: {
         minutes = (minutes < 0 ? 0 : (minutes > 59 ? 59 : minutes))
@@ -98,18 +97,25 @@ Item {
         return Math.cos((value % bound) / bound * Math.PI * 2)
     }
 
-    Image {
-        id: secondsCircle
-
-        source: "image://Theme/timepicker"
-        opacity: 0.1
-    }
-
+    ShaderEffect {
+        anchors.fill: parent
+        property size size: Qt.size(width, height)
+        property real border: _minuteWidth / width
+        fragmentShader: "
+            uniform lowp vec2 size;
+            uniform lowp float border;
+            varying highp vec2 qt_TexCoord0;
+            uniform lowp float qt_Opacity;
+            void main() {
+                float dist = length(qt_TexCoord0 - vec2(0.5));
+                gl_FragColor = vec4(0.1, 0.1, 0.1, 0.1) * (smoothstep(0.5-border,0.505-border, dist) - smoothstep(0.5-0.005, 0.5, dist)) * qt_Opacity;
+            }"
+         }
     GlassItem {
         id: minutesIndicator
         falloffRadius: 0.22
         radius: 0.25
-        anchors.centerIn: secondsCircle
+        anchors.centerIn: parent
         color: mouse.changingProperty == 1 ? Theme.highlightColor : Theme.primaryColor
 
         property real value
@@ -117,8 +123,8 @@ Item {
 
         transform: Translate { 
             // The minutes circle ends at 132px from the center
-            x: _scaleRatio*96 * _xTranslation(minutesIndicator.value, 60)
-            y: -_scaleRatio*96 * _yTranslation(minutesIndicator.value, 60)
+            x: (width - 3*_minuteWidth)/2 * _xTranslation(minutesIndicator.value, 60)
+            y: -(width - 3*_minuteWidth)/2 * _yTranslation(minutesIndicator.value, 60)
         }
     }
 
@@ -126,15 +132,15 @@ Item {
         id: secondsIndicator
         falloffRadius: 0.22
         radius: 0.25
-        anchors.centerIn: secondsCircle
+        anchors.centerIn: parent
         color: mouse.changingProperty == 2 ? Theme.highlightColor : Theme.primaryColor
 
         property real value
 
         transform: Translate { 
             // The seconds band is 72px wide, ending at 204px from the center
-            x: _scaleRatio*168 * _xTranslation(secondsIndicator.value, 60)
-            y: -_scaleRatio*168 * _yTranslation(secondsIndicator.value, 60)
+            x: (width - _minuteWidth)/2 * _xTranslation(secondsIndicator.value, 60)
+            y: -(width - _minuteWidth)/2 * _yTranslation(secondsIndicator.value, 60)
         }
     }
 
