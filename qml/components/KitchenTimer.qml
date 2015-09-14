@@ -53,17 +53,7 @@ Item {
         minutes = (minutes < 0 ? 0 : (minutes > 59 ? 59 : minutes))
 
         if(mouse.changingProperty === 0) {
-            var delta = (minutes - minutesIndicator.value) % 30
-            if ((delta > 15) || (delta < -15)) {
-                // We don't want to animate for more than a full cycle
-                minutesIndicator.animationEnabled = false
-
-                minutesIndicator.value += (delta > 0 ? 15 : -15)
-                delta = (minutes - minutesIndicator.value) % 15
-
-                minutesIndicator.animationEnabled = true
-            }
-
+            var delta = (minutes - minutesIndicator.value)
             minutesIndicator.value += delta
         }
     }
@@ -110,7 +100,8 @@ Item {
                 float dist = length(qt_TexCoord0 - vec2(0.5));
                 gl_FragColor = vec4(0.1, 0.1, 0.1, 0.1) * (smoothstep(0.5-border,0.505-border, dist) - smoothstep(0.5-0.005, 0.5, dist)) * qt_Opacity;
             }"
-         }
+    }
+
     GlassItem {
         id: minutesIndicator
         falloffRadius: 0.22
@@ -123,8 +114,10 @@ Item {
 
         transform: Translate { 
             // The minutes circle ends at 132px from the center
+            //x: (width - 3*_minuteWidth)/2 * _xTranslation(minutesIndicator.value, 60)
+            //y: -(width - 3*_minuteWidth)/2 * _yTranslation(minutesIndicator.value, 60)
             x: (width - 3*_minuteWidth)/2 * _xTranslation(minutesIndicator.value, 60)
-            y: -(width - 3*_minuteWidth)/2 * _yTranslation(minutesIndicator.value, 60)
+            y: -(height - 3*_minuteWidth)/2 * _yTranslation(minutesIndicator.value, 60)
         }
     }
 
