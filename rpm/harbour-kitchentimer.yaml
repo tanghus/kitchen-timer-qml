@@ -1,6 +1,6 @@
 Name: harbour-kitchentimer
 Summary: Kitchen Timer
-Version: 0.2
+Version: 0.2.1
 Release: 1
 Group: Qt/Qt
 License: BSD
@@ -14,12 +14,12 @@ Builder: qtc5
 QMakeOptions:
 - VERSION=%{version}
 PkgConfigBR:
-- sailfishapp
+- sailfishapp >= 1.0.2
 - Qt5Quick
 - Qt5Qml
 - Qt5Core
 Requires:
-- sailfishsilica-qt5
+- sailfishsilica-qt5 >= 0.10.9
 Files:
 - '%{_bindir}'
 - '%{_datadir}'

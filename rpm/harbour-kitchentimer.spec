@@ -16,15 +16,15 @@ Name:       harbour-kitchentimer
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Kitchen Timer
-Version:    0.2
+Version:    0.2.1
 Release:    1
 Group:      Qt/Qt
 License:    BSD
 URL:        https://github.com/tanghus/kitchen-timer-qml
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-kitchentimer.yaml
-Requires:   sailfishsilica-qt5
-BuildRequires:  pkgconfig(sailfishapp)
+Requires:   sailfishsilica-qt5 >= 0.10.9
+BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Core)
