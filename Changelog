@@ -1,3 +1,8 @@
+0.2.1
+- Show cover countdown when peeking.
+- If minutes was larger than 30 the indicator would stop at 30 on reset.
+- Hopefully fixed bug where clock sometimes stopped a couple of seconds before timeout.
+
 0.2
 - Added option to select custom alarm sound.
 - Unblank display and activate app on alarm.
