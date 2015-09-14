@@ -116,11 +116,11 @@ ApplicationWindow {
         interval: 1000;
         running: false; repeat: true;
         onRunningChanged: {
-            if (running === true) {
+            /*if (running === true) {
                 console.log("Timer running", seconds);
             } else {
                 console.log("Timer stopped", seconds);
-            }
+            }*/
         }
         onTriggered: {
             var now = Math.round(Date.now()/1000);
@@ -139,11 +139,11 @@ ApplicationWindow {
         interval: 1000;
         running: false; repeat: false;
         onRunningChanged: {
-            if (running === true) {
+            /*if (running === true) {
                 console.log("wakeupTimer running", seconds);
             } else {
                 console.log("wakeupTimer stopped", seconds);
-            }
+            }*/
         }
         onTriggered: {
             alarm.play();
@@ -156,7 +156,7 @@ ApplicationWindow {
         repeat: false;
         timerWindow: 10;
         onTimeout: {
-            console.log("insomniac timed out", seconds)
+            //console.log("insomniac timed out", seconds)
             wakeUp();
         }
         onError: {
