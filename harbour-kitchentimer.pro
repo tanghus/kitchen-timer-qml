@@ -42,10 +42,12 @@ SOURCES = \
 
 CONFIG += sailfishapp_i18n
 TRANSLATIONS = translations/ca.ts \
+    translations/cs.ts \
     translations/da_DK.ts \
     translations/de_DE.ts \
     translations/el.ts \
     translations/en_GB.ts \
+    translations/el.ts \
     translations/es.ts \
     translations/fi_FI.ts \
     translations/fr.ts \
