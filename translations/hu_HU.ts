@@ -4,57 +4,57 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="45"/>
+        <location filename="../qml/pages/AboutPage.qml" line="41"/>
         <source>Kitchen Timer</source>
         <translation type="unfinished">Konyhai időzítő</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="46"/>
+        <location filename="../qml/pages/AboutPage.qml" line="61"/>
         <source>Simple Kitchen Timer app</source>
         <translation>Egyszerű konyhai időzítő alkalmazás</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="48"/>
+        <location filename="../qml/pages/AboutPage.qml" line="63"/>
         <source>by %1</source>
         <comment>As in made by %1</comment>
         <extracomment>Naming the author</extracomment>
         <translation>Készítette: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="50"/>
+        <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>See more at %1.</source>
         <comment>Link URL</comment>
         <extracomment>Link to Github project page</extracomment>
         <translation>További infók: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="50"/>
+        <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>the project page</source>
         <comment>Link text</comment>
         <translation>a projekt weboldalán</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="52"/>
+        <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>Issues and feature requests at the %1</source>
         <comment>Link URL</comment>
         <extracomment>Link to the issue tracker</extracomment>
         <translation>Problémák jelentése és új funkciók kérése %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="52"/>
+        <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>issue tracker</source>
         <comment>Link text</comment>
         <translation>ezen az oldalon</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="54"/>
+        <location filename="../qml/pages/AboutPage.qml" line="69"/>
         <source>Ask &quot;%1&quot; at the %2 channel on Freenode IRC for support</source>
         <comment>Link with text</comment>
         <extracomment>%1: Author nick, %2:Link to Web IRC</extracomment>
         <translation>Támogatásért kérd &quot;%1&quot; segítségét a %2 Freenode IRC csatornán</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="55"/>
+        <location filename="../qml/pages/AboutPage.qml" line="70"/>
         <source>The awesome icon is made by %1</source>
         <translation>A remek ikont %1 készítette</translation>
     </message>

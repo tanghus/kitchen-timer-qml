@@ -4,57 +4,57 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="45"/>
+        <location filename="../qml/pages/AboutPage.qml" line="41"/>
         <source>Kitchen Timer</source>
         <translation type="unfinished">Keittiöajastin</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="46"/>
+        <location filename="../qml/pages/AboutPage.qml" line="61"/>
         <source>Simple Kitchen Timer app</source>
         <translation>Yksinkertainen keittiöajastin</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="48"/>
+        <location filename="../qml/pages/AboutPage.qml" line="63"/>
         <source>by %1</source>
         <comment>As in made by %1</comment>
         <extracomment>Naming the author</extracomment>
         <translation>kehittäjältä %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="50"/>
+        <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>See more at %1.</source>
         <comment>Link URL</comment>
         <extracomment>Link to Github project page</extracomment>
         <translation>Lisää tietoa sovelluksesta %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="50"/>
+        <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>the project page</source>
         <comment>Link text</comment>
         <translation>projektisivuilla</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="52"/>
+        <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>Issues and feature requests at the %1</source>
         <comment>Link URL</comment>
         <extracomment>Link to the issue tracker</extracomment>
         <translation>Ongelmat ja kehitysehdotukset %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="52"/>
+        <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>issue tracker</source>
         <comment>Link text</comment>
         <translation>vianseurannassa</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="54"/>
+        <location filename="../qml/pages/AboutPage.qml" line="69"/>
         <source>Ask &quot;%1&quot; at the %2 channel on Freenode IRC for support</source>
         <comment>Link with text</comment>
         <extracomment>%1: Author nick, %2:Link to Web IRC</extracomment>
         <translation>Pyydä apua tekijältä &quot;%1&quot; , %2 Freenode IRC sivuilla</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="55"/>
+        <location filename="../qml/pages/AboutPage.qml" line="70"/>
         <source>The awesome icon is made by %1</source>
         <translation>Sovelluksen upean kuvakkeen on tehnyt %1</translation>
     </message>

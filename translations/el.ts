@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sl_SI">
+<TS version="2.1" language="el">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="41"/>
         <source>Kitchen Timer</source>
-        <translation>Kuhinjski časomer</translation>
+        <translation type="unfinished">Χρονόμετρο κουζίνας</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="61"/>
         <source>Simple Kitchen Timer app</source>
-        <translation>Preprost kuhinjski časomer</translation>
+        <translation>Απλή εφαρμογή χρονομέτρου κουζίνας</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="63"/>
         <source>by %1</source>
         <comment>As in made by %1</comment>
         <extracomment>Naming the author</extracomment>
-        <translation>avtor %1</translation>
+        <translation>από τον %1</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>See more at %1.</source>
         <comment>Link URL</comment>
         <extracomment>Link to Github project page</extracomment>
-        <translation>Za več informacij si oglejte %1.</translation>
+        <translation>Για περισσότερα ανατρέξτε στο %1.</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>the project page</source>
         <comment>Link text</comment>
-        <translation>stran projekta</translation>
+        <translation>η σελίδα του έργου</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>Issues and feature requests at the %1</source>
         <comment>Link URL</comment>
         <extracomment>Link to the issue tracker</extracomment>
-        <translation>Probleme in predloge novih funkcij sporočite na %1</translation>
+        <translation>Οι αιτήσεις νέων χαρακτηριστικών και οι αναφορές σφαλμάτων γίνονται στο %1 </translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>issue tracker</source>
         <comment>Link text</comment>
-        <translation>issue tracker</translation>
+        <translation>ιχνηλάτη προβλημάτων</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="69"/>
         <source>Ask &quot;%1&quot; at the %2 channel on Freenode IRC for support</source>
         <comment>Link with text</comment>
         <extracomment>%1: Author nick, %2:Link to Web IRC</extracomment>
-        <translation>Za podporo kontaktirajte &quot;%1&quot;, kanal %2 na Freenode IRC</translation>
+        <translation>Για υποστήριξη ρωτήστε τον &quot;%1&quot; στο κανάλι %2 στο Freenode IRC</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="70"/>
         <source>The awesome icon is made by %1</source>
-        <translation>&quot;The awesome&quot; ikono je naredil %1</translation>
+        <translation>Το έξοχο αυτό εικονίδιο σχεδιάστηκε από τον %1</translation>
     </message>
 </context>
 <context>
@@ -64,27 +64,27 @@
     <message>
         <location filename="../qml/pages/SoundDialog.qml" line="48"/>
         <source>Alarm sound</source>
-        <translation>Zvok alarma</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SoundDialog.qml" line="65"/>
         <source>Loop alarm sound</source>
-        <translation>Ponavljanje alarma</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SoundDialog.qml" line="66"/>
         <source>Repeat alarm sound until you stop it</source>
-        <translation>Ponavljaj alarm do prekinitve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SoundDialog.qml" line="77"/>
         <source>Default sound</source>
-        <translation>Privzeti zvok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SoundDialog.qml" line="120"/>
         <source>Select music file</source>
-        <translation>Izberi zvočno datoteko</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -92,17 +92,17 @@
     <message>
         <location filename="../qml/pages/SoundSelectDialog.qml" line="74"/>
         <source>Select</source>
-        <translation>Izberi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SoundSelectDialog.qml" line="57"/>
         <source>Up</source>
-        <translation>Gor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SoundSelectDialog.qml" line="151"/>
         <source>No sound files here.</source>
-        <translation>Tu ni zvočnih datotek</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -110,22 +110,22 @@
     <message>
         <location filename="../qml/components/Storage.qml" line="181"/>
         <source>Eggs</source>
-        <translation>Jajca</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/Storage.qml" line="182"/>
         <source>Potatoes</source>
-        <translation>Krompir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/Storage.qml" line="183"/>
         <source>Frozen pizza</source>
-        <translation>Zamrznjena pizza</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/Storage.qml" line="184"/>
         <source>Tea (Earl Grey)</source>
-        <translation>Čaj (Earl Grey)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -133,47 +133,47 @@
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="62"/>
         <source>About</source>
-        <translation>O programu</translation>
+        <translation>Σχετικά</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="68"/>
         <source>Edit default timers</source>
-        <translation>Uredi privzete čase</translation>
+        <translation>Επεξεργασία των εξ ορισμού χρονομετρών</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="72"/>
         <source>Set alarm sound</source>
-        <translation>Nastavi zvok alarma</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="76"/>
         <source>Last timer:</source>
-        <translation>Zadnji časomer:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="114"/>
         <source>Kitchen Timer</source>
-        <translation>Kuhinjski časomer</translation>
+        <translation>Χρονόμετρο κουζίνας</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="205"/>
         <source>Start</source>
-        <translation>Start</translation>
+        <translation>Εκκίνηση</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="206"/>
         <source>Pause</source>
-        <translation>Pavza</translation>
+        <translation>Παύση</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="207"/>
         <source>Reset</source>
-        <translation>Ponastavi</translation>
+        <translation>Μηδενισμός</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="208"/>
         <source>Mute</source>
-        <translation>Utišaj</translation>
+        <translation>Σίγαση</translation>
     </message>
 </context>
 <context>
@@ -181,22 +181,22 @@
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="57"/>
         <source>Deleting</source>
-        <translation>Brišem</translation>
+        <translation>Διαγράφεται</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="66"/>
         <source>Timer name</source>
-        <translation>Ime časomera</translation>
+        <translation>Όνομα χρονομέτρου</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="79"/>
         <source>Minutes</source>
-        <translation>Minute</translation>
+        <translation>Λεπτά</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="104"/>
         <source>Seconds</source>
-        <translation>Sekunde</translation>
+        <translation>Δευτερόλεπτα</translation>
     </message>
 </context>
 </TS>

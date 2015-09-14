@@ -4,75 +4,63 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="45"/>
+        <location filename="../qml/pages/AboutPage.qml" line="41"/>
         <source>Kitchen Timer</source>
         <translation>Kjøkkenur</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="46"/>
+        <location filename="../qml/pages/AboutPage.qml" line="61"/>
         <source>Simple Kitchen Timer app</source>
         <translation>Enkelt kjøkkenurprogram</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="48"/>
+        <location filename="../qml/pages/AboutPage.qml" line="63"/>
         <source>by %1</source>
         <comment>As in made by %1</comment>
         <extracomment>Naming the author</extracomment>
         <translation>av %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="50"/>
+        <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>See more at %1.</source>
         <comment>Link URL</comment>
         <extracomment>Link to Github project page</extracomment>
         <translation>Les mer på %1.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="50"/>
+        <location filename="../qml/pages/AboutPage.qml" line="65"/>
         <source>the project page</source>
         <comment>Link text</comment>
         <translation>prosjektsiden</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="52"/>
+        <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>Issues and feature requests at the %1</source>
         <comment>Link URL</comment>
         <extracomment>Link to the issue tracker</extracomment>
         <translation>Problemer og ønsker om ny funksjonalitet i %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="52"/>
+        <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>issue tracker</source>
         <comment>Link text</comment>
         <translation>saksbehandlingssystemet</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="54"/>
+        <location filename="../qml/pages/AboutPage.qml" line="69"/>
         <source>Ask &quot;%1&quot; at the %2 channel on Freenode IRC for support</source>
         <comment>Link with text</comment>
         <extracomment>%1: Author nick, %2:Link to Web IRC</extracomment>
         <translation>Spør &quot;%1&quot; i %2-kanalen på Freenode IRC om hjelp</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="55"/>
+        <location filename="../qml/pages/AboutPage.qml" line="70"/>
         <source>The awesome icon is made by %1</source>
         <translation>Det flotte ikonet er laget av %1</translation>
     </message>
 </context>
 <context>
     <name>SoundDialog</name>
-    <message>
-        <source>Sound</source>
-        <translation type="vanished">Lyd</translation>
-    </message>
-    <message>
-        <source>Disable sound</source>
-        <translation type="vanished">Slå av lyd</translation>
-    </message>
-    <message>
-        <source>Vibrate</source>
-        <translation type="vanished">Vibrer</translation>
-    </message>
     <message>
         <location filename="../qml/pages/SoundDialog.qml" line="48"/>
         <source>Alarm sound</source>
@@ -105,10 +93,6 @@
         <location filename="../qml/pages/SoundSelectDialog.qml" line="74"/>
         <source>Select</source>
         <translation>Velg</translation>
-    </message>
-    <message>
-        <source>Select sound file</source>
-        <translation type="vanished">Velg lydfil</translation>
     </message>
     <message>
         <location filename="../qml/pages/SoundSelectDialog.qml" line="57"/>
@@ -160,10 +144,6 @@
         <location filename="../qml/pages/TimerPage.qml" line="72"/>
         <source>Set alarm sound</source>
         <translation>Sett alarmlyd</translation>
-    </message>
-    <message>
-        <source>Select sound</source>
-        <translation type="vanished">Velg lyd</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="76"/>
