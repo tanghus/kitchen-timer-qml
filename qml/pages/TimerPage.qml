@@ -36,7 +36,7 @@ import "../components"
 Page {
     id: timerPage;
     // Landscape is disabled here as I can't position the timer correctly
-    //allowedOrientations: Orientation.Portrait | Orientation.Landscape;
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape;
 
     property alias seconds: kitchenTimer.seconds;
     property alias minutes: kitchenTimer.minutes;
