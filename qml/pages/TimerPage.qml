@@ -36,7 +36,7 @@ import "../components"
 Page {
     id: timerPage;
     // Landscape is disabled here as I can't position the timer correctly
-    //allowedOrientations: Orientation.Portrait | Orientation.Landscape;
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape;
 
     property alias seconds: kitchenTimer.seconds;
     property alias minutes: kitchenTimer.minutes;
@@ -115,13 +115,11 @@ Page {
             }
             Item {
                 width: column.width;
+                height : kitchenTimer.width;
                 KitchenTimer {
+                    anchors.horizontalCenter: parent.horizontalCenter;
                     id: kitchenTimer;
                     //showRangeIndicator: false;
-                    //anchors.centerIn: column;
-                    // Ugly, but, dang, I can't position it
-                    x: (column.width - kitchenTimer.width) / 2;
-                    y: (Screen.height - kitchenTimer.height) / 2;
                 }
                 BackgroundItem {
                     id: background;
