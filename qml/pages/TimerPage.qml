@@ -115,13 +115,11 @@ Page {
             }
             Item {
                 width: column.width;
+                height : kitchenTimer.width;
                 KitchenTimer {
+                    anchors.horizontalCenter: parent.horizontalCenter;
                     id: kitchenTimer;
                     //showRangeIndicator: false;
-                    //anchors.centerIn: column;
-                    // Ugly, but, dang, I can't position it
-                    x: (column.width - kitchenTimer.width) / 2;
-                    y: (Screen.height - kitchenTimer.height) / 2;
                 }
                 BackgroundItem {
                     id: background;
