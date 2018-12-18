@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2013-15 Thomas Tanghus
+  Copyright (C) 2013-19 Thomas Tanghus
   All rights reserved.
 
   You may use this file under the terms of BSD license as follows:
@@ -57,9 +57,9 @@ Page {
     SilicaFlickable {
         anchors.fill: parent;
 
-        onWidthChanged: {
-            console.log(orientation === Orientation.Portrait ? "Portrait" : "Landscape")
-        }
+        //onWidthChanged: {
+        //    console.log(orientation === Orientation.Portrait ? "Portrait" : "Landscape")
+        //}
 
         PullDownMenu {
             MenuItem {
@@ -119,10 +119,9 @@ Page {
                 visible: orientation === Orientation.Portrait ? true : false;
             }
 
-            // Dummy element to create some top spacing when in Landscape
-            // without messing with the Column. Not very elegant :-/
+            // Dummy element to create some top spacing when in Landscape and to center
+            // KitchenTimer when in Portrait without messing with the Column. Not very elegant :-/
             Item {
-                //visible: !header.visible;
                 height: header.visible ? 
                             (Screen.height/2)-(kitchenTimer.height/2)-header.height-(Theme.paddingLarge*2) : 
                             Theme.paddingLarge;
@@ -135,7 +134,6 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter;
                 KitchenTimer {
                     id: kitchenTimer;
-                    //anchors.horizontalCenter: parent.horizontalCenter;
                     anchors.centerIn: parent;
                 }
                 BackgroundItem {
@@ -172,14 +170,6 @@ Page {
                     }
                 }
             }
-            
-            Item {
-                // Maybe the Column needs some stretch?
-                Rectangle {
-                    anchors.fill: parent;
-                    color: "white";
-                }
-            }
         }
 
         ListModel {
@@ -196,7 +186,7 @@ Page {
                     delegate: MenuItem {
                         text: model.name;
                         onClicked: {
-                            console.log('Action:', model.action);
+                            //console.log('Action:', model.action);
                             runMenuAction(model.action);
                         }
                     }

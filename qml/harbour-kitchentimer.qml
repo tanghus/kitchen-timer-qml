@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2013-15 Thomas Tanghus
+  Copyright (C) 2013-19 Thomas Tanghus
   All rights reserved.
 
   You may use this file under the terms of BSD license as follows:
@@ -85,8 +85,6 @@ ApplicationWindow {
 
     Component.onCompleted: {
         load();
-        console.log("Screen.height", Screen.height)
-        console.log("Screen.width", Screen.width)
     }
 
     initialPage: TimerPage {
@@ -117,13 +115,6 @@ ApplicationWindow {
         id: timer;
         interval: 1000;
         running: false; repeat: true;
-        onRunningChanged: {
-            /*if (running === true) {
-                console.log("Timer running", seconds);
-            } else {
-                console.log("Timer stopped", seconds);
-            }*/
-        }
         onTriggered: {
             var now = Math.round(Date.now()/1000);
             seconds -= now - _lastTick;
@@ -140,13 +131,6 @@ ApplicationWindow {
         id: wakeupTimer;
         interval: 1000;
         running: false; repeat: false;
-        onRunningChanged: {
-            /*if (running === true) {
-                console.log("wakeupTimer running", seconds);
-            } else {
-                console.log("wakeupTimer stopped", seconds);
-            }*/
-        }
         onTriggered: {
             alarm.play();
             app.activate();
@@ -158,7 +142,6 @@ ApplicationWindow {
         repeat: false;
         timerWindow: 10;
         onTimeout: {
-            //console.log("insomniac timed out", seconds)
             wakeUp();
         }
         onError: {

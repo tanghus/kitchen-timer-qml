@@ -117,9 +117,6 @@ Item {
         property bool animationEnabled: applicationActive;
 
         transform: Translate { 
-            // The minutes circle ends at 132px from the center
-            //x: (width - 3*_minuteWidth)/2 * _xTranslation(minutesIndicator.value, 60)
-            //y: -(width - 3*_minuteWidth)/2 * _yTranslation(minutesIndicator.value, 60)
             x: (width - 3*_minuteWidth)/2 * _xTranslation(minutesIndicator.value, 60)
             y: -(height - 3*_minuteWidth)/2 * _yTranslation(minutesIndicator.value, 60)
         }
@@ -135,7 +132,6 @@ Item {
         property real value
 
         transform: Translate { 
-            // The seconds band is 72px wide, ending at 204px from the center
             x: (width - _minuteWidth)/2 * _xTranslation(secondsIndicator.value, 60)
             y: -(width - _minuteWidth)/2 * _yTranslation(secondsIndicator.value, 60)
         }
@@ -192,10 +188,11 @@ Item {
 
         function updateForAngle(angle) {
             // Update the selected property for the specified angular position
+            var delta = 0;
             if (changingProperty == 1) { // Minutes
                 // Map angular position to 0-59
                 var h = remapAngle(angle, 60)
-                var delta = (h - minutesIndicator.value) % 60
+                delta = (h - minutesIndicator.value) % 60
 
                 // It is not possible to make jumps of more than 6 minutes - reverse the direction
                 if (delta > 30) {
@@ -220,7 +217,7 @@ Item {
             } else { // Seconds
                 // Map angular position to 0-59
                 var s = remapAngle(angle, 60)
-                var delta = (s - secondsIndicator.value) % 60
+                delta = (s - secondsIndicator.value) % 60
 
                 // It is not possible to make jumps of more than 30 seconds - reverse the direction
                 if (delta > 30) {
