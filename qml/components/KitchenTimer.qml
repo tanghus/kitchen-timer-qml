@@ -45,9 +45,13 @@ Item {
     property int seconds
 
     property real _minuteWidth: Theme.itemSizeExtraSmall
+    
+    property int _minuteRadius: (width-_minuteWidth)/2;
+    property int _secondRadius: (width-(_minuteWidth*2))/2;
 
-    width: screen.sizeCategory > Screen.Medium ? Theme.itemSizeLarge*4 : Theme.itemSizeMedium*4
-    height: width
+    //width: screen.sizeCategory > Screen.Medium ? Theme.itemSizeLarge*4 : Theme.itemSizeMedium*4
+    //height: width
+    anchors.fill: parent;
 
     onMinutesChanged: {
         minutes = (minutes < 0 ? 0 : (minutes > 59 ? 59 : minutes))
@@ -178,9 +182,9 @@ Item {
 
         function propertyForRadius(radius) {
             // Return the property associated with clicking at radius distance from the center
-            if (radius < 132) {
+            if (radius < _secondRadius) {
                 return 1 // Minutes
-            } else if (radius < 204) {
+            } else if (radius < _minuteRadius) {
                 return 2 // Seconds
             }
             return 0

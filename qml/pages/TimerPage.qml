@@ -35,8 +35,8 @@ import "../components"
 
 Page {
     id: timerPage;
-    // Landscape is disabled here as I can't position the timer correctly
     allowedOrientations: Orientation.Portrait | Orientation.Landscape;
+    orientation: height > Screen.width ? Orientation.Portrait : Orientation.Landscape;
 
     property alias seconds: kitchenTimer.seconds;
     property alias minutes: kitchenTimer.minutes;
@@ -45,7 +45,7 @@ Page {
     Component.onCompleted: {
         showTime();
     }
-
+    
     onSecondsChanged: {
         showTime();
     }
@@ -56,6 +56,10 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent;
+
+        onWidthChanged: {
+            console.log(orientation === Orientation.Portrait ? "Portrait" : "Landscape")
+        }
 
         PullDownMenu {
             MenuItem {
@@ -103,23 +107,36 @@ Page {
         // Tell SilicaFlickable the height of its content.
         contentHeight: column.height;
 
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
         Column {
             id: column;
 
-            width: timerPage.width;
+            width: Screen.width - (Theme.paddingLarge * 2);
             spacing: Theme.paddingLarge;
+            anchors.centerIn: parent;
             PageHeader {
+                id: header;
                 title: qsTr('Kitchen Timer');
+                visible: orientation === Orientation.Portrait ? true : false;
             }
+
+            // Dummy element to create some top spacing when in Landscape
+            // without messing with the Column. Not very elegant :-/
             Item {
-                width: column.width;
-                height : kitchenTimer.width;
+                //visible: !header.visible;
+                height: header.visible ? 
+                            (Screen.height/2)-(kitchenTimer.height/2)-header.height-(Theme.paddingLarge*2) : 
+                            Theme.paddingLarge;
+                width: parent.width;
+            }
+
+            Item {
+                width: column.width - (Theme.paddingLarge * 2);
+                height : width;
+                anchors.horizontalCenter: parent.horizontalCenter;
                 KitchenTimer {
-                    anchors.horizontalCenter: parent.horizontalCenter;
                     id: kitchenTimer;
-                    //showRangeIndicator: false;
+                    //anchors.horizontalCenter: parent.horizontalCenter;
+                    anchors.centerIn: parent;
                 }
                 BackgroundItem {
                     id: background;
@@ -151,8 +168,16 @@ Page {
                         if (!contextMenu) {
                             contextMenu = contextMenuComponent.createObject(kitchenTimer)
                         }
-                        contextMenu.show(kitchenTimer)
+                        contextMenu.open(kitchenTimer)
                     }
+                }
+            }
+            
+            Item {
+                // Maybe the Column needs some stretch?
+                Rectangle {
+                    anchors.fill: parent;
+                    color: "white";
                 }
             }
         }

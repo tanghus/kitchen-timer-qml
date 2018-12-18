@@ -85,6 +85,8 @@ ApplicationWindow {
 
     Component.onCompleted: {
         load();
+        console.log("Screen.height", Screen.height)
+        console.log("Screen.width", Screen.width)
     }
 
     initialPage: TimerPage {
@@ -227,6 +229,10 @@ ApplicationWindow {
         busyIndicator.running = state;
     }
     function showTime() {
+        if(!viewable) {
+            return;
+        }
+
         timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
     }
 
