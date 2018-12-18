@@ -181,6 +181,12 @@ ApplicationWindow {
         loopSound = settings.value('loopSound', true);
         useDefaultSound = settings.value('useDefaultSound', true);
         selectedSound = useDefaultSound ? builtinSound : settings.value('selectedSound', builtinSound);
+        minutes = lastTimerMin = settings.value("lastTimerMin", -1);
+        seconds = lastTimerSec = settings.value("lastTimerSec", -1);
+
+        // For some odd reason the app isn't set to active on load..?
+        applicationActive = true;
+        showTime();
 
         var timers = storage.getTimers();
 
@@ -211,6 +217,7 @@ ApplicationWindow {
         isBusy = state;
         busyIndicator.running = state;
     }
+    
     function showTime() {
         if(!viewable) {
             return;
@@ -220,7 +227,6 @@ ApplicationWindow {
     }
 
     function setTime(mins, secs) {
-        console.log('setTime:', mins, secs);
         minutes = mins;
         seconds = secs;
     }
@@ -252,6 +258,8 @@ ApplicationWindow {
             _lastTick = Math.round(Date.now()/1000);
             lastTimerMin = minutes;
             lastTimerSec = seconds;
+            settings.setValue("lastTimerMin", lastTimerMin);
+            settings.setValue("lastTimerSec", lastTimerSec);
             timer.start();
         }
     }

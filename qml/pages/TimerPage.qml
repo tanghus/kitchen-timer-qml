@@ -47,6 +47,7 @@ Page {
     }
     
     onSecondsChanged: {
+        console.log("onSecondsChanged", seconds);
         showTime();
     }
 
