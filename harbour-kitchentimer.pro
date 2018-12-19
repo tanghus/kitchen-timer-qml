@@ -80,7 +80,7 @@ OTHER_FILES += qml/*.qml \
 INSTALLS += desktop icon qml sounds translations
 
 TEMPLATE = subdirs
-SUBDIRS = src/insomniac src/folderlistmodel src
-
+SUBDIRS = src/insomniac src
+#src/folderlistmodel 
 
 
