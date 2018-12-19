@@ -8,7 +8,7 @@ Name:       harbour-kitchentimer
 # >> macros
 %define __provides_exclude_from ^%{_datadir}/.*$
 # list here all the libraries your RPM installs
-%define __requires_exclude ^libfolderlistmodel|libinsomniac|libQt5Declarative|libc.*$
+%define __requires_exclude ^libinsomniac|libQt5Declarative|libc.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -70,7 +70,6 @@ desktop-file-install --delete-original       \
 %{_bindir}
 %{_datadir}
 %{_datadir}/%{name}
-%{_datadir}/%{name}/lib/harbour/kitchentimer/folderlistmodel
 %{_datadir}/%{name}/lib/harbour/kitchentimer/insomniac
 %{_datadir}/%{name}/lib/harbour/kitchentimer
 %{_datadir}/%{name}/lib/harbour

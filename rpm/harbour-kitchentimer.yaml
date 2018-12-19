@@ -24,7 +24,6 @@ Files:
 - '%{_bindir}'
 - '%{_datadir}'
 - '%{_datadir}/%{name}'
-- '%{_datadir}/%{name}/lib/harbour/kitchentimer/folderlistmodel'
 - '%{_datadir}/%{name}/lib/harbour/kitchentimer/insomniac'
 - '%{_datadir}/%{name}/lib/harbour/kitchentimer'
 - '%{_datadir}/%{name}/lib/harbour'
