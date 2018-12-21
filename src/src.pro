@@ -7,7 +7,7 @@ DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
 CONFIG += sailfishapp
 
-QT += dbus
+QT += dbus multimedia
 #declarative
 
 SOURCES += $${TARGET}.cpp \

@@ -28,8 +28,9 @@
 */
 
 import QtQuick 2.0
-import QtMultimedia 5.0
+import QtMultimedia 5.6
 import Sailfish.Silica 1.0
+//import Sailfish.Media 1.0 
 import harbour.kitchentimer.insomniac 1.0
 import "pages"
 import "cover"
@@ -41,8 +42,9 @@ ApplicationWindow {
 
     property string timeText: '00:01';
     property bool useDefaultSound: true;
+    property bool loadLast: true;
     property bool loopSound: true;
-    property string builtinSound: '../sounds/harbour-kitchentimer.wav';
+    property string builtinSound: Qt.resolvedUrl('../sounds/harbour-kitchentimer.wav');
     property string selectedSound: builtinSound;
     property bool isBusy: false;
     // Close enough to assume screen is off.
@@ -60,15 +62,6 @@ ApplicationWindow {
     property int _remaining: 0;
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape; //defaultAllowedOrientations
-
-    /*onUseDefaultSoundChanged: {
-        console.log('useDefaultSound changed:', useDefaultSound);
-        settings.setValue('useDefaultSound', useDefaultSound);
-    }
-    onSelectedSoundChanged: {
-        console.log('selectedSound changed:', selectedSound);
-        settings.setValue('selectedSound', selectedSound);
-    }*/
 
     onViewableChanged: {
         if(!isRunning) {
@@ -109,6 +102,10 @@ ApplicationWindow {
         id: alarm;
         loops: loopSound ? Audio.Infinite : 1;
         source: Qt.resolvedUrl(selectedSound);
+        audioRole: Audio.AlarmRole;
+        onError: {
+            console.log("Audio error:", errorString, selectedSound)
+        }
     }
 
     Timer {
@@ -134,6 +131,7 @@ ApplicationWindow {
         onTriggered: {
             alarm.play();
             app.activate();
+            pageStack.pop(timerPage)
         }
     }
 
@@ -179,12 +177,18 @@ ApplicationWindow {
         setBusy(true);
 
         loopSound = settings.value('loopSound', true);
+        loadLast = settings.value('loadLast', true)
         useDefaultSound = settings.value('useDefaultSound', true);
+        console.log("Default sound?", useDefaultSound)
         selectedSound = useDefaultSound ? builtinSound : settings.value('selectedSound', builtinSound);
-        minutes = lastTimerMin = settings.value("lastTimerMin", -1);
-        seconds = lastTimerSec = settings.value("lastTimerSec", -1);
+        console.log("Selected sound:", selectedSound)
+        if(loadLast) {
+            minutes = lastTimerMin = settings.value("lastTimerMin", -1);
+            seconds = lastTimerSec = settings.value("lastTimerSec", -1);
+        }
 
         // For some odd reason the app isn't set to active on load..?
+        //app.activate();
         applicationActive = true;
         showTime();
 

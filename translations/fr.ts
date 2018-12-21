@@ -61,49 +61,56 @@
     </message>
 </context>
 <context>
-    <name>SoundDialog</name>
+    <name>SettingsDialog</name>
     <message>
-        <location filename="../qml/pages/SoundDialog.qml" line="48"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="57"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="74"/>
+        <source>Load last timer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="75"/>
+        <source>Reload the last timer when starting the app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="83"/>
         <source>Alarm sound</source>
-        <translation>Son de l&apos;alarme</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SoundDialog.qml" line="65"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="92"/>
         <source>Loop alarm sound</source>
-        <translation>Boucle alarme sonore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SoundDialog.qml" line="66"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="93"/>
         <source>Repeat alarm sound until you stop it</source>
-        <translation>Répétition de l&apos;alarme sonore jusqu&apos;à ce que vous arrêtiez</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SoundDialog.qml" line="77"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="104"/>
         <source>Default sound</source>
-        <translation>Son par défaut</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SoundDialog.qml" line="120"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="105"/>
+        <source>Use the alarm sound provided by the app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="131"/>
         <source>Select music file</source>
-        <translation>Sélectionnez le fichier de musique</translation>
-    </message>
-</context>
-<context>
-    <name>SoundSelectDialog</name>
-    <message>
-        <location filename="../qml/pages/SoundSelectDialog.qml" line="74"/>
-        <source>Select</source>
-        <translation>Sélectionner</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SoundSelectDialog.qml" line="57"/>
-        <source>Up</source>
-        <translation>Up</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SoundSelectDialog.qml" line="151"/>
-        <source>No sound files here.</source>
-        <translation>Pas de son des fichiers ici.</translation>
+        <location filename="../qml/pages/SettingsDialog.qml" line="144"/>
+        <source>Test alarm sound</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -132,70 +139,75 @@
 <context>
     <name>TimerPage</name>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="62"/>
+        <location filename="../qml/pages/TimerPage.qml" line="66"/>
         <source>About</source>
-        <translation>A propos</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/TimerPage.qml" line="68"/>
-        <source>Edit default timers</source>
-        <translation>Modifier minuteries par défaut</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="72"/>
-        <source>Set alarm sound</source>
-        <translation>Set alarme sonore </translation>
+        <source>Edit default timers</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="76"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TimerPage.qml" line="80"/>
         <source>Last timer:</source>
-        <translation>Dernière minuterie: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="114"/>
+        <location filename="../qml/pages/TimerPage.qml" line="118"/>
         <source>Kitchen Timer</source>
-        <translation>Minuterie de cuisine</translation>
+        <translation type="unfinished">Minuterie de Cuisine</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="205"/>
+        <location filename="../qml/pages/TimerPage.qml" line="218"/>
         <source>Start</source>
-        <translation>Début</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="206"/>
+        <location filename="../qml/pages/TimerPage.qml" line="219"/>
         <source>Pause</source>
-        <translation>Pause</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="207"/>
+        <location filename="../qml/pages/TimerPage.qml" line="220"/>
         <source>Reset</source>
-        <translation>Remettre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="208"/>
+        <location filename="../qml/pages/TimerPage.qml" line="221"/>
         <source>Mute</source>
-        <translation>Muet</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TimersDialog</name>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="57"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="56"/>
+        <source>The max value is &apos;59:59&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TimersDialog.qml" line="66"/>
         <source>Deleting</source>
         <translation>Effacer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="66"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="74"/>
         <source>Timer name</source>
         <translation>Nom de la minuterie</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="79"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="90"/>
         <source>Minutes</source>
         <translation>Minutes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="104"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="135"/>
         <source>Seconds</source>
         <translation>Secondes</translation>
     </message>

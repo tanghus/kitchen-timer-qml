@@ -36,8 +36,7 @@ SOURCES = \
     ../qml/pages/TimersDialog.qml \
     ../qml/pages/AboutPage.qml \
     ../qml/cover/CoverPage.qml \
-    ../qml/pages/SoundDialog.qml \
-    ../qml/pages/SoundSelectDialog.qml
+    ../qml/pages/SettingsDialog.qml
 }
 
 CONFIG += sailfishapp_i18n
@@ -82,5 +81,6 @@ INSTALLS += desktop icon qml sounds translations
 TEMPLATE = subdirs
 SUBDIRS = src/insomniac src
 #src/folderlistmodel 
+
 
 

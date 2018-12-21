@@ -47,7 +47,6 @@ Page {
     }
     
     onSecondsChanged: {
-        console.log("onSecondsChanged", seconds);
         showTime();
     }
 
@@ -74,8 +73,8 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'));
             }
             MenuItem {
-                text: qsTr('Set alarm sound');
-                onClicked: pageStack.push(Qt.resolvedUrl('SoundDialog.qml'));
+                text: qsTr('Settings');
+                onClicked: pageStack.push(Qt.resolvedUrl('SettingsDialog.qml'));
             }
             MenuItem {
                 text: qsTr('Last timer:')
