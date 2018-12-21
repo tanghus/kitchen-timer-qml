@@ -29,7 +29,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
+import Sailfish.Media 1.0 
 
 Dialog {
     id: timersDialog;
@@ -78,7 +78,6 @@ Dialog {
                     anchors.left: name.right;
                     placeholderText: qsTr('Minutes');
                     text: model.minutes >= 10 ? model.minutes : '0' + String(model.minutes);
-                    width: font.pixelSize * 3;
                     horizontalAlignment: TextInput.AlignRight;
                     inputMethodHints: Qt.ImhFormattedNumbersOnly;
                     validator: IntValidator {
@@ -103,8 +102,7 @@ Dialog {
                     anchors.left: separator.right;
                     placeholderText: qsTr('Seconds');
                     text: model.seconds >= 10 ? model.seconds : '0' + String(model.seconds);
-                    width: font.pixelSize * 3;
-                    horizontalAlignment: TextInput.AlignRight;
+                    horizontalAlignment: TextInput.AlignLeft;
                     inputMethodHints: Qt.ImhFormattedNumbersOnly;
                     validator: IntValidator {
                         bottom: 0;
