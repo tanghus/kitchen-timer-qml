@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2013-15 Thomas Tanghus
+  Copyright (C) 2013-19 Thomas Tanghus
   All rights reserved.
 
   You may use this file under the terms of BSD license as follows:
@@ -37,7 +37,10 @@ Dialog {
 
     DialogHeader {
         id: header;
+        dialog: timersDialog
+        title: qsTr("Timers")
     }
+
     SilicaListView {
         id: timersList;
         model: timersModel;
@@ -58,8 +61,7 @@ Dialog {
 
             function remove() {
                 remorseAction(qsTr('Deleting'), function() {
-                    var idx = index;
-                    timersList.model.remove(idx);
+                    timersList.model.remove(index);
                 });
             }
 
@@ -70,7 +72,10 @@ Dialog {
                     text: model.name;
                     width: font.pixelSize * 8;
                     RegExpValidator { regExp: /(\w{1,10}\b)/g }
-                    onTextChanged:  {
+                    EnterKey.enabled: text.length > 0
+                    EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                    EnterKey.onClicked: minutes.focus = true
+                    onFocusChanged:  {
                         if(text.length > 0) {
                             timersModel.setProperty(index, 'name',  text);
                         }
@@ -171,7 +176,7 @@ Dialog {
         }
         ViewPlaceholder {
             enabled: timersList.count === 0;
-            text: 'No timers defined. Press the plus button to add one.';
+            text: 'No timers defined. Pull down to add one.';
         }
     }
     IconButton {
@@ -185,8 +190,8 @@ Dialog {
             timersModel.append(
                         {
                             name: 'New timer',
-                            minutes: 0,
-                            seconds: 0
+                            minutes: '00',
+                            seconds: '00'
                         }
                         );
             timersList.positionViewAtEnd();
