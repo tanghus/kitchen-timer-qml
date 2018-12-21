@@ -27,61 +27,94 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
-import QtMultimedia 5.0
+import QtQuick 2.6
+import QtMultimedia 5.6
 import Sailfish.Silica 1.0
+import Sailfish.Pickers 1.0
+import Sailfish.Media 1.0 
 
 Dialog {
-    id: soundDialog;
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape;
+    id: settingsDialog;
+    allowedOrientations: Orientation.All //Portrait | Orientation.Landscape;
 
     //property bool vibrate: false;
     property string tmpSelectedSound: selectedSound;
     property bool tmpUseDefaultSound: useDefaultSound;
     property bool tmpLoopSound: loopSound;
+    property bool tmpLoadLast: loadLast;
 
     //canAccept: useDefaultSound || tmpSelectedSound !== selectedSound;
 
-    DialogHeader {
-        id: header;
-        dialog: soundDialog;
-        title: qsTr('Alarm sound');
-    }
+    SilicaFlickable {
+        height: isPortrait ? Screen.height : Screen.width
+        anchors.fill: parent
+        quickScroll: true
+        VerticalScrollDecorator {} // { flickable: parent }
 
-    Column {
-        id: column;
-
-        y: header.height + Theme.paddingMedium;
-        height: parent.height - (header.height + Theme.paddingMedium);
-        anchors.leftMargin: Theme.paddingLarge;
-        anchors.rightMargin: Theme.paddingLarge;
-        width: soundDialog.width;
-        spacing: Theme.horizontalPageMargin;
-
-        TextSwitch {
-            id: doLoop;
-            checked: loopSound;
-            x: Theme.paddingLarge;
-            text: qsTr('Loop alarm sound');
-            description: qsTr('Repeat alarm sound until you stop it');
-            onCheckedChanged: {
-                console.log('Loop', checked)
-                tmpLoopSound = checked;
-            }
+        DialogHeader {
+            id: header;
+            dialog: settingsDialog;
+            title: qsTr('Settings');
         }
-
-        TextSwitch {
-            id: soundSelector;
-            checked: useDefaultSound;
-            x: Theme.paddingLarge;
-            text: qsTr('Default sound');
-            onCheckedChanged: {
-                console.log('useDefaultSound', tmpUseDefaultSound);
-                tmpUseDefaultSound = checked;
+    
+        Column {
+            id: column;
+            
+            y: header.height + Theme.paddingMedium;
+            //height: parent.height - (header.height + Theme.paddingMedium);
+            anchors.leftMargin: Theme.paddingLarge;
+            anchors.rightMargin: Theme.paddingLarge;
+            width: settingsDialog.width;
+            spacing: Theme.horizontalPageMargin;
+            
+            TextSwitch {
+                id: doLoadLast;
+                checked: loadLast;
+                x: Theme.paddingLarge;
+                text: qsTr('Load last timer');
+                description: qsTr('Reload the last timer when starting the app');
+                onCheckedChanged: {
+                    console.log('LoadLast', checked)
+                    tmpLoadLast = checked;
+                }
             }
-        }
+            
+            Label {
+                text: qsTr("Alarm sound")
+                x: Theme.paddingLarge;
+                color: Theme.highlightColor
+                font.family: Theme.fontFamilyHeading            }
 
-        /*TextSwitch {
+            TextSwitch {
+                id: doLoop;
+                checked: loopSound;
+                x: Theme.paddingLarge;
+                text: qsTr('Loop alarm sound');
+                description: qsTr('Repeat alarm sound until you stop it');
+                onCheckedChanged: {
+                    console.log('Loop', checked)
+                    tmpLoopSound = checked;
+                }
+            }
+            
+            TextSwitch {
+                id: soundSelector;
+                checked: useDefaultSound;
+                x: Theme.paddingLarge;
+                text: qsTr('Default sound');
+                description: qsTr('Use the alarm sound provided by the app');
+                onCheckedChanged: {
+                    console.log('useDefaultSound', checked);
+                    tmpUseDefaultSound = checked;
+                    if(checked) {
+                        sound.source = builtinSound;
+                        //tmpSelectedSound = builtinSound;
+                        console.log('Using builtinSound', builtinSound);
+                    }
+                }
+            }
+            
+            /*TextSwitch {
             id: doVibrate;
             checked: vibrate;
             x: Theme.paddingLarge;
@@ -91,68 +124,84 @@ Dialog {
                 console.log('Vibrate', checked)
                 vibrate = checked;
             }
-        }*/
-
-        BackgroundItem {
-            enabled: !tmpUseDefaultSound;
-            width: parent.width;
-            Column {
-                spacing: Theme.paddingSmall;
-                x: Theme.paddingLarge;
-                Row {
-                    spacing: Theme.paddingMedium;
-                    Image {
-                        source: 'image://theme/icon-l-music';
-                        width: Theme.fontSizeLarge;
-                        height: Theme.fontSizeLarge;
-                    }
-
-                    Label {
-                        id: selectedSoundLabel;
-                        color: tmpUseDefaultSound ? Theme.secondaryColor : Theme.highlightColor;
-                        textFormat: Text.StyledText;
-                        text: baseName(tmpSelectedSound);
-                    }
-                }
-                Label {
-                    x: Theme.fontSizeLarge + Theme.paddingMedium;
-                    color: tmpUseDefaultSound ? Theme.secondaryColor : Theme.primaryColor;
-                    text: qsTr('Select music file');
-                    font.pixelSize: Theme.fontSizeExtraSmall;
+            }*/
+            
+            ValueButton {
+                enabled: !tmpUseDefaultSound;
+                label: qsTr('Select music file')
+                value: baseName(tmpSelectedSound)
+                //enabled: !soundSelector.checked
+                onClicked: {
+                    pageStack.push(musicPickerPage);
                 }
             }
-
-            onClicked: {
-                //console.log('Select file', checked)
-                var filePicker = pageStack.push(Qt.resolvedUrl('SoundSelectDialog.qml'));
-                filePicker.accepted.connect(function() {
-                    tmpSelectedSound = filePicker.selectedSound;
-                });
+            Row {
+                id: notDefault
+                spacing: Theme.paddingMedium;
+                x: Theme.paddingLarge;
+                Label {
+                    x: Theme.paddingLarge;
+                    text: qsTr("Test alarm sound")
+                }
+                IconButton {
+                    id: playIcon;
+                    icon.source: sound.playbackState === Audio.PlayingState
+                                 ? "image://theme/icon-m-pause"
+                                 : "image://theme/icon-m-play";
+                    
+                    onClicked: {
+                        sound.source = tmpUseDefaultSound ? builtinSound : tmpSelectedSound;
+                        if(sound.playbackState === Audio.PlayingState) {
+                            sound.stop();
+                        } else {
+                            sound.play();
+                        }
+                    }
+                }
             }
         }
+        contentHeight: column.height + notDefault.height + header.height
     }
+
     onAccepted: {
         loopSound = tmpLoopSound;
         settings.setValue('loopSound', loopSound);
-
+        loadLast = tmpLoadLast
+        settings.setValue('loadLast', loadLast);
+        
         useDefaultSound = tmpUseDefaultSound;
         settings.setValue('useDefaultSound', useDefaultSound);
-
+        
         if(!useDefaultSound) {
             selectedSound = tmpSelectedSound;
+            console.log("Saving not default sound", selectedSound)
             settings.setValue('selectedSound', selectedSound);
-        } else {
-            selectedSound = builtinSound;
         }
-
+    }
+    
+    Component {
+        id: musicPickerPage
+        MusicPickerPage {
+            onSelectedContentPropertiesChanged: {
+                tmpSelectedSound = selectedContentProperties.filePath
+                sound.source = tmpSelectedSound;
+                console.log("Selected:", tmpSelectedSound);
+            }
+        }
     }
 
-    function baseName(str) {
-       var base = new String(str).substring(str.lastIndexOf('/') + 1);
-        if(base.lastIndexOf(".") != -1)
-            base = base.substring(0, base.lastIndexOf("."));
-       return base;
+    Audio {
+        id: sound;
+        loops: tmpLoopSound ? Audio.Infinite : 1;
+        source: selectedSound;
+        audioRole: Audio.AlarmRole;
+        onError: {
+            console.log("Audio error:", errorString, selectedSound)
+        }
     }
 
+    function baseName(path) {
+        return path.split(/[\\/]/).pop();
+    }
 }
 
