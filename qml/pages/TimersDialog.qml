@@ -27,7 +27,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
+import QtQuick 2.6
 import Sailfish.Silica 1.0
 import Sailfish.Media 1.0 
 
@@ -47,6 +47,9 @@ Dialog {
         y: header.height + Theme.paddingMedium;
         contentHeight: timersModel.count * Theme.itemSizeSmall;
         height: parent.height - (header.height + Theme.paddingMedium + addButton.height);
+        header: SectionHeader {
+            text: qsTr("The max value is '59:59'")
+        }
 
         delegate: ListItem {
             id: timerItem;
@@ -80,13 +83,34 @@ Dialog {
                     text: model.minutes >= 10 ? model.minutes : '0' + String(model.minutes);
                     horizontalAlignment: TextInput.AlignRight;
                     inputMethodHints: Qt.ImhFormattedNumbersOnly;
+                    errorHighlight: !validateTime(index, text, "minutes")
+                    EnterKey.enabled: validateTime(index, text, "minutes")
+                    EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                    EnterKey.onClicked: seconds.focus = true
                     validator: IntValidator {
                         bottom: 0;
                         top: 60;
                     }
                     onTextChanged:  {
-                        if(parseInt(text)) {
-                            timersModel.setProperty(index, 'minutes', parseInt(text));
+                        // If nothing entered do continue
+                        if(text.length === 0)
+                            return
+                        var tmp = parseInt(text)
+                        if(tmp !== NaN
+                                && tmp >= 0
+                                && tmp < 60
+                            ) {
+                            timersModel.setProperty(index, 'minutes', tmp);
+                        } else {
+                            text = timersModel.get(index).minutes
+                        }
+                    }
+                    onFocusChanged: {
+                        if(validateTime(index, text, "minutes")) {
+                            timersModel.setProperty(index, "minutes", formatTime(text));
+                        } else {
+                            // Grab the value from the model
+                            text = formatTime(timersModel.get(index).minutes)
                         }
                     }
                 }
@@ -104,13 +128,34 @@ Dialog {
                     text: model.seconds >= 10 ? model.seconds : '0' + String(model.seconds);
                     horizontalAlignment: TextInput.AlignLeft;
                     inputMethodHints: Qt.ImhFormattedNumbersOnly;
+                    errorHighlight: !validateTime(index, text, "seconds")
+                    EnterKey.enabled: validateTime(index, text, "seconds")
+                    EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                    EnterKey.onClicked: minutes.focus = true
                     validator: IntValidator {
                         bottom: 0;
                         top: 60;
                     }
                     onTextChanged:  {
-                        if(parseInt(text)) {
-                            timersModel.setProperty(index, 'seconds', parseInt(text));
+                        // If nothing entered do continue
+                        if(text.length === 0)
+                            return
+                        var tmp = parseInt(text)
+                        if(tmp !== NaN 
+                                && tmp >= 0 
+                                && tmp < 60 
+                            ) {
+                            timersModel.setProperty(index, "seconds", tmp);
+                        } else {
+                            text = timersModel.get(index).seconds
+                        }
+                    }
+                    onFocusChanged: {
+                        if(validateTime(index, text, "seconds")) {
+                            timersModel.setProperty(index, "seconds", formatTime(text));
+                        } else {
+                            // Grab the value from the model
+                            text = formatTime(timersModel.get(index).seconds)
                         }
                     }
                 }
@@ -149,12 +194,49 @@ Dialog {
     }
 
     onDone: {
-        console.log('Done:', (result === DialogResult.Accepted));
         result === DialogResult.Accepted ? save() : reload();
     }
+
+    function formatTime(text) {
+        var t = parseInt(text), newText
+        if(t === NaN) {
+            return "00"
+        }
+
+        // I'd like to do this in a READABLE one-liner
+        // Make sure that time is not more than 59 mins. and 59 secs
+        newText = t < 60 ? t : 59
+        // Format time '0' => '00', '9' => '09' etc.
+        newText = t >= 10 ? t : '0' + String(t);
+        return newText
+    }
+
+    /*
+     * idx: int: Model index
+     * timeText: String: The actual text in the TextField
+     * minsec: String: Whether it's a "minutes" or "seconds" field
+     */
+    function validateTime(idx, timeText, minsec) {
+        var minutes, seconds
+
+        // If editing minutes use the seconds value from the model
+        if(minsec === "minutes") {
+            minutes = parseInt(timeText)
+            seconds = parseInt(timersModel.get(idx).seconds)
+        }
+
+        // If editing seconds use the minutes value from the model
+        if(minsec === "seconds") {
+            minutes = parseInt(timersModel.get(idx).minutes)
+            seconds = parseInt(timeText)
+        }
+
+        // The total time cannot be longer than 1 hour - 1 second
+        if(seconds + (minutes*60) < 3600) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
-
-
-
-
 
