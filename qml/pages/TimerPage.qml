@@ -35,8 +35,7 @@ import "../components"
 
 Page {
     id: timerPage;
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape;
-    orientation: height > Screen.width ? Orientation.Portrait : Orientation.Landscape;
+    allowedOrientations: Orientation.All;
 
     property alias seconds: kitchenTimer.seconds;
     property alias minutes: kitchenTimer.minutes;
@@ -116,7 +115,7 @@ Page {
             PageHeader {
                 id: header;
                 title: qsTr('Kitchen Timer');
-                visible: orientation === Orientation.Portrait ? true : false;
+                visible: timerPage.isPortrait ? true : false;
             }
 
             // Dummy element to create some top spacing when in Landscape and to center
