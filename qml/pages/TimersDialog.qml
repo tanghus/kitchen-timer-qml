@@ -109,7 +109,7 @@ Dialog {
                 }
 
                 TimeField {
-                    id: "minutes"
+                    id: minutes
                     anchors.left: name.right;
                     timeType: "minutes"
                     text: model.minutes >= 10 ? model.minutes : '0' + String(model.minutes);
@@ -135,7 +135,7 @@ Dialog {
                 }
 
                 TimeField {
-                    id: "seconds"
+                    id: seconds
                     anchors.left: separator.right;
                     timeType: "seconds"
                     text: model.seconds >= 10 ? String(model.seconds) : '0' + String(model.seconds);
