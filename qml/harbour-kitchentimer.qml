@@ -30,7 +30,7 @@
 import QtQuick 2.0
 import QtMultimedia 5.6
 import Sailfish.Silica 1.0
-//import Sailfish.Media 1.0 
+//import Sailfish.Media 1.0
 import harbour.kitchentimer.insomniac 1.0
 import "pages"
 import "cover"
@@ -101,7 +101,7 @@ ApplicationWindow {
     Audio {
         id: alarm;
         loops: loopSound ? Audio.Infinite : 1;
-        source: Qt.resolvedUrl(selectedSound);
+        source: useDefaultSound ? builtinSound : Qt.resolvedUrl(selectedSound);
         audioRole: Audio.AlarmRole;
         onError: {
             console.log("Audio error:", errorString, selectedSound)
