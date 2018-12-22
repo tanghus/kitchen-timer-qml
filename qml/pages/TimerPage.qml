@@ -31,8 +31,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../components"
 
-
-
 Page {
     id: timerPage;
     allowedOrientations: Orientation.All;
@@ -44,7 +42,7 @@ Page {
     Component.onCompleted: {
         showTime();
     }
-    
+
     onSecondsChanged: {
         showTime();
     }
@@ -121,8 +119,8 @@ Page {
             // Dummy element to create some top spacing when in Landscape and to center
             // KitchenTimer when in Portrait without messing with the Column. Not very elegant :-/
             Item {
-                height: header.visible ? 
-                            (Screen.height/2)-(kitchenTimer.height/2)-header.height-(Theme.paddingLarge*2) : 
+                height: header.visible ?
+                            (Screen.height/2)-(kitchenTimer.height/2)-header.height-(Theme.paddingLarge*2) :
                             Theme.paddingLarge;
                 width: parent.width;
             }
@@ -136,17 +134,51 @@ Page {
                     anchors.centerIn: parent;
                 }
                 BackgroundItem {
-                    id: background;
-                    anchors.centerIn: kitchenTimer;
-                    width: timerButton.width;
-                    height: timerButton.height;
+                    id: timerButton;
 
-                    Label {
-                        id: timerButton;
-                        text: timeText;
-                        color: background.highlighted ? Theme.highlightColor : Theme.primaryColor;
-                        font.pixelSize: Theme.fontSizeExtraLarge;
+                    property alias text: timerButtonLabel.text
+                    anchors.centerIn: kitchenTimer;
+                    width: timerButtonLabel.width + (Theme.paddingLarge*2)
+                    height: timerButtonLabel.height
+
+                    Rectangle {
+                        anchors {
+                            centerIn: parent
+                            topMargin: (timerButton.height-Theme.itemSizeExtraSmall)/2
+                            bottomMargin: anchors.topMargin
+                        }
+                        radius: Theme.paddingSmall
+                        width: timerButtonLabel.width + (Theme.paddingLarge*2)
+                        height: timerButtonLabel.height
+
+                        color: timerButton._showPress ? Theme.rgba(timerButtonLabel.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
+                                          : Theme.rgba(timerButtonLabel.color, 0.2)
+
+                        opacity: timerButton.enabled ? 1.0 : 0.4
+
+                        Label {
+                            id: timerButtonLabel
+                            text: timeText;
+                            anchors.centerIn: parent
+                            color: timerButton.highlighted ? Theme.highlightColor : Theme.primaryColor
+                            padding: Theme.paddingLarge
+                            font {
+                                pixelSize: Theme.fontSizeExtraLarge
+                                bold: true
+                            }
+                        }
                     }
+
+                    onPressedChanged: {
+                        if (pressed) {
+                            pressTimer.start()
+                        }
+                    }
+                    onCanceled: {
+                        timerButton.DragFilter.end()
+                        pressTimer.stop()
+                    }
+
                     onClicked: {
                         if(isRunning) {
                             pause();
@@ -173,6 +205,11 @@ Page {
 
         ListModel {
             id: menuModel;
+        }
+
+        Timer {
+            id: pressTimer
+            interval: Theme.minimumPressHighlightTime
         }
 
         Component {
