@@ -44,8 +44,14 @@ Dialog {
 
     SilicaListView {
         id: timersList;
+
+        // TODO: Hide when list is outta sight
         header: SectionHeader {
+            //visible:
             text: qsTr("Max value is '59:59'")
+            onYChanged: {
+                console.log("onYChanged:", y)
+            }
         }
 
         footer: SectionHeader {
@@ -76,8 +82,8 @@ Dialog {
             rightMargin: Theme.paddingLarge;
         }
         width: Screen.width;
-        y: header.height + Theme.paddingSmall;
-        contentHeight: timersModel.count * Theme.itemSizeSmall;
+        y: header.height + Theme.paddingMedium;
+        contentHeight: timersModel.count * Theme.itemSizeMedium;
         height: parent.height - (header.height + Theme.paddingMedium);
 
         delegate: ListItem {
@@ -142,7 +148,7 @@ Dialog {
                     placeholderText: qsTr('Seconds');
                     errorHighlight: !validateTime(index, text, timeType)
                     EnterKey.enabled: validateTime(index, text, timeType)
-                    EnterKey.onClicked: seconds.focus = true
+                    EnterKey.onClicked: minutes.focus = true
                     onFocusChanged: {
                         if(validateTime(index, text, timeType)) {
                             timersModel.setProperty(index, timeType, formatTime(text));
@@ -171,6 +177,8 @@ Dialog {
 
     function formatTime(text) {
         var t = parseInt(text), newText
+
+        // If the delegate hasn't instantiated yet
         if(t === NaN) {
             return "00"
         }
