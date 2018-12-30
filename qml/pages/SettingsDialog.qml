@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2015 Thomas Tanghus
+  Copyright (C) 2015-2019 Thomas Tanghus
   All rights reserved.
 
   You may use this file under the terms of BSD license as follows:
@@ -32,6 +32,7 @@ import QtMultimedia 5.6
 import Sailfish.Silica 1.0
 import Sailfish.Pickers 1.0
 import Sailfish.Media 1.0 
+//import "../components"
 
 Dialog {
     id: settingsDialog;
@@ -42,6 +43,8 @@ Dialog {
     property bool tmpUseDefaultSound: useDefaultSound;
     property bool tmpLoopSound: loopSound;
     property bool tmpLoadLast: loadLast;
+    property int tmpTimersAlignment: timersAlignment
+    property alias timersAlignmentText: alignmentCombo.value
 
     //canAccept: useDefaultSound || tmpSelectedSound !== selectedSound;
 
@@ -54,83 +57,125 @@ Dialog {
         DialogHeader {
             id: header;
             dialog: settingsDialog;
-            title: qsTr('Settings');
+            title: qsTr("Settings");
         }
-    
+
         Column {
             id: column;
-            
+
             y: header.height + Theme.paddingMedium;
             //height: parent.height - (header.height + Theme.paddingMedium);
             anchors.leftMargin: Theme.paddingLarge;
             anchors.rightMargin: Theme.paddingLarge;
             width: settingsDialog.width;
             spacing: Theme.horizontalPageMargin;
-            
+
             TextSwitch {
                 id: doLoadLast;
                 checked: loadLast;
                 x: Theme.paddingLarge;
-                text: qsTr('Load last timer');
-                description: qsTr('Reload the last timer when starting the app');
+                text: qsTr("Load last timer");
+                description: qsTr("Reload the last timer when starting the app");
                 onCheckedChanged: {
-                    console.log('LoadLast', checked)
+                    //console.log("LoadLast", checked)
                     tmpLoadLast = checked;
                 }
             }
-            
+
+            ComboBox {
+                id: alignmentCombo
+                label: qsTr("Timers menu alignment")
+                description: qsTr("Select to which side of the screen the predefined timers menu should be placed")
+                onCurrentIndexChanged: {
+                    var alignmentObject = alignmentModel.get(currentIndex)
+                    value = alignmentObject.align
+                    tmpTimersAlignment = alignmentObject.value
+                    timersAlignmentText = alignmentObject.align
+                }
+
+                Component.onCompleted: {
+                    currentIndex = getIndex(timersAlignment)
+                    value = alignmentModel.get(currentIndex).align
+                }
+
+                menu: ContextMenu {
+                    Repeater {
+                        model: alignmentModel
+                        delegate: MenuItem {
+                            Label {
+                                text: model.align
+                            }
+                        }
+                    }
+                    ListModel {
+                        id: alignmentModel
+                        ListElement { align: qsTr("Left"); value: Dock.Left }
+                        ListElement { align: qsTr("Right"); value: Dock.Right }
+                    }
+                }
+
+                function getIndex(value) {
+                    for(var i = 0; i < alignmentModel.count; i++) {
+                        if(value === alignmentModel.get(i).value) {
+                            console.log("Got it:", value)
+                            return i
+                        }
+                    }
+                }
+            }
+
             Label {
                 text: qsTr("Alarm sound")
                 x: Theme.paddingLarge;
                 color: Theme.highlightColor
-                font.family: Theme.fontFamilyHeading            }
+                font.family: Theme.fontFamilyHeading
+            }
 
             TextSwitch {
                 id: doLoop;
                 checked: loopSound;
                 x: Theme.paddingLarge;
-                text: qsTr('Loop alarm sound');
-                description: qsTr('Repeat alarm sound until you stop it');
+                text: qsTr("Loop alarm sound");
+                description: qsTr("Repeat alarm sound until you stop it");
                 onCheckedChanged: {
-                    console.log('Loop', checked)
+                    console.log("Loop", checked)
                     tmpLoopSound = checked;
                 }
             }
-            
+
             TextSwitch {
                 id: soundSelector;
                 checked: useDefaultSound;
                 x: Theme.paddingLarge;
-                text: qsTr('Default sound');
-                description: qsTr('Use the alarm sound provided by the app');
+                text: qsTr("Default sound");
+                description: qsTr("Use the alarm sound provided by the app");
                 onCheckedChanged: {
-                    console.log('useDefaultSound', checked);
+                    console.log("useDefaultSound", checked);
                     tmpUseDefaultSound = checked;
                     if(checked) {
                         sound.source = builtinSound;
                         //tmpSelectedSound = builtinSound;
-                        console.log('Using builtinSound', builtinSound);
+                        console.log("Using builtinSound", builtinSound);
                     }
                 }
             }
-            
+
             /*TextSwitch {
             id: doVibrate;
             checked: vibrate;
             x: Theme.paddingLarge;
-            text: qsTr('Vibrate');
-            description: 'Since <code>QtFeedback</code> is not yet allowed, this does nothing.';
+            text: qsTr("Vibrate");
+            description: "Since <code>QtFeedback</code> is not yet allowed, this does nothing.";
             onCheckedChanged: {
-                console.log('Vibrate', checked)
+                console.log("Vibrate", checked)
                 vibrate = checked;
             }
             }*/
-            
+
             ValueButton {
                 enabled: !tmpUseDefaultSound;
-                label: qsTr('Select music file')
+                label: qsTr("Select music file")
                 value: baseName(tmpSelectedSound)
-                //enabled: !soundSelector.checked
                 onClicked: {
                     pageStack.push(musicPickerPage);
                 }
@@ -164,44 +209,38 @@ Dialog {
     }
 
     onAccepted: {
-        loopSound = tmpLoopSound;
-        settings.setValue('loopSound', loopSound);
+        timersAlignment = tmpTimersAlignment
+        loopSound = tmpLoopSound
         loadLast = tmpLoadLast
-        settings.setValue('loadLast', loadLast);
-        
-        useDefaultSound = tmpUseDefaultSound;
-        settings.setValue('useDefaultSound', useDefaultSound);
-        
-        if(!useDefaultSound) {
-            selectedSound = tmpSelectedSound;
-            console.log("Saving not default sound", selectedSound)
-            settings.setValue('selectedSound', selectedSound);
-        }
+        useDefaultSound = tmpUseDefaultSound
+        selectedSound = tmpSelectedSound
+
+        // The settings should be saved in ApplicationWindow.onDestruction,
+        // but that isn't called when closing an app
+        saveSettings()
     }
-    
+
     Component {
         id: musicPickerPage
         MusicPickerPage {
             onSelectedContentPropertiesChanged: {
                 tmpSelectedSound = selectedContentProperties.filePath
-                sound.source = tmpSelectedSound;
-                console.log("Selected:", tmpSelectedSound);
+                sound.source = tmpSelectedSound
             }
         }
     }
 
     Audio {
-        id: sound;
-        loops: tmpLoopSound ? Audio.Infinite : 1;
-        source: selectedSound;
-        audioRole: Audio.AlarmRole;
+        id: sound
+        loops: tmpLoopSound ? Audio.Infinite : 1
+        source: selectedSound
+        audioRole: Audio.AlarmRole
         onError: {
             console.log("Audio error:", errorString, selectedSound)
         }
     }
 
     function baseName(path) {
-        return path.split(/[\\/]/).pop();
+        return path.split(/[\\/]/).pop()
     }
 }
-

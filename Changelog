@@ -1,7 +1,10 @@
 0.3
 - Landscape orientation enabled.
 - Variable screen size now works.
-- Load the last timer value on program start. 
+- Optionally load the last timer value on program start.
+- Use MusicPickerPage for selected alarm sound file.
+- Predefined timers were too wide.
+- Couldn't change predefined sec/min to 0.
 
 0.2.1
 - Timer didn't show on Sailfish OS 1.1.9.

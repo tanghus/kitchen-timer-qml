@@ -43,6 +43,7 @@
 #include <QTimer>
 #include <QTranslator>
 #include <QDebug>
+#include <QLoggingCategory>
 #include "qmlsettings.h"
 #include "display.h"
 
@@ -58,6 +59,7 @@ int main(int argc, char *argv[])
     // To display the view, call "show()" (will show fullscreen on device).
 
     //return SailfishApp::main(argc, argv);
+    QLoggingCategory::setFilterRules(QStringLiteral("qt.qml.binding.removal.info=true"));
 
     //QGuiApplication* app = SailfishApp::application(argc, argv);
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));

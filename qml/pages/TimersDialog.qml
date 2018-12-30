@@ -34,24 +34,20 @@ import "../components"
 
 Dialog {
     id: timersDialog;
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape;
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     DialogHeader {
-        id: header;
+        id: header
         dialog: timersDialog
         title: qsTr("Timers")
     }
 
     SilicaListView {
-        id: timersList;
+        id: timersList
 
         // TODO: Hide when list is outta sight
         header: SectionHeader {
-            //visible:
             text: qsTr("Max value is '59:59'")
-            onYChanged: {
-                console.log("onYChanged:", y)
-            }
         }
 
         footer: SectionHeader {
@@ -62,70 +58,70 @@ Dialog {
         PushUpMenu {
             id: menu
             MenuItem {
-                text: qsTr('Add timer');
+                text: qsTr("Add timer")
                 onClicked: {
                     console.log("Adding timer")
                     timersModel.append({
-                                    name: 'New timer',
+                                    name: qsTr("New timer"),
                                     minutes: 0,
                                     seconds: 0
-                                });
-                    timersList.positionViewAtEnd();
+                                })
+                    timersList.positionViewAtEnd()
                 }
             }
         }
 
-        model: timersModel;
+        model: timersModel
         anchors {
             horizontalCenter: header.horizontalCenter
-            leftMargin: Theme.paddingLarge;
-            rightMargin: Theme.paddingLarge;
+            leftMargin: Theme.paddingLarge
+            rightMargin: Theme.paddingLarge
         }
-        width: Screen.width;
-        y: header.height + Theme.paddingMedium;
-        contentHeight: timersModel.count * Theme.itemSizeMedium;
-        height: parent.height - (header.height + Theme.paddingMedium);
+        width: Screen.width
+        y: header.height + Theme.paddingMedium
+        contentHeight: timersModel.count * Theme.itemSizeMedium
+        height: parent.height - (header.height + Theme.paddingMedium)
 
         delegate: ListItem {
-            id: timerItem;
-            contentHeight: Theme.itemSizeSmall;
+            id: timerItem
+            contentHeight: Theme.itemSizeSmall
             ListView.onRemove: animateRemoval(timerItem)
 
             function remove() {
-                remorseAction(qsTr('Deleting'), function() {
-                    timersList.model.remove(index);
+                remorseAction(qsTr("Deleting"), function() {
+                    timersList.model.remove(index)
                 });
             }
 
             Item {
                 TextField {
-                    id: name;
-                    placeholderText: qsTr('Timer name');
-                    text: model.name;
-                    width: font.pixelSize * 8;
+                    id: name
+                    placeholderText: qsTr("Timer name")
+                    text: model.name
+                    width: font.pixelSize * 8
                     RegExpValidator { regExp: /(\w{1,10}\b)/g }
                     EnterKey.enabled: text.length > 0
                     EnterKey.iconSource: "image://theme/icon-m-enter-next"
                     EnterKey.onClicked: minutes.focus = true
                     onFocusChanged:  {
                         if(text.length > 0) {
-                            timersModel.setProperty(index, 'name',  text);
+                            timersModel.setProperty(index, "name",  text)
                         }
                     }
                 }
 
                 TimeField {
                     id: minutes
-                    anchors.left: name.right;
+                    anchors.left: name.right
                     timeType: "minutes"
-                    text: model.minutes >= 10 ? model.minutes : '0' + String(model.minutes);
-                    placeholderText: qsTr('Minutes');
+                    text: model.minutes >= 10 ? model.minutes : '0' + String(model.minutes)
+                    placeholderText: qsTr("Minutes")
                     errorHighlight: !validateTime(index, text, "minutes")
                     EnterKey.enabled: validateTime(index, text, "minutes")
                     EnterKey.onClicked: seconds.focus = true
                     onFocusChanged: {
                         if(validateTime(index, text, timeType)) {
-                            timersModel.setProperty(index, timeType, formatTime(text));
+                            timersModel.setProperty(index, timeType, formatTime(text))
                         } else {
                             // Grab the value from the model
                             text = formatTime(timersModel.get(index)[timeType])
@@ -134,24 +130,24 @@ Dialog {
                 }
 
                 Label {
-                    id: separator;
-                    anchors.left: minutes.right;
-                    text: ':';
-                    color: minutes.color;
+                    id: separator
+                    anchors.left: minutes.right
+                    text: ':'
+                    color: minutes.color
                 }
 
                 TimeField {
                     id: seconds
-                    anchors.left: separator.right;
+                    anchors.left: separator.right
                     timeType: "seconds"
-                    text: model.seconds >= 10 ? String(model.seconds) : '0' + String(model.seconds);
-                    placeholderText: qsTr('Seconds');
+                    text: model.seconds >= 10 ? String(model.seconds) : '0' + String(model.seconds)
+                    placeholderText: qsTr("Seconds")
                     errorHighlight: !validateTime(index, text, timeType)
                     EnterKey.enabled: validateTime(index, text, timeType)
                     EnterKey.onClicked: minutes.focus = true
                     onFocusChanged: {
                         if(validateTime(index, text, timeType)) {
-                            timersModel.setProperty(index, timeType, formatTime(text));
+                            timersModel.setProperty(index, timeType, formatTime(text))
                         } else {
                             // Grab the value from the model
                             text = formatTime(timersModel.get(index)[timeType])
@@ -160,41 +156,24 @@ Dialog {
                 }
 
                 IconButton {
-                   anchors.left: seconds.right;
-                   icon.source: 'image://theme/icon-m-delete';
-                   onClicked: remove();
+                   anchors.left: seconds.right
+                   icon.source: "image://theme/icon-m-delete"
+                   onClicked: remove()
                 }
             }
         }
         VerticalScrollDecorator {
-            flickable: timersList;
+            flickable: timersList
         }
     }
 
-    onDone: {
-        result === DialogResult.Accepted ? save() : reload();
-    }
-
-    function formatTime(text) {
-        var t = parseInt(text), newText
-
-        // If the delegate hasn't instantiated yet
-        if(t === NaN) {
-            return "00"
-        }
-
-        // I'd like to do this in a READABLE one-liner
-        // Make sure that time is not more than 59 mins. and 59 secs
-        newText = t < 60 ? String(t) : "59"
-        // Format time '0' => '00', '9' => '09' etc.
-        newText = t >= 10 ? String(t) : "0" + String(t);
-        return newText
-    }
+    onAccepted: saveTimers()
+    onRejected: reloadTimers()
 
     /*
-     * idx: int: Model index
-     * timeText: String: The actual text in the TextField
-     * minsec: String: Whether it's a "minutes" or "seconds" field
+     * in idx: Model index
+     * string timeText: The actual text in the TextField
+     * string minsec: Whether it's a "minutes" or "seconds" field
      */
     function validateTime(idx, timeText, minsec) {
         var minutes, seconds, item = timersModel.get(idx)

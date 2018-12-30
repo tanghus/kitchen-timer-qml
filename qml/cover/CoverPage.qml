@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2013-15 Thomas Tanghus
+  Copyright (C) 2013-19 Thomas Tanghus
   All rights reserved.
 
   You may use this file under the terms of BSD license as follows:
@@ -46,7 +46,7 @@ CoverBackground {
             truncationMode: TruncationMode.Fade;
             horizontalAlignment: Text.AlignHCenter;
             width: parent.width;
-            font.pixelSize: Theme.fontSizeLarge;
+            font.pixelSize: Theme.fontSizeExtraLarge;
         }
         Label {
             text: timeText;

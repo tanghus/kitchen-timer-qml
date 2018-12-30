@@ -30,7 +30,6 @@
 import QtQuick 2.0
 import QtMultimedia 5.6
 import Sailfish.Silica 1.0
-//import Sailfish.Media 1.0
 import harbour.kitchentimer.insomniac 1.0
 import "pages"
 import "cover"
@@ -40,163 +39,188 @@ ApplicationWindow {
 
     id: app;
 
-    property string timeText: '00:01';
-    property bool useDefaultSound: true;
-    property bool loadLast: true;
-    property bool loopSound: true;
-    property string builtinSound: Qt.resolvedUrl('../sounds/harbour-kitchentimer.wav');
-    property string selectedSound: builtinSound;
-    property bool isBusy: false;
-    // Close enough to assume screen is off.
+    property string timeText: "00:00"
+    property int timersAlignment: Dock.Left
+    property bool loadLast: true
+    property bool useDefaultSound: true
+    property bool loopSound: true
+    property string builtinSound: Qt.resolvedUrl("../sounds/harbour-kitchentimer.wav")
+    property string selectedSound
+    property bool isBusy: false
+    // Close enough to determine whether screen is on or off.
     property bool viewable: cover.status === Cover.Active
                             || cover.status === Cover.Activating
-                            || applicationActive;
-    property bool isPlaying: alarm.playbackState === Audio.PlayingState;
-    property bool isRunning: timer.running || insomniac.running;
-    property alias seconds: timerPage.seconds;
-    property alias minutes: timerPage.minutes;
-    property int lastTimerMin: -1;
-    property int lastTimerSec: -1;
-    property int _lastTick: 0;
+                            || applicationActive
+    property bool isPlaying: alarm.playbackState === Audio.PlayingState
+    property bool isRunning: timer.running || insomniac.running
+    property alias seconds: timerPage.seconds
+    property alias minutes: timerPage.minutes
+    property int lastTimerMin: -1
+    property int lastTimerSec: -1
+    property int _lastTick: 0
     // Remaining time in seconds when screen blanks
-    property int _remaining: 0;
+    property int _remaining: 0
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape; //defaultAllowedOrientations
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape //defaultAllowedOrientations
 
     onViewableChanged: {
         if(!isRunning) {
-            return;
+            return
         }
 
         if(viewable) {
-            wakeUp();
+            wakeUp()
         } else {
-            snooze();
+            snooze()
         }
-
     }
 
     Component.onCompleted: {
-        load();
+        load()
+    }
+
+    Component.onDestruction: {
+        // Apparently this is never called
+        console.log("ApplicationWindow.onDestruction:")
+        saveSettings()
+        saveTimers()
     }
 
     initialPage: TimerPage {
-        id: timerPage;
+        id: timerPage
     }
 
     cover: CoverPage {
-        id: cover;
+        id: cover
     }
 
     BusyIndicator {
-        id: busyIndicator;
-        anchors.centerIn: parent;
-        size: BusyIndicatorSize.Large;
+        id: busyIndicator
+        anchors.centerIn: parent
+        size: BusyIndicatorSize.Large
     }
 
     ListModel {
-        id: timersModel;
+        id: timersModel
     }
 
     Audio {
-        id: alarm;
-        loops: loopSound ? Audio.Infinite : 1;
-        source: useDefaultSound ? builtinSound : Qt.resolvedUrl(selectedSound);
-        audioRole: Audio.AlarmRole;
+        id: alarm
+        loops: loopSound ? Audio.Infinite : 1
+        source: useDefaultSound ? builtinSound : Qt.resolvedUrl(selectedSound)
+        audioRole: Audio.AlarmRole
         onError: {
             console.log("Audio error:", errorString, selectedSound)
         }
     }
 
     Timer {
-        id: timer;
-        interval: 1000;
+        id: timer
+        interval: 1000
         running: false; repeat: true;
         onTriggered: {
-            var now = Math.round(Date.now()/1000);
-            seconds -= now - _lastTick;
-            _lastTick = now;
-            //console.log('seconds', seconds);
+            var now = Math.round(Date.now()/1000)
+            seconds -= now - _lastTick
+            _lastTick = now
             if(minutes === 0 && seconds === 0) {
-                reset();
-                playAlarm();
+                reset()
+                playAlarm()
             }
         }
     }
 
     Timer {
-        id: wakeupTimer;
-        interval: 1000;
+        id: wakeupTimer
+        interval: 1000
         running: false; repeat: false;
         onTriggered: {
-            alarm.play();
-            app.activate();
+            alarm.play()
+            app.activate()
             pageStack.pop(timerPage)
         }
     }
 
     Insomniac {
-        id: insomniac;
-        repeat: false;
-        timerWindow: 10;
+        id: insomniac
+        repeat: false
+        timerWindow: 10
         onTimeout: {
-            wakeUp();
+            wakeUp()
         }
         onError: {
-            console.warn('Error in wake-up timer');
+            console.warn("Error in wake-up timer")
         }
     }
 
     Storage {
-        id: storage;
-        dbName: StandardPaths.data;
+        id: storage
+        dbName: StandardPaths.data
     }
 
     Connections {
-        target: cover;
-        onMute: mute();
-        onPause: pause();
-        onReset: reset();
-        onStart: start();
+        target: cover
+        onMute: mute()
+        onPause: pause()
+        onReset: reset()
+        onStart: start()
     }
 
-    function save() {
-        setBusy(true);
-        var timers = [];
+    function saveSettings() {
+        setBusy(true)
+
+        // The values are assigned in timerPage.onAccept
+        settings.setValue("timersAlignment", timersAlignment)
+        settings.setValue("loopSound", loopSound)
+        settings.setValue("loadLast", loadLast)
+        settings.setValue("useDefaultSound", useDefaultSound)
+
+        if(!useDefaultSound) {
+            settings.setValue("selectedSound", selectedSound)
+        }
+        setBusy(false)
+    }
+
+    function saveTimers() {
+        setBusy(true)
+        var timers = []
 
         for (var i = 0; i < timersModel.count; ++i) {
-            var timer = timersModel.get(i);
-            timers.push({name:timer.name, minutes: timer.minutes, seconds:timer.seconds});
+            var timer = timersModel.get(i)
+            timers.push({name:timer.name, minutes: timer.minutes, seconds:timer.seconds})
         }
 
-        storage.saveTimers(timers);
-        setBusy(false);
+        storage.saveTimers(timers)
+        setBusy(false)
     }
 
     function load() {
-        setBusy(true);
+        setBusy(true)
 
-        loopSound = settings.value('loopSound', true);
-        loadLast = settings.value('loadLast', true)
-        useDefaultSound = settings.value('useDefaultSound', true);
-        console.log("Default sound?", useDefaultSound)
-        selectedSound = useDefaultSound ? builtinSound : settings.value('selectedSound', builtinSound);
-        console.log("Selected sound:", selectedSound)
+        loopSound = settings.value("loopSound", true)
+        timersAlignment = settings.value("timersAlignment", Dock.Left)
+        loadLast = settings.value("loadLast", true)
+        useDefaultSound = settings.value("useDefaultSound", true)
+        selectedSound = settings.value("selectedSound", "")
         if(loadLast) {
-            minutes = lastTimerMin = settings.value("lastTimerMin", -1);
-            seconds = lastTimerSec = settings.value("lastTimerSec", -1);
+            minutes = lastTimerMin = settings.value("lastTimerMin", -1)
+            seconds = lastTimerSec = settings.value("lastTimerSec", -1)
         }
+
+        loadTimers()
 
         // For some odd reason the app isn't set to active on load..?
         //app.activate();
-        applicationActive = true;
-        showTime();
+        applicationActive = true
+        showTime()
+        setBusy(false)
+    }
 
-        var timers = storage.getTimers();
+    function loadTimers() {
+        var timers = storage.getTimers()
 
         if(timers === false) {
-            console.warn('Default timers could not be loaded');
-            setBusy(false);
+            console.warn("Default timers could not be loaded")
+            setBusy(false)
             return
         }
 
@@ -207,110 +231,123 @@ ApplicationWindow {
                     minutes: timers[i].minutes,
                     seconds: timers[i].seconds
                 }
-            );
+            )
         }
-        setBusy(false);
     }
 
-    function reload() {
-        timersModel.clear();
-        load();
+    function reloadTimers() {
+        timersModel.clear()
+        loadTimers()
     }
 
     function setBusy(state) {
-        isBusy = state;
-        busyIndicator.running = state;
+        isBusy = state
+        busyIndicator.running = state
     }
     
     function showTime() {
         if(!viewable) {
-            return;
+            return
         }
 
-        timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss');
+        timeText = Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), 'mm:ss')
     }
 
     function setTime(mins, secs) {
-        minutes = mins;
-        seconds = secs;
+        minutes = mins
+        seconds = secs
     }
 
     function mute() {
         if(alarm.playbackState === Audio.PlayingState) {
-            alarm.stop();
+            alarm.stop()
         }
     }
 
     function pause() {
         if(timer.running) {
-            timer.stop();
+            timer.stop()
         }
     }
 
     function reset() {
         if(timer.running) {
-            timer.stop();
+            timer.stop()
         }
         if(insomniac.running) {
-            insomniac.stop();
+            insomniac.stop()
         }
-        seconds = minutes = _remaining = _lastTick = 0;
+        seconds = minutes = _remaining = _lastTick = 0
     }
 
     function start() {
         if(!timer.running) {
-            _lastTick = Math.round(Date.now()/1000);
-            lastTimerMin = minutes;
-            lastTimerSec = seconds;
-            settings.setValue("lastTimerMin", lastTimerMin);
-            settings.setValue("lastTimerSec", lastTimerSec);
-            timer.start();
+            _lastTick = Math.round(Date.now()/1000)
+            lastTimerMin = minutes
+            lastTimerSec = seconds
+            settings.setValue("lastTimerMin", lastTimerMin)
+            settings.setValue("lastTimerSec", lastTimerSec)
+            timer.start()
         }
     }
 
     function snooze() {
-        timer.stop();
-        _remaining = seconds + (minutes * 60);
-        _lastTick = Math.round(Date.now()/1000);
+        timer.stop()
+        _remaining = seconds + (minutes * 60)
+        _lastTick = Math.round(Date.now()/1000)
         // Subtract 10 seconds for timer window
-        insomniac.interval =_remaining - 10;
-        insomniac.start();
+        insomniac.interval =_remaining - 10
+        insomniac.start()
     }
 
     function wakeUp() {
         if(insomniac.running) {
-            insomniac.stop();
+            insomniac.stop()
         }
 
-        var now = Math.round(Date.now()/1000);
-        var passed = now - _lastTick;
-        _lastTick = now;
+        var now = Math.round(Date.now()/1000)
+        var passed = now - _lastTick
+        _lastTick = now
 
         if(passed >= _remaining) {
-            console.warn('Time has passed!', passed - _remaining, 'seconds');
-            reset();
-            playAlarm();
+            console.warn('Time has passed!', passed - _remaining, 'seconds')
+            reset()
+            playAlarm()
         } else {
-            timer.start();
-            _remaining = _remaining - passed;
+            timer.start()
+            _remaining = _remaining - passed
             if(_remaining > 60) {
-                minutes = Math.floor(_remaining/60);
-                seconds = Math.round(_remaining - (minutes*60));
+                minutes = Math.floor(_remaining/60)
+                seconds = Math.round(_remaining - (minutes*60))
             } else {
-                minutes = 0;
-                seconds = _remaining;
+                minutes = 0
+                seconds = _remaining
             }
         }
     }
 
     function playAlarm() {
-        display.unBlank();
+        display.unBlank()
         if(display.isLocked()) {
-            display.unLock();
+            display.unLock()
         }
         // Apparently Lipstick(?) needs some time before you can activate the app.
-        wakeupTimer.start();
+        wakeupTimer.start()
+    }
+
+    function formatTime(text) {
+        var t = parseInt(text), newText
+
+        // If the delegate hasn't instantiated yet - I guess...
+        if(t === NaN) {
+            return "00"
+        }
+
+        // I'd like to do this in a READABLE one-liner
+        // Make sure that time is not more than 59 mins. and 59 secs
+        newText = t < 60 ? String(t) : "59"
+        // Format time '0' => '00', '9' => '09' etc.
+        newText = t >= 10 ? String(t) : "0" + String(t)
+        return newText
     }
 }
-
-

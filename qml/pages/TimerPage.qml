@@ -35,85 +35,72 @@ Page {
     id: timerPage;
     allowedOrientations: Orientation.All;
 
-    property alias seconds: kitchenTimer.seconds;
-    property alias minutes: kitchenTimer.minutes;
-    property Item contextMenu;
+    property alias seconds: kitchenTimer.seconds
+    property alias minutes: kitchenTimer.minutes
+    property Item contextMenu
 
     Component.onCompleted: {
-        showTime();
+        showTime()
     }
 
     onSecondsChanged: {
-        showTime();
+        showTime()
     }
 
     onMinutesChanged: {
-        showTime();
+        showTime()
     }
 
     SilicaFlickable {
-        anchors.fill: parent;
-
-        //onWidthChanged: {
-        //    console.log(orientation === Orientation.Portrait ? "Portrait" : "Landscape")
-        //}
+        anchors.fill: parent
 
         PullDownMenu {
             MenuItem {
-                text: qsTr('About');
+                text: qsTr("About")
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl('AboutPage.qml'));
+                    pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
                 }
             }
             MenuItem {
-                text: qsTr('Edit default timers');
-                onClicked: pageStack.push(Qt.resolvedUrl('TimersDialog.qml'));
+                text: qsTr("Edit default timers")
+                onClicked: pageStack.push(Qt.resolvedUrl("TimersDialog.qml"))
             }
             MenuItem {
-                text: qsTr('Settings');
-                onClicked: pageStack.push(Qt.resolvedUrl('SettingsDialog.qml'));
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsDialog.qml"))
             }
             MenuItem {
-                text: qsTr('Last timer:')
-                      + ' ' + (lastTimerMin >= 10 ? lastTimerMin : '0' + String(lastTimerMin)) + ':'
-                      + (lastTimerSec >= 10 ? lastTimerSec : '0' + String(lastTimerSec));
+                text: qsTr("Last timer:")
+                      + " " + (lastTimerMin >= 10 ? lastTimerMin : "0" + String(lastTimerMin)) + ":"
+                      + (lastTimerSec >= 10 ? lastTimerSec : "0" + String(lastTimerSec))
                 onClicked: {
-                    setTime(lastTimerMin, lastTimerSec);
+                    setTime(lastTimerMin, lastTimerSec)
                 }
-                visible: lastTimerMin !== -1 && lastTimerSec !== -1;
+                visible: lastTimerMin !== -1 && lastTimerSec !== -1
             }
         }
 
         PushUpMenu {
-            visible: timersModel.count > 0;
-            Repeater {
-                 model: timersModel;
-                 delegate: MenuItem {
-                     text: model.name + ' '
-                           + (model.minutes>= 10 ? model.minutes : '0' + String(model.minutes))
-                           + ':'
-                           + (model.seconds >= 10 ? model.seconds : '0' + String(model.seconds));
-                     onClicked: {
-                         setTime(model.minutes, model.seconds);
-                         console.log('Selected timer', model.name);
-                     }
-                 }
+            visible: !drawer.open
+            MenuItem {
+                text: qsTr("Timers")
+                onClicked: drawer.open = true
             }
         }
 
         // Tell SilicaFlickable the height of its content.
-        contentHeight: column.height;
+        contentHeight: column.height
 
         Column {
             id: column;
 
-            width: Screen.width - (Theme.paddingLarge * 2);
-            spacing: Theme.paddingLarge;
-            anchors.centerIn: parent;
+            width: Screen.width - (Theme.paddingLarge * 2)
+            spacing: Theme.paddingLarge
+            anchors.centerIn: parent
             PageHeader {
-                id: header;
-                title: qsTr('Kitchen Timer');
-                visible: timerPage.isPortrait ? true : false;
+                id: header
+                title: qsTr("Kitchen Timer")
+                visible: timerPage.isPortrait ? true : false
             }
 
             // Dummy element to create some top spacing when in Landscape and to center
@@ -121,22 +108,28 @@ Page {
             Item {
                 height: header.visible ?
                             (Screen.height/2)-(kitchenTimer.height/2)-header.height-(Theme.paddingLarge*2) :
-                            Theme.paddingLarge;
-                width: parent.width;
+                            Theme.paddingLarge
+                width: parent.width
             }
 
             Item {
-                width: column.width - (Theme.paddingLarge * 2);
-                height : width;
-                anchors.horizontalCenter: parent.horizontalCenter;
+                width: column.width - (Theme.paddingLarge * 2)
+                height: width
+                anchors.horizontalCenter: parent.horizontalCenter
                 KitchenTimer {
-                    id: kitchenTimer;
-                    anchors.centerIn: parent;
+                    id: kitchenTimer
+                    anchors.centerIn: parent
                 }
                 BackgroundItem {
                     id: timerButton;
 
                     property alias text: timerButtonLabel.text
+
+                    drag.target: drawer
+                    drag.axis: Drag.XAxis
+                    drag.minimumX: 10
+                    drag.maximumX: timerPage.width // - rect.width
+
                     anchors.centerIn: kitchenTimer;
                     width: timerButtonLabel.width + (Theme.paddingLarge*2)
                     height: timerButtonLabel.height
@@ -169,14 +162,21 @@ Page {
                         }
                     }
 
-                    onPressedChanged: {
-                        if (pressed) {
-                            pressTimer.start()
-                        }
+                    onPositionChanged: {
+                        console.log("Dragging?", x, y)
                     }
+
+                    onPressedChanged: {
+                        console.log("Press changed", x, y)
+                        /*
+                        if(pressed) {
+                            pressTimer.start()
+                        }*/
+                    }
+
                     onCanceled: {
-                        timerButton.DragFilter.end()
-                        pressTimer.stop()
+                        /*timerButton.DragFilter.end()
+                        pressTimer.stop()*/
                     }
 
                     onClicked: {
@@ -188,7 +188,9 @@ Page {
                             start();
                         }
                     }
+
                     onPressAndHold: {
+                        console.log("pressAndHold")
                         setMenuModel();
                         if((minutes === 0 && seconds === 0) & !isPlaying && !isRunning) {
                             return;
@@ -204,7 +206,7 @@ Page {
         }
 
         ListModel {
-            id: menuModel;
+            id: menuModel
         }
 
         Timer {
@@ -213,18 +215,84 @@ Page {
         }
 
         Component {
-            id: contextMenuComponent;
+            id: contextMenuComponent
             ContextMenu {
+                container: timerButton
                 Repeater {
-                    id: menuRepeater;
-                    model: menuModel;
+                    id: menuRepeater
+                    model: menuModel
 
                     delegate: MenuItem {
-                        text: model.name;
-                        onClicked: {
-                            //console.log('Action:', model.action);
-                            runMenuAction(model.action);
-                        }
+                        text: model.name
+                        onClicked: runMenuAction(model.action)
+                    }
+                }
+            }
+        }
+    } // end Flickable
+
+    // Close drawer when tapped outside of it
+    MouseArea {
+        visible: drawer.open
+        anchors.fill: parent
+        onClicked: drawer.open = false
+    }
+
+    Drawer {
+        id: drawer
+
+        open: false
+        dock: timersAlignment
+
+        anchors.fill: parent
+        hideOnMinimize: true
+        Drag.active: timerButton.drag.active
+        //Drag.hotSpot.x: 10
+        //Drag.hotSpot.y: 10
+
+        background: Rectangle {
+            anchors.fill: parent
+            color: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
+            SilicaListView {
+                id: timersList
+                y: header.height
+                width: parent.width
+                height: parent.height - header.height
+                contentHeight: timersModel.count * Theme.itemSizeLarge
+
+                VerticalScrollDecorator {
+                }
+
+                model: timersModel
+
+                delegate: ListItem {
+                    width: parent.width - Theme.horizontalPageMargin
+                    Label {
+                        id: timerNameLabel
+                        truncationMode: TruncationMode.Fade
+                        x: Theme.horizontalPageMargin
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: model.name
+                        anchors.verticalCenter: parent.verticalCenter
+                        horizontalAlignment: Text.AlignLeft
+                        width: parent.width/2
+                        //color: parent.highlighted ? Theme.highlightColor : Theme.primaryColor
+                        color: Theme.primaryColor
+                    }
+
+                    Label {
+                        anchors.left: timerNameLabel.right
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize: Theme.fontSizeSmall
+                        horizontalAlignment: Text.AlignRight
+                        text:formatTime(model.minutes) + ":" + formatTime(model.seconds)
+                        color: Theme.primaryColor
+                    }
+
+                    onClicked: {
+                        drawer.open = false
+                        setTime(model.minutes, model.seconds)
                     }
                 }
             }
@@ -233,43 +301,40 @@ Page {
 
     function runMenuAction(action) {
         switch(action) {
-            case 'start':
-                start();
-                break;
-            case 'reset':
-                reset();
-                break;
-            case 'mute':
-                mute();
-                break;
-            case 'pause':
-                pause();
-                break;
+            case "start":
+                start()
+                break
+            case "reset":
+                reset()
+                break
+            case "mute":
+                mute()
+                break
+            case "pause":
+                pause()
+                break
         }
     }
 
     function setMenuModel() {
-        menuModel.clear();
+        menuModel.clear()
         var menuActions = {
-            start: {name:qsTr('Start'), action:'start'},
-            pause: {name:qsTr('Pause'), action:'pause'},
-            reset: {name:qsTr('Reset'), action:'reset'},
-            mute: {name:qsTr('Mute'), action:'mute'}
+            start: {name:qsTr("Start"), action:"start"},
+            pause: {name:qsTr("Pause"), action:"pause"},
+            reset: {name:qsTr("Reset"), action:"reset"},
+            mute: {name:qsTr("Mute"), action:"mute"}
         }
 
         if(isRunning) {
-            menuModel.append(menuActions.pause);
-            menuModel.append(menuActions.reset);
+            menuModel.append(menuActions.pause)
+            menuModel.append(menuActions.reset)
         } else if(!isRunning && (minutes > 0 || seconds > 0)) {
-            menuModel.append(menuActions.start);
-            menuModel.append(menuActions.reset);
+            menuModel.append(menuActions.start)
+            menuModel.append(menuActions.reset)
         } else if(minutes > 0 || seconds > 0) {
-            menuModel.append(menuActions.reset);
+            menuModel.append(menuActions.reset)
         } else if(alarm.playing) {
-            menuModel.append(menuActions.mute);
+            menuModel.append(menuActions.mute)
         }
     }
-
 }
-
-
