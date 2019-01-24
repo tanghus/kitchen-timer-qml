@@ -9,105 +9,125 @@
         <translation>Küchentimer </translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="61"/>
+        <location filename="../qml/pages/AboutPage.qml" line="62"/>
         <source>Simple Kitchen Timer app</source>
-        <translation>Einfache küche-uhr </translation>
+        <translation>Einfache Küche-uhr </translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="63"/>
+        <location filename="../qml/pages/AboutPage.qml" line="64"/>
         <source>by %1</source>
         <comment>As in made by %1</comment>
         <extracomment>Naming the author</extracomment>
         <translation>von %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="65"/>
+        <location filename="../qml/pages/AboutPage.qml" line="66"/>
         <source>See more at %1.</source>
         <comment>Link URL</comment>
         <extracomment>Link to Github project page</extracomment>
         <translation>Sehen sie mehr auf %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="65"/>
+        <location filename="../qml/pages/AboutPage.qml" line="66"/>
         <source>the project page</source>
         <comment>Link text</comment>
-        <translation>die projektseite</translation>
+        <translation>die Projektseite</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="67"/>
+        <location filename="../qml/pages/AboutPage.qml" line="68"/>
         <source>Issues and feature requests at the %1</source>
         <comment>Link URL</comment>
         <extracomment>Link to the issue tracker</extracomment>
         <translation>Probleme und Feature Anfragen an der 1%</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="67"/>
+        <location filename="../qml/pages/AboutPage.qml" line="68"/>
         <source>issue tracker</source>
         <comment>Link text</comment>
         <translation>Problemverfolgung</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="69"/>
+        <location filename="../qml/pages/AboutPage.qml" line="70"/>
         <source>Ask &quot;%1&quot; at the %2 channel on Freenode IRC for support</source>
         <comment>Link with text</comment>
         <extracomment>%1: Author nick, %2:Link to Web IRC</extracomment>
         <translation>Fragen &quot;%1&quot; auf dem %2 Kanal auf Freenode IRC für unterstützung</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="70"/>
+        <location filename="../qml/pages/AboutPage.qml" line="71"/>
         <source>The awesome icon is made by %1</source>
-        <translation>Die erstaunliche symbol wurde von %1 gemacht</translation>
+        <translation>Die erstaunliche Symbol wurde von %1 gemacht</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="57"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="60"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="74"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="77"/>
         <source>Load last timer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="75"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="78"/>
         <source>Reload the last timer when starting the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="83"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="87"/>
+        <source>Timers menu alignment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="88"/>
+        <source>Select to which side of the screen the predefined timers menu should be placed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="112"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsDialog.qml" line="128"/>
         <source>Alarm sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarmton </translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="92"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="138"/>
         <source>Loop alarm sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop alarmsound </translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="93"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
         <source>Repeat alarm sound until you stop it</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarm wiederholen bis Sie es beenden</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="104"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="150"/>
         <source>Default sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardton </translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="105"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
         <source>Use the alarm sound provided by the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="131"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="177"/>
         <source>Select music file</source>
-        <translation type="unfinished"></translation>
+        <translation>Musikdatei auswählen </translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="144"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="189"/>
         <source>Test alarm sound</source>
         <translation type="unfinished"></translation>
     </message>
@@ -138,75 +158,100 @@
 <context>
     <name>TimerPage</name>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="66"/>
+        <location filename="../qml/pages/TimerPage.qml" line="59"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="72"/>
+        <location filename="../qml/pages/TimerPage.qml" line="65"/>
         <source>Edit default timers</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard-Alarme bearbeiten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="76"/>
+        <location filename="../qml/pages/TimerPage.qml" line="69"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="80"/>
+        <location filename="../qml/pages/TimerPage.qml" line="73"/>
         <source>Last timer:</source>
+        <translation>Letzte timer:  </translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TimerPage.qml" line="86"/>
+        <source>Timers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="118"/>
+        <location filename="../qml/pages/TimerPage.qml" line="102"/>
         <source>Kitchen Timer</source>
-        <translation type="unfinished">Küchentimer </translation>
+        <translation>Küchentimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="218"/>
+        <location filename="../qml/pages/TimerPage.qml" line="322"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Anfang</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="219"/>
+        <location filename="../qml/pages/TimerPage.qml" line="323"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="220"/>
+        <location filename="../qml/pages/TimerPage.qml" line="324"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Rücksetzen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimerPage.qml" line="221"/>
+        <location filename="../qml/pages/TimerPage.qml" line="325"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Dämpfen</translation>
     </message>
 </context>
 <context>
     <name>TimersDialog</name>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="56"/>
-        <source>The max value is &apos;59:59&apos;</source>
+        <location filename="../qml/pages/TimersDialog.qml" line="42"/>
+        <source>Timers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="66"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="50"/>
+        <source>Max value is &apos;59:59&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TimersDialog.qml" line="55"/>
+        <source>Pull up to add a timer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TimersDialog.qml" line="61"/>
+        <source>Add timer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TimersDialog.qml" line="65"/>
+        <source>New timer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TimersDialog.qml" line="91"/>
         <source>Deleting</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="74"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="99"/>
         <source>Timer name</source>
         <translation>Name der alarm</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="90"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="118"/>
         <source>Minutes</source>
         <translation>Minuten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="135"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="144"/>
         <source>Seconds</source>
         <translation>Sekunden</translation>
     </message>
