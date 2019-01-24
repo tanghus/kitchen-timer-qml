@@ -35,12 +35,17 @@ SOURCES = \
     ../qml/pages/TimerPage.qml \
     ../qml/pages/TimersDialog.qml \
     ../qml/pages/AboutPage.qml \
-    ../qml/cover/CoverPage.qml \
-    ../qml/pages/SettingsDialog.qml
+    ../qml/pages/SettingsDialog.qml \
+    ../qml/components/KitchenTimer.qml \
+    ../qml/components/Storage.qml \
+    ../qml/components/TimeField.qml \
+    ../qml/cover/CoverPage.qml
 }
 
 CONFIG += sailfishapp_i18n
-TRANSLATIONS = translations/ca.ts \
+TRANSLATIONS = \
+    translations/ar.ts \
+    translations/ca.ts \
     translations/cs.ts \
     translations/da_DK.ts \
     translations/de_DE.ts \
@@ -56,6 +61,7 @@ TRANSLATIONS = translations/ca.ts \
     translations/nb.ts \
     translations/nl.ts \
     translations/pl_PL.ts \
+    translations/pt_PT.ts \
     translations/ru.ts \
     translations/sl_SI.ts \
     translations/sv.ts \
