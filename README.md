@@ -11,24 +11,27 @@ Easy to use kitchen timer with a modifiable list of standard timer settings.
 
 Set the time using the time picker, or select a predefined time.
 Tap the time to start, once it's running you can tap the time again to pause it, or long press to stop or reset.
-Add up to 7 predefined timers.
+Add unlimited number of predefined timers.
 
 Please add feature requests and bug reports to [the issue tracker](https://github.com/tanghus/kitchen-timer-qml/issues)
 
 Translators
 ===========
-- Chinese: finalmix (太空飞瓜)
+- Arabic: OmarRi, ahnad07 (Ahmed Muhammad)
+- Catalan:  fri666 (Agustí Clara), mjoan (Joan)
+- Czech: fri
+- Chinese: finalmix (太空飞瓜), kimberlyhuang
 - Danish: tanghus (Thomas Tanghus)
 - Dutch: sylsyl001 (Sylvia), mijnheer (André Koot), AronNL (Aron van Os), Vistaus (Heimen Stoffels)
 - Finnish: Timpaxi
 - French: sylsyl001 (Sylvia)
 - German: sylsyl001 (Sylvia)
-- Greek: dglent (Dimitrios Glentadakis)
+- Greek: dglent (Dimitrios Glentadakis), Savvoritias (Marinus Savoritias)
 - Hungarian: salmi, llg179 (LG Laszlo)
 - Italian: Watchmaker, ghostofasmile (Francesco Vaccaro)
 - Norwegian Bokmål: kjetil_kilhavn (Kjetil Kilhavn)
 - Polish: restless_being (Jakub Wiśniowski)
-- Russian: ZogG
+- Russian: ZogG, ВераШагалина (вера шагалина)
 - Slovenian: sponka (Boštjan Štrumbelj)
 - Swedish: attah
 
