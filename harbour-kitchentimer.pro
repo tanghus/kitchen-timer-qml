@@ -51,16 +51,19 @@ TRANSLATIONS = \
     translations/de_DE.ts \
     translations/el.ts \
     translations/en_GB.ts \
-    translations/el.ts \
     translations/es.ts \
     translations/fi_FI.ts \
     translations/fr.ts \
     translations/gl.ts \
     translations/hu_HU.ts \
     translations/it_IT.ts \
+    translations/ja_JP.ts \
+    translations/lt_LT.ts \
+    translations/lv_LV.ts \
     translations/nb.ts \
     translations/nl.ts \
     translations/pl_PL.ts \
+    translations/pt_BR.ts \
     translations/pt_PT.ts \
     translations/ru.ts \
     translations/sl_SI.ts \
