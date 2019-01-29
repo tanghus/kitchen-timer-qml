@@ -31,8 +31,6 @@ import QtQuick 2.6
 import QtMultimedia 5.6
 import Sailfish.Silica 1.0
 import Sailfish.Pickers 1.0
-import Sailfish.Media 1.0 
-//import "../components"
 
 Dialog {
     id: settingsDialog;
@@ -46,13 +44,11 @@ Dialog {
     property int tmpTimersAlignment: timersAlignment
     property alias timersAlignmentText: alignmentCombo.value
 
-    //canAccept: useDefaultSound || tmpSelectedSound !== selectedSound;
-
     SilicaFlickable {
         height: isPortrait ? Screen.height : Screen.width
         anchors.fill: parent
         quickScroll: true
-        VerticalScrollDecorator {} // { flickable: parent }
+        VerticalScrollDecorator {}
 
         DialogHeader {
             id: header;
