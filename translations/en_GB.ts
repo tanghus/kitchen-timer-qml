@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="en" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
@@ -87,47 +85,47 @@
         <translation>Select to which side of the screen the predefined timers menu should be placed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="112"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
         <source>Left</source>
         <translation>Left</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="114"/>
         <source>Right</source>
         <translation>Right</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="128"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="129"/>
         <source>Alarm sound</source>
         <translation>Alarm sound</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="138"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
         <source>Loop alarm sound</source>
         <translation>Loop alarm sound</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="140"/>
         <source>Repeat alarm sound until you stop it</source>
         <translation>Repeat alarm sound until you stop it</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="150"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
         <source>Default sound</source>
         <translation>Default sound</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="152"/>
         <source>Use the alarm sound provided by the app</source>
         <translation>Use the alarm sound provided by the app</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="177"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="178"/>
         <source>Select music file</source>
         <translation>Select music file</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="189"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="190"/>
         <source>Test alarm sound</source>
         <translation>Test alarm sound</translation>
     </message>

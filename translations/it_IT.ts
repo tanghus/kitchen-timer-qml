@@ -62,72 +62,72 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="60"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="61"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="77"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="78"/>
         <source>Load last timer</source>
         <translation>Carica ultimo timer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="78"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="79"/>
         <source>Reload the last timer when starting the app</source>
         <translation>Ricarica l&apos;ultimo timer all&apos;avvio dell&apos;app</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="87"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="88"/>
         <source>Timers menu alignment</source>
         <translation>Allineamento menu timer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="88"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="89"/>
         <source>Select to which side of the screen the predefined timers menu should be placed</source>
         <translation>Seleziona su quale lato dello schermo viene visualizzato il menu con i timer predefiniti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="112"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
         <source>Left</source>
         <translation>Sinistra</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="114"/>
         <source>Right</source>
         <translation>Destra</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="128"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="129"/>
         <source>Alarm sound</source>
         <translation>Suoneria</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="138"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
         <source>Loop alarm sound</source>
         <translation>Ripeti suoneria</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="140"/>
         <source>Repeat alarm sound until you stop it</source>
         <translation>Ripeti suoneria fino anche non la fermo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="150"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
         <source>Default sound</source>
         <translation>Suono predefinito</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="152"/>
         <source>Use the alarm sound provided by the app</source>
         <translation>Usa il suono predefinito</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="177"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="178"/>
         <source>Select music file</source>
         <translation>Scegli file musicale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="189"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="190"/>
         <source>Test alarm sound</source>
         <translation>Prova suono</translation>
     </message>
@@ -211,47 +211,47 @@
 <context>
     <name>TimersDialog</name>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="42"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="41"/>
         <source>Timers</source>
         <translation>Timer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="50"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="49"/>
         <source>Max value is &apos;59:59&apos;</source>
         <translation>Valore massimo &apos;59:59&apos;</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="55"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="54"/>
         <source>Pull up to add a timer</source>
         <translation>Swipe in alto per aggiungere un timer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="61"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="60"/>
         <source>Add timer</source>
         <translation>Aggiungi timer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="65"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="64"/>
         <source>New timer</source>
         <translation>Nuovo timer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="91"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="90"/>
         <source>Deleting</source>
         <translation>Eliminazione</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="99"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="98"/>
         <source>Timer name</source>
         <translation>Nome timer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="118"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="117"/>
         <source>Minutes</source>
         <translation>Minuti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="144"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="143"/>
         <source>Seconds</source>
         <translation>Secondi</translation>
     </message>

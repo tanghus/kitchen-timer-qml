@@ -62,72 +62,72 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="60"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="61"/>
         <source>Settings</source>
         <translation>Indstillinger</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="77"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="78"/>
         <source>Load last timer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="78"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="79"/>
         <source>Reload the last timer when starting the app</source>
         <translation>Genindlæs sidst brugte tid</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="87"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="88"/>
         <source>Timers menu alignment</source>
         <translation>Justér tider til:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="88"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="89"/>
         <source>Select to which side of the screen the predefined timers menu should be placed</source>
         <translation>Vælg til hvilken side menuen med foruddefinerede tider skal være</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="112"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
         <source>Left</source>
         <translation>Venstre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="114"/>
         <source>Right</source>
         <translation>Højre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="128"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="129"/>
         <source>Alarm sound</source>
         <translation>Alarmlyd</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="138"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
         <source>Loop alarm sound</source>
         <translation>Gentag alarmlyd</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="140"/>
         <source>Repeat alarm sound until you stop it</source>
         <translation>Alarmlyden gentages indtil du stopper den</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="150"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
         <source>Default sound</source>
         <translation>Standard lyd</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="152"/>
         <source>Use the alarm sound provided by the app</source>
         <translation>Brug den indbyggede alarm</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="177"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="178"/>
         <source>Select music file</source>
         <translation>Vælg musikfil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="189"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="190"/>
         <source>Test alarm sound</source>
         <translation>Test alarm lyd</translation>
     </message>
@@ -211,47 +211,47 @@
 <context>
     <name>TimersDialog</name>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="42"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="41"/>
         <source>Timers</source>
         <translation>Tider</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="50"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="49"/>
         <source>Max value is &apos;59:59&apos;</source>
         <translation>Højeste værdi er &apos;59:59&apos;</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="55"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="54"/>
         <source>Pull up to add a timer</source>
         <translation>Træk op for at tilføje en tid</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="61"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="60"/>
         <source>Add timer</source>
         <translation>Tilføj en tid</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="65"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="64"/>
         <source>New timer</source>
         <translation>Ny tid</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="91"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="90"/>
         <source>Deleting</source>
         <translation>Sletter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="99"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="98"/>
         <source>Timer name</source>
         <translation>Tidsindstillingsnavn</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="118"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="117"/>
         <source>Minutes</source>
         <translation>Minutter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TimersDialog.qml" line="144"/>
+        <location filename="../qml/pages/TimersDialog.qml" line="143"/>
         <source>Seconds</source>
         <translation>Sekunder</translation>
     </message>
