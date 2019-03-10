@@ -22,7 +22,7 @@ Translators
 - Czech: fri
 - Chinese: finalmix (太空飞瓜), kimberlyhuang
 - Danish: tanghus (Thomas Tanghus)
-- Dutch: sylsyl001 (Sylvia), mijnheer (André Koot), AronNL (Aron van Os), Vistaus (Heimen Stoffels)
+- Dutch: sylsyl001 (Sylvia), mijnheer (André Koot), Vistaus (Heimen Stoffels)
 - Finnish: Timpaxi
 - French: sylsyl001 (Sylvia)
 - German: sylsyl001 (Sylvia)
