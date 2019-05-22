@@ -47,16 +47,17 @@
 #include "qmlsettings.h"
 #include "display.h"
 
-int main(int argc, char *argv[])
-{
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
+int main(int argc, char *argv[]) {
+    /*
+    SailfishApp::main() will display "qml/template.qml", if you need more
+     control over initialization, you can use:
+
+       - SailfishApp::application(int, char *[]) to get the QGuiApplication *
+       - SailfishApp::createView() to get a new QQuickView * instance
+       - SailfishApp::pathTo(QString) to get a QUrl to a resource file
+
+     To display the view, call "show()" (will show fullscreen on device).
+    */
 
     //return SailfishApp::main(argc, argv);
     QLoggingCategory::setFilterRules(QStringLiteral("qt.qml.binding.removal.info=true"));
@@ -76,15 +77,18 @@ int main(int argc, char *argv[])
 
     QTranslator *translator = new QTranslator;
 
-    //Insomnia *insomniac = new Insomnia();
-    //insomniac->setSingleShot(true);
-    //insomniac->setTimerWindow(10);
+    /*
+    Insomnia *insomniac = new Insomnia();
+    insomniac->setSingleShot(true);
+    insomniac->setTimerWindow(10);
+    */
 
     QString locale = QLocale::system().name();
+    QString translation = SailfishApp::pathTo("translations").toLocalFile() + "/" + locale + ".qm";
 
-    qDebug() << "Translations:" << SailfishApp::pathTo("translations").toLocalFile() + "/" + locale + ".qm";
+    qDebug() << "Active translation for:" << translation << ": " << translation;
 
-    if(!translator->load(SailfishApp::pathTo("translations").toLocalFile() + "/" + locale + ".qm")) {
+    if(!translator->load(translation)) {
         qDebug() << "Couldn't load translation";
     }
     app->installTranslator(translator);
