@@ -62,72 +62,72 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="61"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="56"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="78"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="73"/>
         <source>Load last timer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="79"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="74"/>
         <source>Reload the last timer when starting the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="88"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="83"/>
         <source>Timers menu alignment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="89"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="84"/>
         <source>Select to which side of the screen the predefined timers menu should be placed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="113"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="108"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="114"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="109"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="129"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="124"/>
         <source>Alarm sound</source>
         <translation>Zvok alarma</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="139"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="134"/>
         <source>Loop alarm sound</source>
         <translation>Ponavljanje alarma</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="140"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="135"/>
         <source>Repeat alarm sound until you stop it</source>
         <translation>Ponavljaj alarm do prekinitve</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="151"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="146"/>
         <source>Default sound</source>
         <translation>Privzeti zvok</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="152"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="147"/>
         <source>Use the alarm sound provided by the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="178"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="173"/>
         <source>Select music file</source>
         <translation>Izberi zvočno datoteko</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsDialog.qml" line="190"/>
+        <location filename="../qml/pages/SettingsDialog.qml" line="185"/>
         <source>Test alarm sound</source>
         <translation type="unfinished"></translation>
     </message>

@@ -16,7 +16,7 @@ Name:       harbour-kitchentimer
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Kitchen Timer
-Version:    0.3
+Version:    0.3.1
 Release:    3
 Group:      Qt/Qt
 License:    BSD
