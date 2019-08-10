@@ -18,14 +18,14 @@
         <source>by %1</source>
         <comment>As in made by %1</comment>
         <extracomment>Naming the author</extracomment>
-        <translation>由%1开发</translation>
+        <translation>由 %1 开发</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="66"/>
         <source>See more at %1.</source>
         <comment>Link URL</comment>
         <extracomment>Link to Github project page</extracomment>
-        <translation>到%1了解更多。</translation>
+        <translation>到 %1 了解更多。</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="66"/>
@@ -38,7 +38,7 @@
         <source>Issues and feature requests at the %1</source>
         <comment>Link URL</comment>
         <extracomment>Link to the issue tracker</extracomment>
-        <translation>报告问题或请求新功能请到%1</translation>
+        <translation>报告问题或请求新功能请到 %1</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="68"/>
@@ -56,7 +56,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="71"/>
         <source>The awesome icon is made by %1</source>
-        <translation>图标由%1制作</translation>
+        <translation>图标由 %1 制作</translation>
     </message>
 </context>
 <context>
@@ -64,72 +64,72 @@
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="56"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="73"/>
         <source>Load last timer</source>
-        <translation type="unfinished"></translation>
+        <translation>加载上次的定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="74"/>
         <source>Reload the last timer when starting the app</source>
-        <translation type="unfinished"></translation>
+        <translation>当启动应用程序时重新记载上次的定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="83"/>
         <source>Timers menu alignment</source>
-        <translation type="unfinished"></translation>
+        <translation>定时器菜单排列</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="84"/>
         <source>Select to which side of the screen the predefined timers menu should be placed</source>
-        <translation type="unfinished"></translation>
+        <translation>选择预先设定的定时器应放置于屏幕的哪边</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="108"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>左侧</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="109"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>右侧</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="124"/>
         <source>Alarm sound</source>
-        <translation type="unfinished"></translation>
+        <translation>定时器声音</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="134"/>
         <source>Loop alarm sound</source>
-        <translation type="unfinished"></translation>
+        <translation>循环播放声音</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="135"/>
         <source>Repeat alarm sound until you stop it</source>
-        <translation type="unfinished"></translation>
+        <translation>重复播放定时器声音直至手动停止</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="146"/>
         <source>Default sound</source>
-        <translation type="unfinished"></translation>
+        <translation>默认声音</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="147"/>
         <source>Use the alarm sound provided by the app</source>
-        <translation type="unfinished"></translation>
+        <translation>使用应用程序提供的铃声</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="173"/>
         <source>Select music file</source>
-        <translation type="unfinished"></translation>
+        <translation>选择音乐文件</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsDialog.qml" line="185"/>
         <source>Test alarm sound</source>
-        <translation type="unfinished"></translation>
+        <translation>测试闹钟声音</translation>
     </message>
 </context>
 <context>
@@ -137,22 +137,22 @@
     <message>
         <location filename="../qml/components/Storage.qml" line="181"/>
         <source>Eggs</source>
-        <translation type="unfinished"></translation>
+        <translation>蛋</translation>
     </message>
     <message>
         <location filename="../qml/components/Storage.qml" line="182"/>
         <source>Potatoes</source>
-        <translation type="unfinished"></translation>
+        <translation>土豆</translation>
     </message>
     <message>
         <location filename="../qml/components/Storage.qml" line="183"/>
         <source>Frozen pizza</source>
-        <translation type="unfinished"></translation>
+        <translation>冷冻披萨</translation>
     </message>
     <message>
         <location filename="../qml/components/Storage.qml" line="184"/>
         <source>Tea (Earl Grey)</source>
-        <translation type="unfinished"></translation>
+        <translation>伯爵茶</translation>
     </message>
 </context>
 <context>
@@ -165,22 +165,22 @@
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="65"/>
         <source>Edit default timers</source>
-        <translation>编辑默认定时</translation>
+        <translation>编辑默认定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="69"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="73"/>
         <source>Last timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>之前的定时器:</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="86"/>
         <source>Timers</source>
-        <translation type="unfinished"></translation>
+        <translation>定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimerPage.qml" line="102"/>
@@ -213,27 +213,27 @@
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="41"/>
         <source>Timers</source>
-        <translation type="unfinished"></translation>
+        <translation>定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="49"/>
         <source>Max value is &apos;59:59&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>最大值是 &apos;59:59&apos;</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="54"/>
         <source>Pull up to add a timer</source>
-        <translation type="unfinished"></translation>
+        <translation>下拉以添加定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="60"/>
         <source>Add timer</source>
-        <translation type="unfinished"></translation>
+        <translation>添加定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="64"/>
         <source>New timer</source>
-        <translation type="unfinished"></translation>
+        <translation>新定时器</translation>
     </message>
     <message>
         <location filename="../qml/pages/TimersDialog.qml" line="90"/>
